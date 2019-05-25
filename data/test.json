@@ -1,0 +1,278 @@
+{
+  "status": {
+    "timems": 2,
+    "rid": "mbbUiaQtSQqK8p4="
+  },
+  "hits": {
+    "found": 13,
+    "start": 0,
+    "hit": [
+      {
+        "id": "62e02662-a209-4465-96a3-a6714eb4d382",
+        "fields": {
+          "producer": [
+            "Paramount Pictures"
+          ],
+          "title": [
+            "Thor"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://m.media-amazon.com/images/M/MV5BOGE4NzU1YTAtNzA3Mi00ZTA2LTg2YmYtMDJmMThiMjlkYjg2XkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg"
+          ],
+          "actor": [
+            "Chris Hemsworth",
+            "Natalie Portman",
+            "Tom Hiddleston",
+            "Anthony Hopkins"
+          ]
+        }
+      },
+      {
+        "id": "9c6d9abc-3da7-4311-b10c-fc8fda943114",
+        "fields": {
+          "producer": [
+            "N/A"
+          ],
+          "title": [
+            "Shazam"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://m.media-amazon.com/images/M/MV5BNmZjZDQ1N2QtMTNkMS00OGYyLWI2MTktOWVlMzliMjlhMTBjXkEyXkFqcGdeQXVyODkwNDUwNw@@._V1_SX300.jpg"
+          ],
+          "actor": [
+            "Roman Dior Degeddingseze, Christopher Mychael Watson"
+          ]
+        }
+      },
+      {
+        "id": "654d959c-fca9-40b9-9b2d-0e18b0c9ebf6",
+        "fields": {
+          "producer": [
+            "Walt Disney Pictures"
+          ],
+          "title": [
+            "The Avengers"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg"
+          ],
+          "actor": [
+            "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth"
+          ]
+        }
+      },
+      {
+        "id": "7114868a-d896-402a-8d11-400726de8b45",
+        "fields": {
+          "producer": [
+            "Universal Pictures"
+          ],
+          "title": [
+            "Glass"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://m.media-amazon.com/images/M/MV5BMTY1OTA2MjI5OV5BMl5BanBnXkFtZTgwNzkxMjU4NjM@._V1_SX300.jpg"
+          ],
+          "actor": [
+            "James McAvoy, Bruce Willis, Samuel L. Jackson, Anya Taylor-Joy"
+          ]
+        }
+      },
+      {
+        "id": "3698b609-84f9-4ed5-bb5a-2100a8c509ed",
+        "fields": {
+          "producer": [
+            "Paramount/DWA"
+          ],
+          "title": [
+            "How to Train Your Dragon"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://m.media-amazon.com/images/M/MV5BMjA5NDQyMjc2NF5BMl5BanBnXkFtZTcwMjg5ODcyMw@@._V1_SX300.jpg"
+          ],
+          "actor": [
+            "Jay Baruchel, Gerard Butler, Craig Ferguson, America Ferrera"
+          ]
+        }
+      },
+      {
+        "id": "e25e7de7-33e6-47ed-807e-9966cc72db5f",
+        "fields": {
+          "producer": [
+            "Universal"
+          ],
+          "title": [
+            "FAST AND FURIOUS 8"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://www.galaxycine.vn/media/f/a/fast_1.jpg"
+          ],
+          "actor": [
+            "Vin Diesel, Dwayne Johnson, Jason Statham, Charlize Theron, Nathalie Emmanuel"
+          ]
+        }
+      },
+      {
+        "id": "50cbde22-6bcd-4778-8a50-55cd6f9104b3",
+        "fields": {
+          "producer": [
+            "Walt Disney Studios Motion Pictures"
+          ],
+          "title": [
+            "AVENGERS: ENDGAME"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://galaxycine.vn/media/2019/4/10/406wx600h_1554864308063.jpg"
+          ],
+          "actor": [
+            "Robert Downey Jr., Chris Hemsworth, Chris Evans, Scarlett Johansson, Mark Ruffalo, Jeremy Renner"
+          ]
+        }
+      },
+      {
+        "id": "d5b11fac-d557-4713-9204-48ea2baa7684",
+        "fields": {
+          "producer": [
+            "Savage Productions"
+          ],
+          "title": [
+            "THE HOLE IN THE GROUND"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://galaxycine.vn/media/2019/4/16/mv5bnji3njmwnzuznv5bml5banbnxkftztgwmzezmdkynzm--v1-sy1000-cr0-0-674-1000-al-_1555398148138.jpg"
+          ],
+          "actor": [
+            "Seána Kerslake, James Quinn Markey"
+          ]
+        }
+      },
+      {
+        "id": "ced03e83-0f76-4f3e-9162-0a44ee7ca34b",
+        "fields": {
+          "producer": [
+            "Nu Boyana FX"
+          ],
+          "title": [
+            "HELLBOY"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://galaxycine.vn/media/2019/3/19/hellboy-main-poster-low_1552980237048.jpg"
+          ],
+          "actor": [
+            "David Harbour, Milla Jovovich, Ian McShane"
+          ]
+        }
+      },
+      {
+        "id": "d50eb424-ce90-44f5-853e-9b298dee3813",
+        "fields": {
+          "producer": [
+            "New Line Cinema"
+          ],
+          "title": [
+            "THE CURSE OF LA LLORONA"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://galaxycine.vn/media/2019/3/6/mema5_1551855582189.jpg"
+          ],
+          "actor": [
+            "Linda Cardellini, Patricia Velasquez, Sean Patrick Thomas"
+          ]
+        }
+      },
+      {
+        "id": "ccdd390c-a783-4023-9d5d-0f0af78404c7",
+        "fields": {
+          "producer": [
+            "Warner Bros, Legendary Entertainment, The Pokemon Company"
+          ],
+          "title": [
+            "POKÉMON DETECTIVE PIKACHU"
+          ],
+          "country": [
+            "Mỹ"
+          ],
+          "posterimage": [
+            "https://galaxycine.vn/media/2019/2/20/pokemon-detective-pikachu--vietnamese-poster_1550653017654.jpg"
+          ],
+          "actor": [
+            "Ryan Reynolds, Justice Smith"
+          ]
+        }
+      },
+      {
+        "id": "fff4c33f-0576-4ec1-89b6-9383b1d5ec80",
+        "fields": {
+          "producer": [
+            "Warner Bros. Pictures"
+          ],
+          "title": [
+            "300"
+          ],
+          "country": [
+            "Mỹ, Canada, Bulgaria"
+          ],
+          "posterimage": [
+            "https://m.media-amazon.com/images/M/MV5BMjc4OTc0ODgwNV5BMl5BanBnXkFtZTcwNjM1ODE0MQ@@._V1_SX300.jpg"
+          ],
+          "actor": [
+            "Gerard Butler",
+            "Lena Headey",
+            "Dominic West",
+            "David Wenham"
+          ]
+        }
+      },
+      {
+        "id": "e6fc80fa-f34a-4dd2-9f66-03b92385174a",
+        "fields": {
+          "producer": [
+            "Alibaba Pictures Group Limited"
+          ],
+          "title": [
+            "UGLY DOLLS"
+          ],
+          "country": [
+            "Mỹ, Trung Quốc"
+          ],
+          "posterimage": [
+            "https://galaxycine.vn/media/2019/4/16/poster-hoi-thu-bong-ngho-nghinh_1555401556337.jpg"
+          ],
+          "actor": [
+            "Kelly Clarkson, Nick Jonas"
+          ]
+        }
+      }
+    ]
+  }
+}

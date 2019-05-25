@@ -1,0 +1,22 @@
+.btn-remove-approve, .btn-unapprove{
+    float: right;
+}
+.list_approve{
+        min-height: 400px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+
+}
+#lbl-admin-approve-movie{
+    word-wrap: break-word;
+}
+/* .group-btn-approve-admin{
+      float: right;
+    width: 50px;
+} */
+.btn-unapprove, .btn-remove-approve, .btn-view-post-admin, .btn-approve{
+    float: right;
+    margin-left: 15px;
+    width: 110px;
+    text-align: center;
+}

@@ -1,0 +1,127 @@
+<%include ../partials/header-admin%>
+<div class="container list-movie-member-writed">
+    <%var count=1%>
+    <table class="table table-responsive display" id="example"  style="width:100%">
+
+        <thead>
+            <tr>
+                <th id="stt">STT</th>
+                <th id="th">Tiêu đề</th>
+                <th id="th">Trạng thái</th>
+                <th id="th">Nhà phát hành</th>
+                <th id="th">Quốc gia</th>
+                <th id="th">Ngày công chiếu</th>
+                <th id="th">Ngày viết bài</th>
+                <th id="th">Phê duyệt</th>
+                <th id="th1">&nbsp</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <%data.Items.forEach(function(i){%>
+            <tr>
+                <td id="stt"><%=count%></td>
+                <td><%=i.title%></td>
+                <%if(i.stt==1){%>
+                    <td style="color: forestgreen">Công khai</td>
+                <%}else if(i.stt==2){%>
+                    <td style="color:blue">Chờ duyệt</td>
+                <%}else if(i.stt==3){%>
+                    <td style="color: red">Chờ viết</td>
+                <%}else{%>
+                    <td style="color:gold">Chờ đăng ký</td>
+                <%}%> 
+                <td><%=i.info.producer%></td>
+                <td><%=i.info.country?i.info.country:"-"%></td>
+                <td><%=i.info.publicationdate?moment(i.info.publicationdate,'YYYY-MM-DD').format('DD/MM/YYYY'):"-"%></td>
+                <td><%=i.process.approve?(i.process.approve.submitiondate?moment(i.process.approve.submitiondate,'YYYY-MM-DD').format('DD/MM/YYYY'):"-"):"-"%></td>
+                <td><%=i.process.approve?(i.process.approve.approver?i.process.approve.approver[0]:"-"):"-"%></td>
+                <%if(i.stt==1){%>
+                    <td><a class="open-view-movie" id="<%=i.id%>" href="#">Xem</a><span>||</span><a class="admin-edit-movie-content" id="<%=i.id%>" href="#">Sửa</a><span>||</span><a class="btn-remove-admin" id="<%=i.id%>" data-toggle="modal" data-target="#myModalremove" href="#">Xóa</a></td>
+                <%}else if(i.stt==2){%>
+                    <td><a id="<%=i.id%>" class="open-movie-manager" href="#">Xem</a><span>||</span><a class="admin-edit-movie-content"  id="<%=i.id%>" href="#">Sửa</a><span>||</span><a class="btn-remove-admin" id="<%=i.id%>" data-toggle="modal" data-target="#myModalremove" href="#">Xóa</a><span>||</span><a href="" class="app-admin" id="<%=i.id%>">Duyệt</a><span>||</span><a class="admin-unapprove" id="<%=i.id%>" data-toggle="modal" data-target="#myModal" href="">Không duyệt</a></td>
+                <%}else{%>
+                    <td><a class="btn-remove-admin" id="<%=i.id%>" data-toggle="modal" data-target="#myModalremove" href="#">Xóa</a><span>||</span><a class="admin-edit" id="<%=i.id%>" href="#">Sửa</a></td>
+                <%}%> 
+            </tr>
+            <%count++%>
+            <%})%>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th id="stt">STT</th>
+                <th id="th">Tiêu đề</th>
+                <th id="th">Trạng thái</th>
+                <th id="th">Nhà phát hành</th>
+                <th id="th">Quốc gia</th>
+                <th id="th">Ngày công chiếu</th>
+                <th id="th">Ngày viết bài</th>
+                <th id="th">Phê duyệt</th>
+                <th id="th1">&nbsp</th>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>
+<!-- Dialog Note -->
+    <!-- The Modal -->
+    <div class="container">
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Lý do không duyệt bài</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+    
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <textarea class="form-control txt-unapprove-note" rows="5" id="comment"></textarea>
+                        </div>
+    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-unapprove-note">Xong</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ---------- -->
+        <!-- Dialog Remove-->
+    <!-- The Modal -->
+    <div class="container">
+            <!-- The Modal -->
+            <div class="modal fade" id="myModalremove">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+    
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Xác nhận</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+    
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Bạn có thật sự muốn xóa phim này?
+                        </div>
+    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-remove-approve">Xong</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <!-- ---------- -->
+<%include ../partials/footer-admin%>

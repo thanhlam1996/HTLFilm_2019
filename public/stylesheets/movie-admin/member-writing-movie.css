@@ -1,0 +1,55 @@
+.form-writing{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+#title-movie-writing{
+    display: none;
+}
+
+.ck.ck-editor__editable_inline{
+    min-height: 200px;
+    border: 1px solid rgb(186, 186, 238);
+    /* margin-left: 15px; */
+    /* width: 100%; */
+}
+
+#editor{
+    margin-left: 15px;
+}
+.ckeditorgroup{
+    margin-top: 50px;
+    margin-left: 20px;
+    width: 100%;
+}
+ 
+.file-name{
+    width: 100%;
+    border: 0px;
+}
+.group-btn-writing{
+    float: right;
+    margin-bottom: 100px;
+}
+.btn-submit-writing{
+    margin-right: 10px;
+}
+.imgpostercreate{
+    height: 100px;
+    width: 70px;
+    display: none;
+}
+#imgposter{
+    height: 100px;
+    width: 70px;
+}
+.form-writing label{
+    justify-content: left;
+    
+}
+#lbl-content-right{
+    
+    text-align: right;
+}
+#title-writing{
+    color: blue;
+}

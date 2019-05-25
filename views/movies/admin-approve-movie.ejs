@@ -1,0 +1,126 @@
+<%include ../partials/header-admin%>
+<!-----------------------------------------------Container ------------------------------------------------>
+<%var count=1%>
+<div class="container list_approve">
+    <%result.Items.forEach(function(i){%>
+    <div class="item-registerlist btn-approve<%=count%>" id="<%=i.id%>">
+        <div class="row registerlist-title">
+            <label class="col col-1">
+                <h3><%=count%></h3>
+            </label>
+            <label class="col col-7">
+                <h3 class="<%=i.id%>" id="<%=i.title%>"><%=i.title%></h3>
+            </label>
+            <!-- <div class="col col-2">
+                    <button class="btn btn-danger btn-remove-approve" data-toggle="modal" data-target="#myModalremove"
+                        id="btn-approve<%=count%>">Xóa
+                        bài</button></div> -->
+            <!-- <div class="col col-2">
+                    <button class="btn btn-danger btn-view-post-admin" id="btn-approve<%=count%>">Xem trước
+                        bài</button></div>-->
+        </div>
+        <div class="row registerlist-label-topic">
+            <label id="lbl-admin-approve-movie" class="col col-2">Nhà phát hành</label>
+            <label id="lbl-admin-approve-movie" class="col col-2">Người viết bài</label>
+            <label id="lbl-admin-approve-movie" class="col col-2">Ngày nộp bài</label>
+            <label id="lbl-admin-approve-movie" class="col col-2">Hạn nộp bài</label>
+            <label id="lbl-admin-approve-movie" class="col col-2">Ghi chú</label>
+            <%if(i.process.approve.complaint){%>
+                <label id="lbl-admin-approve-movie" class="col col-2">Ghi chú(AD)</label>
+            <%}%>
+            <!-- <div class="col col-2">
+                    <button class="btn btn-success btn-approve" id="btn-approve<%=count%>" type="button">Duyệt bài</button>
+                </div> -->
+        </div>
+        <div class="row registerlist-detail">
+            <label id="lbl-admin-approve-movie" class="col col-2"><%=i.info.producer%></label>
+            <label id="lbl-admin-approve-movie" class="col col-2"><%=i.process.registion.register[0]%></label>
+            <label id="lbl-admin-approve-movie" class="col col-2 deadline"><%=moment(i.process.approve.submitiondate,'YYYY-MM-DD').format('DD/MM/YYYY')%></label>
+            <label id="lbl-admin-approve-movie" class="col col-2 deadline"><%=moment(i.process.create.deadline,'YYYY-MM-DD').format('DD/MM/YYYY')%></label>
+            <label id="lbl-admin-approve-movie" class="col col-2"><%=i.process.create.createnote?i.process.create.createnote:"Note:"%></label>
+            <%if(i.process.approve.complaint){%>
+                <label id="lbl-admin-approve-movie" class="col col-2 deadline"><%=i.process.approve.complaint%></label>
+            <%}%>
+            <!-- <div class="col col-2">
+                                <button class="btn btn-warning btn-unapprove" id="btn-approve<%=count%>" data-toggle="modal"
+                                    data-target="#myModal">Không duyệt</button>
+                            </div> -->
+        </div>
+        <div class="row">
+            <div class="col col-4">
+
+            </div>
+            <div class="col col-8 ">
+                <button class="btn btn-warning btn-unapprove" id="<%=i.id%>" data-toggle="modal" data-target="#myModal">Không duyệt</button>
+                <button class="btn btn-danger btn-remove-approve" data-toggle="modal" data-target="#myModalremove" id="<%=i.id%>">Xóa bài</button>
+                <button class="btn btn-primary btn-view-post-admin" id="<%=i.id%>">Xem trước</button>
+                <button class="btn btn-success btn-approve" id="<%=i.id%>" type="button">Duyệt bài</button>
+            </div>
+        </div>
+    </div>
+    <%count++ })%>
+    <!-- Dialog Note -->
+    <!-- The Modal -->
+    <div class="container">
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Lý do không duyệt bài</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <textarea class="form-control txt-unapprove-note" rows="5" id="comment"></textarea>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-unapprove-note">Xong</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ---------- -->
+    <!-- Dialog Remove-->
+    <!-- The Modal -->
+    <div class="container">
+        <!-- The Modal -->
+        <div class="modal fade" id="myModalremove">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Xác nhận</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Bạn có thật sự muốn xóa phim này?
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-remove-approve">Xong</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ---------- -->
+</div>
+
+<!-- --------------------------------------------End Detail--------------------------------------------->
+<%include ../partials/footer-admin%>

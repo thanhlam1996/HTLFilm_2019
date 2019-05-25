@@ -1,0 +1,201 @@
+[
+    {
+        "type": "add",
+        "id": "62e02662-a209-4465-96a3-a6714eb4d382",
+        "fields": {
+            "title": "Thor",
+            "country": "Mỹ",
+            "producer": "Paramount Pictures"
+        }
+    },
+    {
+        "type": "add",
+        "id": "fff4c33f-0576-4ec1-89b6-9383b1d5ec80",
+        "fields": {
+            "title": "300",
+            "country": "Mỹ, Canada, Bulgaria",
+            "producer": "Warner Bros. Pictures"
+        }
+    },
+    {
+        "type": "add",
+        "id": "9c6d9abc-3da7-4311-b10c-fc8fda943114",
+        "fields": {
+            "title": "Shazam",        
+            "country": "Mỹ",
+            "producer": "N/A"
+        }
+    },
+    {
+        "type": "add",
+        "id": "654d959c-fca9-40b9-9b2d-0e18b0c9ebf6",
+        "fields": {
+            "title": "The Avengers",      
+            "country": "Mỹ",
+            "producer": "Walt Disney Pictures"
+        }
+    },
+    {
+        "type": "add",
+        "id": "7114868a-d896-402a-8d11-400726de8b45",
+        "fields": {
+            "title": "Glass",
+            "country": "Mỹ",
+            "producer": "Universal Pictures"
+        }
+    },
+    {
+        "type": "add",
+        "id": "3698b609-84f9-4ed5-bb5a-2100a8c509ed",
+        "fields": {
+            "title": "How to Train Your Dragon",
+            "country": "Mỹ",
+            "producer": "Paramount/DWA"
+        }
+    },
+    {
+        "type": "add",
+        "id": "e25e7de7-33e6-47ed-807e-9966cc72db5f",
+        "fields": {
+            "title": "FAST AND FURIOUS 8",     
+            "country": "Mỹ",
+            "producer": "Universal"
+        }
+    },
+    {
+        "type": "add",
+        "id": "50cbde22-6bcd-4778-8a50-55cd6f9104b3",
+        "fields": {
+            "title": "AVENGERS: ENDGAME",
+            "country": "Mỹ",
+            "producer": "Walt Disney Studios Motion Pictures"          
+        }
+    },
+    {
+        "type": "add",
+        "id": "98a64847-8cc8-4cee-be9b-9a587fd00b82",
+        "fields": {
+            "title": "LẬT MẶT: NHÀ CÓ KHÁCH",
+            "country": "Việt Nam",
+            "producer": "Lý Hải Production"
+        }
+    },
+    {
+        "type": "add",
+        "id": "d5b11fac-d557-4713-9204-48ea2baa7684",
+        "fields": {
+            "title": "THE HOLE IN THE GROUND",          
+            "country": "Mỹ",
+            "producer": "Savage Productions" 
+        }
+    },
+    {
+        "type": "add",
+        "id": "448a50bc-30c8-4374-a86e-7ae264eb8cec",
+        "fields": {
+            "title": "RUNNING MAN: THE GAME BEGINS", 
+            "country": "Hàn Quốc",
+            "producer": "CJ E&M"   
+        }
+    },
+    {
+        "type": "add",
+        "id": "1af4e3c4-0ceb-4cc2-8e21-76c048350ce6",
+        "fields": {
+            "title": "ALAD'2",
+            "country": "Pháp",
+            "producer": "Pathé "
+        }
+    },
+    {
+        "type": "add",
+        "id": "3c6070b3-d95c-425b-a013-39a7f8d9d64c",
+        "fields": {
+            "title": "BREAK",
+            "country": "Nga",
+            "producer": "Mokco"  
+        }
+    },
+    {
+        "type": "add",
+        "id": "c423244b-a61d-475c-8637-1bd536904e33",
+        "fields": {
+            "title": "TERRA WILLY: PLANÈTE INCONNUE",       
+            "country": "Pháp",
+            "producer": "TAT Productions"
+        }
+    },
+    {
+        "type": "add",
+        "id": "ced03e83-0f76-4f3e-9162-0a44ee7ca34b",
+        "fields": {
+            "title": "HELLBOY",
+            "country": "Mỹ",
+            "producer": "Nu Boyana FX"
+        }
+    },
+    {
+        "type": "add",
+        "id": "e0f9e395-e74e-4fae-bbda-916c36fcf2c2",
+        "fields": {
+            "title": "CHỊ MƯỜI BA",  
+            "country": "Việt Nam",
+            "producer": "Galaxy M&E"
+        }
+    },
+    {
+        "type": "add",
+        "id": "7f9b6bed-2790-464e-912b-c39792d33839",
+        "fields": {
+            "title": "THE QUEEN'S CORGI",
+            "country": "Bỉ",
+            "producer": "Belga Productions"
+        }
+    },
+    {
+        "type": "add",
+        "id": "5afcd083-8c37-4d15-9a0a-b4785b5d2949",
+        "fields": {
+            "title": "UPIN & IPIN KERIS SIAMANG TUNGGAL",         
+            "country": "Malaysia",
+            "producer": "Les' Copaque Production"           
+        }
+    },
+    {
+        "type": "add",
+        "id": "e6fc80fa-f34a-4dd2-9f66-03b92385174a",
+        "fields": {
+            "title": "UGLY DOLLS",         
+            "country": "Mỹ, Trung Quốc",
+            "producer": "Alibaba Pictures Group Limited"
+        }
+    },
+    {
+        "type": "add",
+        "id": "d50eb424-ce90-44f5-853e-9b298dee3813",
+        "fields": {
+            "title": "THE CURSE OF LA LLORONA",
+            "country": "Mỹ",
+            "producer": "New Line Cinema"
+        }
+    },
+    {
+        "type": "add",
+        "id": "ccdd390c-a783-4023-9d5d-0f0af78404c7",
+        "fields": {
+            "title": "POKÉMON DETECTIVE PIKACHU",
+            "country": "Mỹ",
+            "producer": "Warner Bros, Legendary Entertainment, The Pokemon Company"         
+        }
+    },
+    {
+        "type": "add",
+        "id": "6216acf8-5e4b-45c2-8ef2-9a7e1be1909f",
+        "fields": {
+            "title": "INSEPARABLE BROS",     
+            "country": "Hàn Quốc",
+            "producer": "Next Entertainment World"
+            
+        }
+    }
+]

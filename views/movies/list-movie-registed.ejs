@@ -1,0 +1,59 @@
+<%include ../partials/header-admin%>
+
+<!-----------------------------------------------Container ------------------------------------------------>
+<%var count=1%>
+<div class="container lst-movie-registed-get">
+    <%result.Items.forEach(function(i){%>
+    
+        <div class="item-registerlist btn-writing-registed<%=count%>" id="<%=i.id%>">
+            <div class="row registerlist-title">
+                <label class="col col-1">
+                    <h3><%=count%></h3>
+                </label>
+                <label class="col col-11">
+                    <h3 class="<%=i.id%>" id="<%=i.title%>"><%=i.title%></h3>
+                </label>
+            </div>
+            <div class="row registerlist-label-topic">
+                <label class="col col-2">Nhà phát hành</label>
+                <label class="col col-2">Người tạo</label>
+                <label class="col col-2">Ngày đăng ký</label>
+                <label class="col col-2">Hạn nộp bài</label>
+                <label class="col col-2">Ghi chú</label>
+                
+            </div>
+            <div class="row registerlist-detail">
+                <label class="col col-2"><%=i.info.producer%></label>
+                <label class="col col-2"><%=i.process.create.creater[0]%></label>
+                <label class="col col-2 deadline"><%=moment(i.process.registion.registiondate,'YYYY-MM-DD').format('DD/MM/YYYY')%></label>
+                <label class="col col-2 deadline"><%=moment(i.process.create.deadline,'YYYY-MM-DD').format('DD/MM/YYYY')%></label>
+                <label class="col col-2"><%=i.process.create.createnote?i.process.create.createnote:"-"%></label>
+                
+            </div>
+            <div class="row">
+                <div class=" col col-8"></div>
+                <div class="col col-4">
+                    <button class="btn btn-success btn-writing-registed" id="btn-writing-registed<%=count%>" type="button">Viết bài</button>
+                    <button class="btn btn-danger btn-writing-unregister" id="btn-writing-registed<%=count%>">Hủy đăng ký</button>
+                </div>
+                <!-- <div class="col col-2">
+                    <button class="btn btn-danger btn-writing-unregister" id="btn-writing-registed<%=count%>">Hủy đăng ký</button>
+                </div> -->
+            </div>
+        </div>
+        <%count++%>
+    
+        
+   
+
+    <%})%>
+</div>
+
+
+
+
+
+<!-- </div> -->
+
+<!-- --------------------------------------------End Detail--------------------------------------------->
+<%include ../partials/footer-admin%>

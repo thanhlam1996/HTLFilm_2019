@@ -1,0 +1,10 @@
+.btn-edit-post-member,.btn-view-post-member{
+    float: right;
+    margin-left: 10px;
+    width: 100px;
+    text-align: center;
+}
+.list_approve{
+    min-height: 400px;
+    margin-bottom: 50px;
+}

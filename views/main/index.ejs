@@ -1,0 +1,574 @@
+<%include ../partials/header%>
+<%include ../partials/animation%>
+<!-----------------------------------------------Container ------------------------------------------------>
+<!-- Top Movies Area Start -->
+<section class="filmoja-top-movies-area section_70">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="filmoja-heading">
+					<h2>Top Phim :<span> 2019</span></h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="top-movie-slider owl-carousel">
+
+
+					<%movietop.forEach((t,index)=>{%>
+					<%if(index<5){%>
+					<%var rat=0, rating=0%>
+					<%var countrat=0%>
+					<%t.ratings.forEach((r)=>{%>
+					<%rat+=parseFloat(r);%>
+					<%countrat++%>
+					<%})%>
+					<%if(countrat==0){%>
+					<%countrat=1;%>
+					<%}%>
+					<%var num=(rat/countrat).toFixed(1)%>
+					<%if((num*10)%10==0){%>
+					<%rating=(rat/countrat).toFixed(0)%>
+					<%}else{%>
+					<%rating=(rat/countrat).toFixed(1)%>
+					<%}%>
+											<div class="single-top-movie">
+													<div class="top-movie-wrap">
+														<div class="top-movie-img">
+															<a href="#">
+															<img src="<%=t.info.posterimage%>" alt="top movies" />
+															</a>
+														</div>
+														<div class="thumb-hover">
+															<a class="play-video" href="<%=t.trailer%>"><i class="fa fa-play"></i></a>
+															<div class="thumb-date">
+																<span>05:30</span>
+															</div>
+														</div>
+													</div>
+													<div class="top-movie-details">
+														<h4><a href="/detail-movie?id=<%=t.id%>"><%=t.title%></a></h4>
+					<div class="movie-details-thumbs">
+						<ul>
+							<li>
+								<a href="#"><i class="fa fa-thumbs-up"></i>
+									<%=t.countlike%></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-eye"></i><%=t.movieview%></a>
+							</li>
+							<li>
+								<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<%}else{%>
+			<%return%>
+			<%}%>		
+												
+									<%})%>
+
+
+
+
+		</div>
+	</div>
+	</div>
+	</div>
+</section>
+
+
+
+<!-- Theater Area Start -->
+<section class="filmoja-theater-area section_70">
+		<div class="container">
+		   <div class="row">
+			  <div class="col-md-5">
+				 <div class="theater-left">
+					<div class="theater-box">
+					   <div class="theater-text">
+						  <h3>today in theater</h3>
+						  <h4>Action, Adventure, Fantasy</h4>
+						  <p>researved your seat,before you miss tomorrow.</p>
+						  <a href="#" class="filmoja-btn">discover all</a>
+					   </div>
+					</div>
+				 </div>
+			  </div>
+			  <div class="col-md-7">
+				 <div class="theater-slider slider-for">
+					<div class="single-theater">
+					   <img src="assets/img/theater.jpeg" alt="theater thumb" />
+					   <a class="play-video" href="https://www.youtube.com/watch?v=1Q8fG0TtVAY">
+					   <i class="fa fa-play"></i>
+					   </a>
+					</div>
+				 </div>
+			  </div>
+		   </div>
+		</div>
+	 </section>
+<!-- Theater Area End -->
+
+
+<!-- Tv Movies Area Start -->
+<section class="filmoja-tv-movies-area section_70">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="filmoja-heading">
+					<h2>Phim <span>Mới</span></h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="tv-panel-list">
+					<div class="tv-tab">
+						<ul class="nav nav-pills tv-tab-switch" id="pills-tab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="pills-popular-tab" data-toggle="pill" href="#pills-popular"
+									role="tab" aria-controls="pills-popular" aria-selected="true">Phim mới</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-upcoming-tab" data-toggle="pill" href="#pills-upcoming" role="tab"
+									aria-controls="pills-upcoming" aria-selected="false">Phim sắp chiếu</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="pills-viewed-tab" data-toggle="pill" href="#pills-viewed" role="tab"
+									aria-controls="pills-viewed" aria-selected="false">Phim đang chiếu</a>
+							</li>
+							<!-- <li class="nav-item">
+								<a class="nav-link" id="pills-rated-tab" data-toggle="pill" href="#pills-rated" role="tab"
+									aria-controls="pills-rated" aria-selected="false">cartoons</a>
+							</li> -->
+						</ul>
+					</div>
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-popular" role="tabpanel"
+							aria-labelledby="pills-popular-tab">
+							<div class="tab-movies">
+								<div class="row">
+									<%movienew.forEach((n,index)=>{%>
+									<%if(index<4){%>
+											<%var rat=0, rating=0%>
+											<%var countrat=0%>
+											<%if(n.ratings){%>
+												<%n.ratings.forEach((r)=>{%>
+													<%rat+=parseFloat(r);%>
+													<%countrat++%>
+													<%})%>
+													<%if(countrat==0){%>
+													<%countrat=1;%>
+													<%}%>
+													<%var num=(rat/countrat).toFixed(1)%>
+													<%if((num*10)%10==0){%>
+													<%rating=(rat/countrat).toFixed(0)%>
+													<%}else{%>
+													<%rating=(rat/countrat).toFixed(1)%>
+													<%}%>
+											<%}%>
+									<!-- ========== -->
+									<div class="col-lg-3 col-sm-6">
+										<div class="single-top-movie">
+											<div class="top-movie-wrap">
+												<div class="top-movie-img">
+													<a href="#">
+														<img src="<%=n.info.posterimage%>" alt="top movies" />
+													</a>
+												</div>
+												<div class="thumb-hover">
+													<a class="play-video" href="<%=n.info.trailer%>"><i
+															class="fa fa-play"></i></a>
+													<div class="thumb-date">
+														<span>05:30</span>
+													</div>
+												</div>
+											</div>
+											<div class="top-movie-details">
+												<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+												<div class="movie-details-thumbs">
+													<ul>
+														<li>
+															<a href="#"><i class="fa fa-thumbs-up"></i>
+																<%=n.countlike?n.countlike:0%></a>
+														</li>
+														<li>
+															<a href="#"><i class="fa fa-eye"></i><%=n.movieview?n.movieview:0%></a>
+														</li>
+														<li>
+															<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- ========== -->
+									<%}else{return}%>
+									<%})%>
+
+
+								</div>
+								<!-- End Row -->
+								<div class="row">
+									<%movienew.forEach((w,index)=>{%>
+									<%if(index<8){%>
+									<%if(index>3){%>
+										<%var rat=0, rating=0%>
+										<%var countrat=0%>
+										<%if(w.ratings){%>
+											<%w.ratings.forEach((r)=>{%>
+												<%rat+=parseFloat(r);%>
+												<%countrat++%>
+												<%})%>
+												<%if(countrat==0){%>
+												<%countrat=1;%>
+												<%}%>
+												<%var num=(rat/countrat).toFixed(1)%>
+												<%if((num*10)%10==0){%>
+												<%rating=(rat/countrat).toFixed(0)%>
+												<%}else{%>
+												<%rating=(rat/countrat).toFixed(1)%>
+												<%}%>
+										<%}%>
+									<!-- =============== -->
+									<div class="col-lg-3 col-sm-6">
+										<div class="single-top-movie">
+											<div class="top-movie-wrap">
+												<div class="top-movie-img">
+													<a href="#">
+														<img src="<%=w.info.posterimage%>" alt="top movies" />
+													</a>
+												</div>
+												<div class="thumb-hover">
+													<a class="play-video" href="<%=w.info.trailer%>"><i
+															class="fa fa-play"></i></a>
+													<div class="thumb-date">
+														<span>05:30</span>
+													</div>
+												</div>
+											</div>
+											<div class="top-movie-details">
+												<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+												<div class="movie-details-thumbs">
+													<ul>
+														<li>
+															<a href="#"><i class="fa fa-thumbs-up"></i>
+																<%=w.countlike?w.countlike:0%></a>
+														</li>
+														<li>
+															<a href="#"><i class="fa fa-eye"></i><%=w.movieview?w.movieview:0%></a>
+														</li>
+														<li>
+															<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- ============ -->
+									<%}%>
+								<%}else{return}%>
+									<%})%>
+								</div>
+								<!-- End Row -->
+							</div>
+						</div>
+						<!-- tab movie coming -->
+						<div class="tab-pane fade" id="pills-upcoming" role="tabpanel" aria-labelledby="pills-upcoming-tab">
+							<div class="tab-movies">
+								<div class="row">
+										<%moviecoming.forEach((n,index)=>{%>
+											<%if(index<4){%>
+													<%var rat=0, rating=0%>
+													<%var countrat=0%>
+													<%if(n.ratings){%>
+														<%n.ratings.forEach((r)=>{%>
+															<%rat+=parseFloat(r);%>
+															<%countrat++%>
+															<%})%>
+															<%if(countrat==0){%>
+															<%countrat=1;%>
+															<%}%>
+															<%var num=(rat/countrat).toFixed(1)%>
+															<%if((num*10)%10==0){%>
+															<%rating=(rat/countrat).toFixed(0)%>
+															<%}else{%>
+															<%rating=(rat/countrat).toFixed(1)%>
+															<%}%>
+													<%}%>
+											<!-- ========== -->
+											<div class="col-lg-3 col-sm-6">
+												<div class="single-top-movie">
+													<div class="top-movie-wrap">
+														<div class="top-movie-img">
+															<a href="#">
+																<img src="<%=n.info.posterimage%>" alt="top movies" />
+															</a>
+														</div>
+														<div class="thumb-hover">
+															<a class="play-video" href="<%=n.info.trailer%>"><i
+																	class="fa fa-play"></i></a>
+															<div class="thumb-date">
+																<span>05:30</span>
+															</div>
+														</div>
+													</div>
+													<div class="top-movie-details">
+														<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+														<div class="movie-details-thumbs">
+															<ul>
+																<li>
+																	<a href="#"><i class="fa fa-thumbs-up"></i>
+																		<%=n.countlike?n.countlike:0%></a>
+																</li>
+																<li>
+																	<a href="#"><i class="fa fa-eye"></i><%=n.movieview?n.movieview:0%></a>
+																</li>
+																<li>
+																	<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- ========== -->
+											<%}else{return}%>
+											<%})%>
+		
+		
+										</div>
+										<!-- End Row -->
+										<div class="row">
+											<%moviecoming.forEach((w,index)=>{%>
+											<%if(index<8){%>
+											<%if(index>3){%>
+												<%var rat=0, rating=0%>
+												<%var countrat=0%>
+												<%if(w.ratings){%>
+													<%w.ratings.forEach((r)=>{%>
+														<%rat+=parseFloat(r);%>
+														<%countrat++%>
+														<%})%>
+														<%if(countrat==0){%>
+														<%countrat=1;%>
+														<%}%>
+														<%var num=(rat/countrat).toFixed(1)%>
+														<%if((num*10)%10==0){%>
+														<%rating=(rat/countrat).toFixed(0)%>
+														<%}else{%>
+														<%rating=(rat/countrat).toFixed(1)%>
+														<%}%>
+												<%}%>
+											<!-- =============== -->
+											<div class="col-lg-3 col-sm-6">
+												<div class="single-top-movie">
+													<div class="top-movie-wrap">
+														<div class="top-movie-img">
+															<a href="#">
+																<img src="<%=w.info.posterimage%>" alt="top movies" />
+															</a>
+														</div>
+														<div class="thumb-hover">
+															<a class="play-video" href="<%=w.info.trailer%>"><i
+																	class="fa fa-play"></i></a>
+															<div class="thumb-date">
+																<span>05:30</span>
+															</div>
+														</div>
+													</div>
+													<div class="top-movie-details">
+														<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+														<div class="movie-details-thumbs">
+															<ul>
+																<li>
+																	<a href="#"><i class="fa fa-thumbs-up"></i>
+																		<%=w.countlike?w.countlike:0%></a>
+																</li>
+																<li>
+																	<a href="#"><i class="fa fa-eye"></i><%=w.movieview?w.movieview:0%></a>
+																</li>
+																<li>
+																	<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- ============ -->
+											<%}%>
+										<%}else{return}%>
+											<%})%>
+										</div>
+								<!-- End Row -->
+							</div>
+						</div>
+						<div class="tab-pane fade show " id="pills-viewed" role="tabpanel" aria-labelledby="pills-viewed-tab">
+							<div class="tab-movies">
+								<div class="row">
+										<%movieplaying.forEach((n,index)=>{%>
+											<%if(index<4){%>
+													<%var rat=0, rating=0%>
+													<%var countrat=0%>
+													<%if(n.ratings){%>
+														<%n.ratings.forEach((r)=>{%>
+															<%rat+=parseFloat(r);%>
+															<%countrat++%>
+															<%})%>
+															<%if(countrat==0){%>
+															<%countrat=1;%>
+															<%}%>
+															<%var num=(rat/countrat).toFixed(1)%>
+															<%if((num*10)%10==0){%>
+															<%rating=(rat/countrat).toFixed(0)%>
+															<%}else{%>
+															<%rating=(rat/countrat).toFixed(1)%>
+															<%}%>
+													<%}%>
+											<!-- ========== -->
+											<div class="col-lg-3 col-sm-6">
+												<div class="single-top-movie">
+													<div class="top-movie-wrap">
+														<div class="top-movie-img">
+															<a href="#">
+																<img src="<%=n.info.posterimage%>" alt="top movies" />
+															</a>
+														</div>
+														<div class="thumb-hover">
+															<a class="play-video" href="<%=n.info.trailer%>"><i
+																	class="fa fa-play"></i></a>
+															<div class="thumb-date">
+																<span>05:30</span>
+															</div>
+														</div>
+													</div>
+													<div class="top-movie-details">
+														<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+														<div class="movie-details-thumbs">
+															<ul>
+																<li>
+																	<a href="#"><i class="fa fa-thumbs-up"></i>
+																		<%=n.countlike?n.countlike:0%></a>
+																</li>
+																<li>
+																	<a href="#"><i class="fa fa-eye"></i><%=n.movieview?n.movieview:0%></a>
+																</li>
+																<li>
+																	<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- ========== -->
+											<%}else{return}%>
+											<%})%>
+		
+		
+										</div>
+										<!-- End Row -->
+										<div class="row">
+											<%movieplaying.forEach((w,index)=>{%>
+											<%if(index<8){%>
+											<%if(index>3){%>
+												<%var rat=0, rating=0%>
+												<%var countrat=0%>
+												<%if(w.ratings){%>
+													<%w.ratings.forEach((r)=>{%>
+														<%rat+=parseFloat(r);%>
+														<%countrat++%>
+														<%})%>
+														<%if(countrat==0){%>
+														<%countrat=1;%>
+														<%}%>
+														<%var num=(rat/countrat).toFixed(1)%>
+														<%if((num*10)%10==0){%>
+														<%rating=(rat/countrat).toFixed(0)%>
+														<%}else{%>
+														<%rating=(rat/countrat).toFixed(1)%>
+														<%}%>
+												<%}%>
+											<!-- =============== -->
+											<div class="col-lg-3 col-sm-6">
+												<div class="single-top-movie">
+													<div class="top-movie-wrap">
+														<div class="top-movie-img">
+															<a href="#">
+																<img src="<%=w.info.posterimage%>" alt="top movies" />
+															</a>
+														</div>
+														<div class="thumb-hover">
+															<a class="play-video" href="<%=w.trailer%>"><i
+																	class="fa fa-play"></i></a>
+															<div class="thumb-date">
+																<span>05:30</span>
+															</div>
+														</div>
+													</div>
+													<div class="top-movie-details">
+														<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+														<div class="movie-details-thumbs">
+															<ul>
+																<li>
+																	<a href="#"><i class="fa fa-thumbs-up"></i>
+																		<%=w.countlike?w.countlike:0%></a>
+																</li>
+																<li>
+																	<a href="#"><i class="fa fa-eye"></i><%=w.movieview?w.movieview:0%></a>
+																</li>
+																<li>
+																	<a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- ============ -->
+											<%}%>
+										<%}else{return}%>
+											<%})%>
+										</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Tv Movies Area End -->
+
+<!-- Quote Area Start -->
+<section class="filmoja-quote-area section_100">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="quote-box">
+					<h4>Action, Adventure, Fantasy</h4>
+					<h3>be the first to know</h3>
+					<a href="#" class="mouse-icon hidden-sm"><span class="wheel"><i
+								class="fa fa-long-arrow-down"></i></span></a>
+					<form>
+						<input type="email" placeholder="E-mail Address...">
+						<button type="submit">Subscribe</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Quote Area End -->
+<!-- ------------------------------------------------------------------------------------------------------>
+<%include ../partials/footer%>

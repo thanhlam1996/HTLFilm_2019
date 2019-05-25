@@ -1,0 +1,220 @@
+<%include ../partials/header%>
+<!-- Breadcrumb Area Start -->
+<%data.Items.forEach(function(i){%>
+<section class="filmoja-breadcrumb-area section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="movie-details-banner">
+               <div class="row">
+                  <div class="col-lg-3 col-sm-4">
+                     <div class="details-banner-thumb">
+                        <!-- Hinh dai dien -->
+                     </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-8">
+                     <div class="details-banner-info">
+                        <h3 class="detail-title-movie"><%=i.info.fullname%></h3>
+
+                     </div>
+                  </div>
+                  <div class="col-lg-3">
+                     <div class="details-banner-action">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+
+<!-- Movie Details Page Start -->
+<section class="filmoja-movie-details-page section_70">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-9 offset-lg-3">
+            <div class="movie-details-page-box" id="<%=i.id%>">
+               <ul>
+                  <li><span>Họ & tên</span> : <%=i.info.fullname%></li>
+                  <li><span>Giới tính</span> : <%=i.info.sex%></li>
+                  <li><span>Ngày sinh</span> : <%=moment(i.info.birthday,'YYYY-MM-DD').format('DD/MM/YYYY')%></li>
+                  <li><span>Email</span> : <%=i.info.email%></li>
+                  <li><span>Số điện thoại</span> : <%=i.info.phone%></li>
+                  <li><span>Địa chỉ</span> : <%=i.info.adress%></li>
+                  <li><span></span> </li>
+               </ul>
+            </div>
+            <div class="movie-details-page-box" id="<%=i.id%>">
+               <ul>
+                  <li>
+                     <span><button class="btn btn-primary update-acc-all" data-toggle="modal"
+                        data-target="#dialog-update-acc" id="<%=i.id%>" type=" button">Cập
+                           nhật</button></span>
+                     <%if(ck=='yes'){%>
+                     <button class="btn btn-primary change-pass" data-toggle="modal"
+                        data-target="#dialog-change-password" id="<%=i.id%>" type="button">Đổi mật khẩu</button>
+                     <%}%>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- UPDATE PASSWORD-->
+<!-- The Modal -->
+
+<!-- The Modal -->
+<div class="modal fade" id="dialog-change-password">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h4 class="modal-title">Đổi mật khẩu</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+         <div class="container">
+            <!-- Modal body -->
+            <form id="frm-change-pass">
+                  <div class="modal-body-detail-acc">
+                        <div class="form-group">
+                           <label>Mật khẩu cũ <label id="erroldpass" style="display:none; color: red">Mật khẩu cũ không đúng!!</label></label>
+                           <input type="password" name="oldpass" id="changepass-check" class="form-control">
+                        </div>
+                        <div class="form-group">
+                           <label>Mật khẩu mới</label>
+                           <input type="password" name="newpass" id="txt-newpass" class="form-control">
+                        </div>
+                        <div class="form-group">
+                           <label>Nhập lại mật khẩu</label>
+                           <input type="password" name="confpass" class="form-control">
+                        </div>
+                     </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-success" disabled id="btn-submit-changepass">Cập nhật</button>
+               <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+            </div>
+         </form>
+         </div>
+      </div>
+   </div>
+
+</div>
+<!-- ---------- -->
+<!-- UPDATE ACCOUNT-->
+<!-- The Modal -->
+
+<!-- The Modal -->
+<div class="modal fade" id="dialog-update-acc">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h4 class="modal-title">Cập Nhật Thông Tin</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+        
+            <!-- Modal body -->
+           <!-- Login Area Start -->
+ <!-- <section class="filmoja-login-area section_70"> -->
+   <div class="container"> 
+       <div class="row">
+           <!-- <div class="col-lg-3"></div> -->
+           <div class="col-lg-12">
+               <div class="auth-box-left margin-top">
+                   <!-- <h3>Cập Nhật Thông Tin</h3> -->
+                   <div class="login-box" id="update-acc-box">
+                     
+                     <form id="frm-update-acc">
+                        <!-- <label style="display:none" class="errreg">Email đã tồn tại..</label> -->
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <p>
+                                 <label for="Email">Email</label>
+                                 <input disabled type="email" name="email" value="<%=i.info.email%>" id="txt-reg-email"
+                                    placeholder="Email Address">
+                              </p>
+
+                           </div>
+                           <div class="col-lg-6">
+                              <p>
+                                 <label for="fullname">Họ & Tên</label>
+                                 <input type="text" name="fullname" value="<%=i.info.fullname%>" id="txt-reg-fullname" placeholder="Full Name">
+                              </p>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <p>
+                                 <label for="birthday">Ngày sinh</label>
+                                 <input placeholder="dd/mm/yyyy" type="date" value="<%=i.info.birthday%>" id="txt-birthday" name="birthday">
+                              </p>
+                           </div>
+                           <div class="col-lg-6">
+                              <p>
+                                 <label for="sex">Giới tính</label>
+                                 <%if(i.info.sex=="Nam"){%>
+                                    <div class="form-check-inline col-6">
+                                       <input type="radio" class="form-check-input" id="radio1" name="sex" value="Nam"
+                                          checked>Nam
+                                    </div>
+                                    <div class="form-check-inline col-4">
+                                       <input type="radio" class="form-check-input" id="radio2" name="sex" value="Nữ">Nữ
+                                    </div>
+                                 <%}else{%>
+                                    <div class="form-check-inline col-6">
+                                       <input type="radio" class="form-check-input" id="radio1" name="sex" value="Nam"
+                                          >Nam
+                                    </div>
+                                    <div class="form-check-inline col-4">
+                                       <input type="radio" class="form-check-input" id="radio2" name="sex" value="Nữ" checked>Nữ
+                                    </div>
+                                 <%}%>
+                              </p>
+                           </div>
+                        </div>
+                        <label style="display:none" class="errphone">Số điện thoại không hợp lệ</label>
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <p>
+                                 <label for="phone">Số điện thoại</label>
+                                 <input type="text" name="phone" value="<%=i.info.phone%>" id="txt-reg-phone" placeholder="Số điện thoại">
+                              </p>
+                           </div>
+                           <div class="col-lg-6">
+                              <p>
+                                 <label for="adpress">Địa chỉ</label>
+                                 <input type="text" value="<%=i.info.adress%>" name="adress" id="txt-reg-adpress" placeholder="Địa chỉ">
+                              </p>
+                           </div>
+                        </div>
+                     </form>
+                     
+            </div>
+         </div>
+
+      </div>
+    </div>
+<!-- </section> --> 
+<!-- Login Area End -->
+
+<!-- Modal footer -->
+<div class="modal-footer">
+   <button type="button" class="btn btn-success"  id="btn-submit-update-acc">Cập nhật</button>
+   <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+</div>
+</form>
+</div> 
+</div>
+</div>
+
+</div>
+<!-- ---------- -->
+<%})%>
+<!-- Movie Details Page End -->
+<%include ../partials/footer%>

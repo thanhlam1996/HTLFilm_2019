@@ -1,0 +1,65 @@
+<%include ../partials/header%>
+
+<!-----------------------------------------------Container ------------------------------------------------>
+ <!-- Movie List Area Start -->
+  <!-- Movie List Area Start -->
+
+  <!-- Breadcrumb Area Start -->
+  <section class="filmoja-breadcrumb-area section_70">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="breadcrumb-box">
+                    <h2><%=txtsearch%></h2>
+                    <ul>
+                       <li><a href="/">Trang chủ</a></li>
+                       <li class="active-breadcromb"><%=data.hits.found%></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Breadcrumb Area End -->
+      
+  <section class="filmoja-movie-list-area celebrity-page section_70">
+    <div class="container">
+       <div class="row no-margin-top">
+       <%if(data.hits.found>0){%>
+         
+         <%data.hits.hit.forEach(function(i,index){%>
+            <%if(index>=40){%>
+             <%return%>
+             <%}else{%>
+             <div class="col-md-3" id="line-result-search">
+                <div class="single-top-movie">
+                   <div class="top-movie-wrap">
+                      <div class="top-movie-img">
+                         <a href="#">
+                         <img src="<%=i.fields.posterimage%>" alt="top movies">
+                         </a>
+                      </div>
+                      <div class="thumb-hover">
+                         <a href="/detail-movie?id=<%=i.id%>" class="celebrity-link">Xem chi tiết</a>
+                         <ul>
+                            <a href="#" class="filmoja-btn tablet-action"><i class="fa fa-play"></i>Xem trailer</a>
+                         </ul>
+                      </div>
+                   </div>
+                   <div class="top-movie-details">
+                      <h4><a href="/detail-movie?id=<%=i.id%>"><%=i.fields.title%></a></h4>
+                      
+                   </div>
+                </div>
+             </div>
+             <%}%>  
+             
+         <%})%>
+         <%}else{%>
+            <h3>Không tìm thấy kết quả cần tìm!</h3>
+         <%}%>
+    </div>
+ </section>
+ 
+<!-- --------------------------------------------End Detail--------------------------------------------->
+<%include ../partials/footer%>

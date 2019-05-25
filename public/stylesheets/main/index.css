@@ -1,0 +1,71 @@
+#acction-login-register:hover, #logined:hover ,#logined1:hover{
+    color: orange;
+}
+#daucach{
+    color: orange;
+    font-weight: 500;
+}
+#logined1{
+    font-size: 15px;
+}
+.dropdown-menu{
+    background-color: #181818;
+    color: white;
+}
+#btn-name-account-logined{
+    background-color: #181818;
+    border: none;
+    font-size: 15px;
+}
+.dropdown-item{
+    font-size: 15px;
+    font-weight:100; 
+}
+#btn-name-account-logined::after{
+    background-color: #181818;
+    border: none;
+}
+.dropdown-item:hover{
+    color: orange;
+    background-color: #181818;
+}
+.dropdown:hover .dropdown-menu{
+    display: block;
+    
+}
+.link-login-register{
+    margin-bottom: 0px;
+}
+.title-list-group{
+    width: 100%;
+    padding: 0;
+    margin: 34px auto auto 15px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+#livesearch{
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    list-style: none;
+    background-color: #EAEAEA;
+    border-left: 3px solid #f26b38;
+    border-top: 1px dotted #ced0da;
+    cursor: pointer;
+    color: #43464b;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#livesearch:hover a{
+    color: #f26b38;
+}
+#line-result-search{
+    margin-bottom: 40px;
+}

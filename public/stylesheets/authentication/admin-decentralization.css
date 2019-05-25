@@ -1,0 +1,21 @@
+
+#check1, #check2, #check3, #check4{
+   margin-right: 5px;
+   margin-top: 4px;
+}
+#lbl-detail{
+   text-align: right;
+   color: dimgray;
+}
+.modal-header{
+   background-color: #1F2E86;
+   color: aliceblue;
+}
+.chang-role-form{
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+.modal-body-detail-acc{
+   margin-top: 20px;
+   margin-bottom: 20px;
+}

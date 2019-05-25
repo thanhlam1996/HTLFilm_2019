@@ -1,0 +1,47 @@
+<%include ../partials/header-admin%>
+
+<!-----------------------------------------------Container ------------------------------------------------>
+<div class="container frm-create-movie-admin">
+    <%data.Items.forEach(function(i){%>
+        <form action="/movie/update-movie-admin" method="POST">
+            <div class="item-create-movie">
+                <div class="item-movie">
+                    <div class="row">
+                            
+                        <input style="display:none" type="text" value="<%=i.id%>" class="form-control col col-10" name="id">
+                        <input style="display:none" type="text" value="<%=i.title%>" class="form-control col col-10" name="oldtitle">
+                        <div class="col col-6">
+                            <label>Tiêu đề phim</label>
+                            <input type="text" value="<%=i.title%>" class="form-control col col-10" name="title">
+                        </div>
+                        <div class="col col-6">
+                            <label>Nhà phát hành</label>
+                            <input type="text" value="<%=i.info.producer%>" class="form-control col col-10" name="producer">
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col col-6">
+                            <label>Hạn nộp bài</label>
+                            <input type="date" value="<%=i.process.create.deadline%>" class="form-control col col-10" name="deadline">
+                        </div>
+                        <div class="col col-6">
+                            <label>Ghi chú</label>
+                            <input type="text" value="<%=i.process.create.createnote%>" class="form-control col col-10" name="note">
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+            <button type="submit" class="btn btn-success btn-submit-update-movie-admin">Cập nhật</button>
+            <button type="button" id="btn-submit-update-movie-admin" class="btn btn-primary btn-submit-update-movie-admin">Hủy</button>
+            
+        </form>
+    <%})%>
+    <!-- <button type="submit" class="btn btn-success btn-submit-create-movie-admin">Tạo bài viết</button> -->
+</div>
+
+
+<!-- --------------------------------------------End Detail--------------------------------------------->
+
+<%include ../partials/footer-admin%>

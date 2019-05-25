@@ -1,0 +1,53 @@
+<%include ../partials/header-admin%>
+
+<!-----------------------------------------------Container ------------------------------------------------>
+<%var count=1%>
+<div class="container list_approve">
+    <%data.Items.forEach(function(i){%>
+    <div class="item-registerlist list<%=count%>" id="<%=i.id%>">
+        <div class="row registerlist-title">
+            <label class="col col-1">
+                <h3><%=count%></h3>
+            </label>
+            <label class="col col-9">
+                <h3 class="<%=i.id%>" id="<%=i.title%>"><%=i.title%></h3>
+            </label>
+            <!-- <div class="col col-2">
+                <button class="btn btn-danger btn-remove-approve" data-toggle="modal"
+                data-target="#myModalremove" id="btn-approve<%=count%>"></button></div> -->
+        </div>
+        <div class="row registerlist-label-topic">
+            <label class="col col-2">Nhà phát hành</label>
+            <label class="col col-2">Người viết bài</label>
+            <label class="col col-2">Ngày nộp bài</label>
+            <label class="col col-2">Hạn nộp bài</label>
+            <label class="col col-2">Ghi chú</label>
+            <%if(i.process.approve.complaint){%>
+                <label id="lbl-admin-approve-movie" class="col col-2">Ghi chú(AD)</label>
+            <%}%>
+        </div>
+        <div class="row registerlist-detail">
+            <label class="col col-2"><%=i.info.producer%></label>
+            <label class="col col-2"><%=i.process.registion.register[0]%></label>
+            <label class="col col-2 deadline"><%=moment(i.process.approve.submitiondate,'YYYY-MM-DD').format('DD/MM/YYYY')%></label>
+            <label class="col col-2 deadline"><%=moment(i.process.create.deadline,'YYYY-MM-DD').format('DD/MM/YYYY')%></label>
+            <label class="col col-2"><%=i.process.create.createnote?i.process.create.createnote:"Note:"%></label>
+            <label id="lbl-admin-approve-movie" class="col col-2 deadline"><%=i.process.approve.complaint?i.process.approve.complaint:""%></label>
+            
+        </div>
+        <div class="row">
+            <div class="col col-8"></div>
+            <div class="col col-4">
+                <button class="btn btn-success btn-edit-post-member" id="list<%=count%>" type="button">Sửa bài viết</button>
+                <button class="btn btn-primary btn-view-post-member" id="list<%=count%>">Xem trước</button>
+            </div>
+        </div>
+    </div>
+    <%count++ })%>
+    <!-- Dialog Note -->
+    <!-- The Modal -->
+
+</div>
+
+<!-- --------------------------------------------End Detail--------------------------------------------->
+<%include ../partials/footer-admin%>

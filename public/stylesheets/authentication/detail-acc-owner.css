@@ -1,0 +1,11 @@
+.modal-header{
+    background-color: #1F2E86;
+    margin-bottom: 10px;
+}
+.modal-title{
+    color: white;
+}
+#update-acc-box{
+    min-height: 450px;
+    margin-top: 1px;
+}

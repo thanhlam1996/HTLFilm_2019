@@ -1,0 +1,66 @@
+<%include ../partials/header-admin%>
+<div class="container list-movie-member-writed">
+    <%var count=1%>
+    <table id="example" class="table table-responsive display" style="width:100%">
+
+        <thead>
+            <tr>
+                    <th id="stt">STT</th>
+                    <th id="th">Tiêu đề</th>
+                    <th id="th">Trạng thái</th>
+                    <th id="th">Nhà phát hành</th>
+                    <th id="th">Quốc gia</th>
+                    <th id="th">Ngày công chiếu</th>
+                    <th id="th">Ngày viết bài</th>
+                    <th id="th">Phê duyệt</th>
+                    <th id="th1">&nbsp</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <%data.Items.forEach(function(i){%>
+            <tr>
+                <td><%=count%></td>
+                <td><%=i.title%></td>
+                <%if(i.stt==1){%>
+                    <td style="color: forestgreen">Công khai</td>
+                <%}else if(i.stt==2){%>
+                    <td style="color:blue">Chờ duyệt</td>
+                <%}else{%>
+                    <td style="color: red">Chờ viết</td>
+                <%}%> 
+                <td><%=i.info.producer%></td>
+                <td><%=i.info.country?i.info.country:"-"%></td>
+                <td><%=i.info.publicationdate?moment(i.info.publicationdate,'YYYY-MM-DD').format('DD/MM/YYYY'):"-"%></td>
+                <td><%=i.process.approve?moment(i.process.approve.submitiondate,'YYYY-MM-DD').format('DD/MM/YYYY'):"-"%></td>
+                <td><%=i.process.approve?(i.process.approve.approver?i.process.approve.approver[0]:"-"):"-"%></td>
+                <%if(i.stt==1){%>
+                    <td><a class="open-view-movie" id="<%=i.id%>" href="#">Xem</a></td>
+                <%}else if(i.stt==2){%>
+                    <td><a id="<%=i.id%>" class="open-movie-manager" href="">Xem</a><span>||</span><a href="">Sửa</a></td>
+                <%}else{%>
+                    <td><a id="<%=i.id%>" href="">Viết bài</a><span></td>
+                <%}%> 
+            </tr>
+            <%count++%>
+            <%})%>
+        </tbody>
+        <tfoot>
+            <tr>
+                    <th id="stt">STT</th>
+                    <th id="th">Tiêu đề</th>
+                    <th id="th">Trạng thái</th>
+                    <th id="th">Nhà phát hành</th>
+                    <th id="th">Quốc gia</th>
+                    <th id="th">Ngày công chiếu</th>
+                    <th id="th">Ngày viết bài</th>
+                    <th id="th">Phê duyệt</th>
+                    <th id="th1">&nbsp</th>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+ 
+<%include ../partials/footer-admin%>

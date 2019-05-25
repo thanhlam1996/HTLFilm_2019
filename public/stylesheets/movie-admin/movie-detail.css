@@ -1,0 +1,28 @@
+.rating-total{
+    /* position: absolute; */
+    right: 30px;
+    top: 8px;
+    line-height: 16px;
+    display: inline-block !important;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #fbbd61, #ec7532);
+    background-image: linear-gradient(to right, #fbbd61, #ec7532);
+    color: #fff !important;
+    text-align: center;
+    border: medium none;
+    width: auto !important;
+}
+.time-custom-color{
+    color: #111;
+}
+.feelback{
+    width: 200px;
+}
+#large-group-flow{
+    width: 240px;
+}
+#large-group-flow li a span{
+   
+    width: 70px;
+}

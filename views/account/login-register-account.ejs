@@ -1,0 +1,146 @@
+<%include ../partials/header%>
+
+
+<!-- Breadcrumb Area Start -->
+<section class="filmoja-breadcrumb-area section_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-box">
+                    <h2>Đăng Nhập/Đăng Ký</h2>
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active-breadcromb">Đăng Nhập/Đăng Ký</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+
+<!-- Login Area Start -->
+<section class="filmoja-login-area section_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="auth-box-right">
+                    <h3>Đăng Nhập</h3>
+                    <div class="login-box" id="login-box">
+                        <p>
+                            <a href="/account/logingg" class="btn btn-block btn-outline-danger" id="btn-login-gg"> <i
+                                    class="fab fa-gofore"></i> Đăng nhập
+                                với Google</a>
+                            <a href="/account/loginfb" class="btn btn-block btn-outline-primary" id="btn-login-fb"> <i
+                                    class="fab fa-facebook-f"></i>  
+                                Đăng nhập với facebook</a>
+                        </p>
+                        <hr>
+                        <form class="frm-login" method="POST" action="/account/login">
+                            <p>
+                                <label for="emai">Email</label>
+                                <input type="text" name="email" id="txt-login-email"
+                                    placeholder="lam.truong1996@gmail.com">
+                            </p>
+                            <p>
+                                <label for="password">Mật khẩu</label>
+                                <input type="password" name="password" id="txt-login-password" placeholder="********">
+                            </p>
+                            <p>
+                                <button type="submit" id="btn-login">Đăng nhập</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="auth-box-left margin-top">
+                    <h3>Đăng ký tài khoản</h3>
+                    <div class="login-box" id="login-box">
+                        <form id="frmregister" method="POST" action="/account/register-account" >
+                            <label style="display:none" class="errreg">Email đã tồn tại..</label>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="Email">Email</label>
+                                        <input type="email" name="email" id="txt-reg-email" placeholder="Email Address">
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="fullname">Họ & Tên</label>
+                                        <input type="text" name="fullname" id="txt-reg-fullname"
+                                            placeholder="Full Name">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="password">Mật khẩu</label>
+                                        <input type="password" name="password" id="txt-reg-password"
+                                            placeholder="Password">
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="confirmpassword">Nhập lại mật khẩu</label>
+                                        <input type="password" name="confirmpassword" id="txt-reg-confirmpassword"
+                                            placeholder="Confirm Password">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="birthday">Ngày sinh</label>
+                                        <input placeholder="dd/mm/yyyy" type="date" name="birthday">
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="sex">Giới tính</label>
+                                        <div class="form-check-inline col-6">
+                                            <input type="radio" class="form-check-input" id="radio1" name="sex"
+                                                value="Nam" checked>Nam
+                                        </div>
+                                        <div class="form-check-inline col-4">
+                                            <input type="radio" class="form-check-input" id="radio2" name="sex"
+                                                value="Nữ">Nữ
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <label style="display:none" class="errphone">Số điện thoại không hợp lệ</label>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="phone">Số điện thoại</label>
+                                        <input type="text" name="phone" id="txt-reg-phone" placeholder="Số điện thoại">
+                                    </p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        <label for="adpress">Địa chỉ</label>
+                                        <input type="text" name="adress" id="txt-reg-adpress" placeholder="Địa chỉ">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                        <button id="btn-register" type="submit">Đăng ký</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Login Area End -->
+<%include ../partials/footer%>

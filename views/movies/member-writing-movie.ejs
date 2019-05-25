@@ -1,0 +1,92 @@
+<%include ../partials/header-admin%>
+
+
+<!-----------------------------------------------Container ------------------------------------------------>
+<div class="container">
+
+    <form class="form-writing" action="/movie/member-submit-movie" method="POST" enctype="multipart/form-data">
+        <%data.Items.forEach(function(i){%>
+        <div class="form-group">
+            <label id="title-writing">
+                <h2><%=i.title%></h2>
+            </label>
+            <input type="text" class="form-control" id="title-movie-writing" name="id" value="<%=i.id%>">
+            <input type="text" class="form-control" id="title-movie-writing" name="title" value="<%=i.title%>">
+        </div>
+        <div class="form-group">
+            <div class="row form-inline">
+                <label class="col col-2" id="lbl-content-left">
+                    Nhà phát hành
+                </label>
+                <input type="text" class="form-control col col-4" disabled id="producer-movie-writing" name="producer"
+                    value="<%=i.info.producer%>">
+                <label class="col col-2" id="lbl-content-right">Đạo diễn</label>
+                <input type="text" name="director" class="form-control col col-4">
+            </div>
+        </div>
+        <%})%>
+        <div class="form-group">
+            <div class="row form-inline">
+                <label class="col col-2" id="lbl-content-left">Thời lượng</label>
+                <input type="text" name="distance" class="form-control col col-4">
+                <label class="col col-2" id="lbl-content-right">Ngày công chiếu</label>
+                <input type="date" class="form-control col col-4" name="publicationdate">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row form-inline">
+                <label class="col col-2" id="lbl-content-left">Diễn viên</label>
+                <input type="text" name="actor" class="form-control col col-4">
+                <label class="col col-2" id="lbl-content-right">Thể loại</label>
+                <input type="text" class="form-control col col-4" name="typemovie">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row form-inline">
+                <label class="col col-2" id="lbl-content-left">Quốc gia</label>
+                <input type="text" name="country" class="form-control col col-4">
+                <label class="col col-2" id="lbl-content-right">Ảnh Bìa</label>
+                <div class="custom-file col col-4">
+                    <input type="file" class="custom-file-input" id="customFile1" name="posterimage">
+                    <label class="custom-file-label"><input class="file-name" name="filename" type="text"
+                            value="Chọn ảnh bìa..."></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row form-inline">
+                <label class="col col-2" id="lbl-content-left">URL</label>
+                <input type="text" name="trailer" class="form-control col col-4">
+                <label class="col col-2"></label>
+                <img class="imgpostercreate" src="" id="imgposter1">
+            </div>
+        </div>
+        <div class="form-group ckeditorgroup">
+            <textarea name="content" id="editor" >
+                        Nội dung bài viết...
+            </textarea>
+
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+        </div>
+        <div class="row group-btn-writing">
+            <button type="submit" class="btn btn-success btn-submit-writing">Nộp bài</button>
+            <button type="button" class="btn btn-primary btn-cancel-writing">Hủy</button>
+        </div>
+    </form>
+
+</div>
+<!-- </div> -->
+
+<!-- --------------------------------------------End Detail--------------------------------------------->
+<%include ../partials/footer-admin%>
+<script>
+
+
+
+</script>

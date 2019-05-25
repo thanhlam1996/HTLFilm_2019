@@ -1,0 +1,26 @@
+.item-registerlist{
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding: 6px;
+    margin-top: 20px;
+}
+.registerlist-label-topic{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.registerlist-detail{
+    margin-left: 20px;
+}
+.registerlist-label-topic .btn{
+    float: right;
+}
+.registerlist-detail .btn{
+    float: right;
+    margin-left: 10px;
+}
+.registerlist-label-topic label{
+    font-weight: 500;
+}
+.registerlist-detail .deadline{
+    color: red;
+}

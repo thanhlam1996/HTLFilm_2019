@@ -1,0 +1,31 @@
+.createmovie{
+    min-height: 500px;
+}
+.component-create{
+    margin-top: 20px;
+}
+.btnaddcreatemovie{
+    float: left;
+    margin-left: 20px;
+}
+.btncreatemovie{
+    float: right;
+    margin-left: 20px;
+}
+.tagbtncreatemovie{
+    margin-top: 100px;
+}   
+.txt-create-producer,.lable-create-producer{
+    margin-left: 3px;
+}
+.group-formcreate label{
+    justify-content: left;
+    padding-left: 0px;
+}
+#btn-removecomponentmovie{
+    margin-left: 3px;
+}
+.create-err-title-display{
+    color: red;
+    display: none;
+}

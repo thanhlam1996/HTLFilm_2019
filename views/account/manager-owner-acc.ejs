@@ -1,0 +1,157 @@
+<%include ../partials/header-admin%>
+<div class="container list-movie-member-writed">
+    <%var count=1%>
+    <table class="table table-responsive display" id="example" style="width:100%">
+
+        <thead>
+            <tr>
+                <th id="stt">STT</th>
+                <th id="th">Email</th>
+                <th id="th">Họ & Tên</th>
+                <th id="th">Số điện thoại</th>
+                <th id="th">Giới tính</th>
+                <th id="th">Quyền</th>
+                <th id="th1">&nbsp</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <%data.Items.forEach(function(i){%>
+            <tr>
+                <td id="stt"><%=count%></td>
+                <td><%=i.info.email%></td>
+                <td><%=i.info.fullname%></td>
+                <td><%=i.info.phone?i.info.phone:"-"%></td>
+                <td><%=i.info.sex?i.info.sex:"-"%></td>
+                <%if(i.role==1){%>
+                <td>User</td>
+                <%}else if(i.role==2){%>
+                <td style="color:green; font-weight: 500">Member</td>
+                <%}else if(i.role==3){%>
+                <td style="color:blue; font-weight: 500">Sub-Admin</td>
+                <%}else{%>
+                <td style="color:red; font-weight: 500">Master</td>
+                <%}%>
+                <td id="<%=i.role%>" class="<%=i.id%>"><a class="view-acc-admin" id="<%=i.id%>" href="#">Xem</a><span>||</span><a class="edit-role-admin"
+                    id="<%=i.id%>" data-toggle="modal" data-target="#decentralization" href="">Sửa
+                    quyền</a><span>||</span><a class="delete-acc-admin" id="<%=i.id%>" data-toggle="modal"
+                    data-target="#myModalremove" href="#">Xóa</a></td>
+            </tr>
+            <%count++%>
+            <%})%>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th id="stt">STT</th>
+                <th id="th">Email</th>
+                <th id="th">Họ & Tên</th>
+                <th id="th">Số điện thoại</th>
+                <th id="th">Giới tính</th>
+                <th id="th">Quyền</th>
+                <th id="th1">&nbsp</th>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>
+<!-- Dialog Note -->
+<!-- The Modal -->
+<div class="container">
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Lý do không duyệt bài</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <textarea class="form-control txt-unapprove-note" rows="5" id="comment"></textarea>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-unapprove-note">Xong</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ---------- -->
+<div class="container">
+    <!-- The Modal -->
+    <div class="modal fade" id="decentralization">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thiết lập quyền</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <form action="/action_page.php">
+                    <div class="form-check">
+                        <input type="radio"  id="check1" name="role" value="1">
+                        <label class="form-check-label" id="label-check">User</label>
+                        <span style="color:orangered">||</span>
+                        <input type="radio"  id="check2" name="role" value="2">
+                        <label class="form-check-label" id="label-check">Member</label>
+                        <span style="color:orangered">||</span>
+                        <input type="radio"  id="check3" name="role" value="3">
+                        <label class="form-check-label" id="label-check">Sub-Admin</label>
+                        <span style="color:orangered">||</span>
+                        <input type="radio"  id="check4" name="role" value="4">
+                        <label class="form-check-label" id="label-check">Master</label>
+                    </div>
+
+                </form>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-set-role">Xong</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ---------- -->
+<!-- Dialog Remove-->
+<!-- The Modal -->
+<div class="container">
+    <!-- The Modal -->
+    <div class="modal fade" id="myModalremove">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác nhận</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có thật sự muốn xóa tài khoản này?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-remove-acc-admin">Xong</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- ---------- -->
+<%include ../partials/footer-admin%>

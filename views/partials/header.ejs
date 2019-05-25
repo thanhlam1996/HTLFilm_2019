@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title><%=titletab%></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+  <!--Bootstrap css-->
+  <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  <!--Font Awesome css-->
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+  <!--Magnific css-->
+  <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+  <!--Owl-Carousel css-->
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+  <!--Animate css-->
+  <link rel="stylesheet" href="assets/css/animate.min.css" />
+  <!--Slicknav css-->
+  <link rel="stylesheet" href="assets/css/slicknav.min.css" />
+  <!--Site Main Style css-->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!--Responsive css-->
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <!-- Option Custom ------------------------------------------------------------------>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <!--login-register-account CSS -->
+  <link href="authentication/login-register-account.css" rel="stylesheet" />
+  <!-- Index CSS -->
+  <!--login-register-account CSS -->
+  <link href="authentication/detail-acc-owner.css" rel="stylesheet" />
+  <!-- Index CSS -->
+
+  <link href="main/index.css" rel="stylesheet" />
+  <!-- DETAIL MOVIE -->
+  <link href="movie-admin/movie-detail.css" rel="stylesheet" />
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+
+<body>
+  <!-- Header Area Start -->
+  <header class="filmoja-header-area">
+    <!-- Header Top Area Start -->
+    <div class="header-top-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-sm-4">
+            <div class="header-top-social"></div>
+          </div>
+          <div class="col-lg-6 col-sm-8">
+            <div class="header-top-menu">
+              <ul class="link-login-register">
+               <!-- Cho nay danh cho   -->
+                <!-- <li>
+                  <a id="acction-login-register" href="/login-register">Đăng nhập/Đăng ký</a>
+                </li> -->
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Header Top Area End -->
+
+    <!-- Main Header Area Start -->
+    <div class="main-header-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <div class="site-logo">
+              <a href="/">
+                <img src="assets/img/logo.png" alt="filmoja" />
+              </a>
+            </div>
+            <!-- Responsive Menu Start -->
+            <div class="filmoja-responsive-menu"></div>
+            <!-- Responsive Menu End -->
+          </div>
+          <div class="col-lg-4">
+            <div class="header-main-search hide-mobile">
+
+              <form method="POST" action="/cloud-search">
+                <div class="row">
+                  <input name="txtsearch" id="txtsearch" type="search" placeholder="Search..." />
+                  <button id="btn-search-header" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                  <ul class="title-list-group" id="result">
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="mainmenu">
+              <nav>
+                <ul id="responsive_navigation">
+                  <!-- Mobile Search Start -->
+                  <li class="header-main-search hide-desktop">
+                    <form>
+                      <input name="txtsearch" id="txtsearch" type="search" placeholder="Search..." />
+                      <button type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </form>
+                    <ul class="title-list-group" id="result">
+
+                    </ul>
+                  </li>
+                  <!-- Mobile Search End -->
+                  <li><a href="/">Trang chủ</a></li>
+                  <li><a href="#">tìm kiếm</a></li>
+                  <li>
+                      <a href="#">Phim Mới</a>
+                      <ul>
+                        <li>
+                          <a href="movie-list.html">việt nam</a>
+                        </li>
+                        <li><a href="single-movie.html">trung quốc</a></li>
+                        <li><a href="single-movie.html">mỹ</a></li>
+                        <li><a href="single-movie.html">hàn quốc</a></li>
+                      </ul>
+                    </li> 
+                  <li>
+                    <a href="#">thể loại</a>
+                    <ul>
+                      <li><a href="about.html">hành động</a></li>
+                      <li><a href="pricing.html">hài hước</a></li>
+                      <li><a href="">gia đình</a></li>
+                      <li><a href="404.html">võ thuật</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">quốc gia</a>
+                    <ul>
+                      <li>
+                        <a href="movie-list.html">việt nam</a>
+                      </li>
+                      <li><a href="single-movie.html">trung quốc</a></li>
+                      <li><a href="single-movie.html">mỹ</a></li>
+                      <li><a href="single-movie.html">hàn quốc</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="/contact">liên hệ</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Header Area End -->
+  </header>
+  <!-- Header Area End -->
+</body>
+
+</html>

@@ -1,0 +1,1037 @@
+[
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-20",
+                "createnote": "noádasdasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "62e02662-a209-4465-96a3-a6714eb4d382",
+        "title": "Thor",
+        "info": {
+            "actor": [
+                "Chris Hemsworth","Natalie Portman","Tom Hiddleston", "Anthony Hopkins"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=JOddp-nlNvQ",
+            "country": "Mỹ",
+            "distance": "115",
+            "director": "Kenneth Branagh",
+            "producer": "Paramount Pictures",
+            "posterimage": "https://m.media-amazon.com/images/M/MV5BOGE4NzU1YTAtNzA3Mi00ZTA2LTg2YmYtMDJmMThiMjlkYjg2XkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg",
+            "movietype": [
+                "Hành động", "Phiêu lưu", "Ảo tưởng", "Khoa học viễn tưởng"
+            ],
+            "content": "<p>Vị thần Thor mạnh mẽ nhưng kiêu ngạo, bị đuổi khỏi Asgard để sống giữa loài người ở Midgard (Trái đất), nơi anh sớm trở thành một trong những người bảo vệ tốt nhất của họ.</p>",
+            "publicationdate": "2011-05-06"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "noá d"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "fff4c33f-0576-4ec1-89b6-9383b1d5ec80",
+        "title": "300",
+        "info": {
+            "actor": [
+                "Gerard Butler", "Lena Headey", "Dominic West", "David Wenham"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=UrIbxk7idYA",
+            "country": "Mỹ, Canada, Bulgaria",
+            "distance": "117",
+            "director": "Zack Snyder",
+            "producer": "Warner Bros. Pictures",
+            "posterimage": "https://m.media-amazon.com/images/M/MV5BMjc4OTc0ODgwNV5BMl5BanBnXkFtZTcwNjM1ODE0MQ@@._V1_SX300.jpg",
+            "movietype": [
+                "Hành động", "tưởng tượng", "chiến tranh"
+            ],
+            "content": "<p>Vua Leonidas ở Sparta và một lực lượng gồm 300 người chiến đấu với người Ba Tư tại Thermopylae năm 480 B.C.</p>",
+            "publicationdate": "2007-03-9"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-27",
+                "createnote": "noádasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "9c6d9abc-3da7-4311-b10c-fc8fda943114",
+        "title": "Shazam",
+        "info": {
+            "actor": [
+                "Roman Dior Degeddingseze, Christopher Mychael Watson"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=go6GEIrcvFY",
+            "country": "Mỹ",
+            "distance": "90",
+            "director": "Royston Innes",
+            "producer": "N/A",
+            "posterimage": "https://m.media-amazon.com/images/M/MV5BNmZjZDQ1N2QtMTNkMS00OGYyLWI2MTktOWVlMzliMjlhMTBjXkEyXkFqcGdeQXVyODkwNDUwNw@@._V1_SX300.jpg",
+            "movietype": [
+                "Ngắn, gia đình"
+            ],
+            "content": "<p>Một người cha dạy con trai mình về những thực tế khắc nghiệt của việc trở thành một người da đen theo một cách mới và sáng tạo.</p>",
+            "publicationdate": "2017-03-19"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "654d959c-fca9-40b9-9b2d-0e18b0c9ebf6",
+        "title": "The Avengers",
+        "info": {
+            "actor": [
+                "Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=eOrNdBpGMv8",
+            "country": "Mỹ",
+            "distance": "143",
+            "director": "Joss Whedon",
+            "producer": "Walt Disney Pictures",
+            "posterimage": "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+            "movietype": [
+                "Hành động, Phiêu lưu, Khoa học viễn tưởng"
+            ],
+            "content": "<p>Những anh hùng mạnh nhất Trái đất phải đến với nhau và học cách chiến đấu như một đội nếu họ sẽ ngăn chặn Loki tinh nghịch và đội quân ngoài hành tinh của anh ta làm nô lệ nhân loại.</p>",
+            "publicationdate": "2012-05-04"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdfsdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "7114868a-d896-402a-8d11-400726de8b45",
+        "title": "Glass",
+        "info": {
+            "actor": [
+                "James McAvoy, Bruce Willis, Samuel L. Jackson, Anya Taylor-Joy"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=95ghQs5AmNk",
+            "country": "Mỹ",
+            "distance": "129",
+            "director": "M. Night Shyamalan",
+            "producer": "Universal Pictures",
+            "posterimage": "https://m.media-amazon.com/images/M/MV5BMTY1OTA2MjI5OV5BMl5BanBnXkFtZTgwNzkxMjU4NjM@._V1_SX300.jpg",
+            "movietype": [
+                "Chính kịch, khoa học viễn tưởng, phim kinh dị"
+            ],
+            "content": "<p>Nhân viên bảo vệ David Dunn sử dụng khả năng siêu nhiên của mình để theo dõi Kevin Wendell Crumb, một người đàn ông quậy phá, có hai mươi bốn tính cách.</p>",
+            "publicationdate": "2019-01-18"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdfsdfsdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "3698b609-84f9-4ed5-bb5a-2100a8c509ed",
+        "title": "How to Train Your Dragon",
+        "info": {
+            "actor": [
+                "Jay Baruchel, Gerard Butler, Craig Ferguson, America Ferrera"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=oKiYuIsPxYk",
+            "country": "Mỹ",
+            "distance": "98",
+            "director": "Dean DeBlois, Chris Sanders",
+            "producer": "Paramount/DWA",
+            "posterimage": "https://m.media-amazon.com/images/M/MV5BMjA5NDQyMjc2NF5BMl5BanBnXkFtZTcwMjg5ODcyMw@@._V1_SX300.jpg",
+            "movietype": [
+                "Hoạt hình, hành động, phiêu lưu, gia đình, tưởng tượng"
+            ],
+            "content": "<p>Một Viking trẻ tuổi bất lương, khao khát săn rồng trở thành người bạn không thể tin được của một con rồng trẻ, và học được rằng có thể có nhiều sinh vật hơn anh ta giả định.</p>",
+            "publicationdate": "2010-02-26"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-21",
+                "createnote": "noádasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "e25e7de7-33e6-47ed-807e-9966cc72db5f",
+        "title": "FAST AND FURIOUS 8",
+        "info": {
+            "actor": [
+                "Vin Diesel, Dwayne Johnson, Jason Statham, Charlize Theron, Nathalie Emmanuel"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=uisBaTkQAEs",
+            "country": "Mỹ",
+            "distance": "136",
+            "director": "F. Gary Gray",
+            "producer": "Universal",
+            "posterimage": "https://www.galaxycine.vn/media/f/a/fast_1.jpg",
+            "movietype": [
+                "Hành Động, Hình Sự, Tội Phạm"
+            ],
+            "content": "<p>Chia tay Brian O'Conner – Paul Walker nhưng cuộc phiêu lưu tốc độ của Dominic Toretto vẫn còn tiếp diễn. Lần đầu tiên, Dominic Toretto phản bội gia đình và những người bạn của mình. Đặc vụ Hobbs vì thế bị tống vào tù. Mọi người đều hoang mang trước sự thay đổi của người anh cả vẫn luôn bảo vệ cho cả nhóm. Liệu có bí mật nào đằng sau việc Toretto phản bội? Nhân vật bí ẩn Cipher đóng vai trò gì trong sự việc này? Việc kết hợp của nhóm với kẻ thù cũ Shaw sẽ đem lại kết quả thế nào? Tất cả đều đang chờ bạn trong Fast & Furious 8 - The Fate Of The Furious.</p>",
+            "publicationdate": "2017-04-12"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdfsdfsdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "50cbde22-6bcd-4778-8a50-55cd6f9104b3",
+        "title": "AVENGERS: ENDGAME",
+        "info": {
+            "actor": [
+                "Robert Downey Jr., Chris Hemsworth, Chris Evans, Scarlett Johansson, Mark Ruffalo, Jeremy Renner"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=TcMBFSGVi1c",
+            "country": "Mỹ",
+            "distance": "182",
+            "director": "Anthony Russo, Joe Russo",
+            "producer": "Walt Disney Studios Motion Pictures",
+            "posterimage": "https://galaxycine.vn/media/2019/4/10/406wx600h_1554864308063.jpg",
+            "movietype": [
+                "Hành Động, Phiêu Lưu, Giả Tưởng"
+            ],
+            "content": "<p>Cú búng tay của Thanos đã khiến toàn bộ dân số biến mất một nửa. Các siêu anh hùng đánh mất bạn bè, người thân và đánh mất cả chính mình. Bộ sáu Avengers đầu tiên tứ tán. Iron Man kẹt lại ngoài không gian, Hawkeye mất tích. Thor, Captain America, Hulk và Black Widow đều chìm trong nỗi đau vô tận vì mất đi những người thân yêu.</p>",
+            "publicationdate": "2019-04-18"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "98a64847-8cc8-4cee-be9b-9a587fd00b82",
+        "title": "LẬT MẶT: NHÀ CÓ KHÁCH",
+        "info": {
+            "actor": [
+                "Huy Khánh, Mạc Văn Khoa, Tú Trinh"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=Fw3NAveg578",
+            "country": "Việt Nam",
+            "distance": "100",
+            "director": "Lý Hải",
+            "producer": "Lý Hải Production",
+            "posterimage": "https://galaxycine.vn/media/2019/3/20/lat-mat-4_1553053336629.jpg",
+            "movietype": [
+                "Hài, Kinh Dị"
+            ],
+            "content": "<p>Dự án điện ảnh tiếp theo thuộc series phim Lật Mặt của đạo diễn Lý Hải là câu chuyện xoay quanh chuyến về thăm quê đầy trắc trở của Vy và những người bạn. Theo đó, tại nhà của Vy, nhóm bạn lần lượt gặp phải các tình huống vô cùng kỳ bí, lạ lùng. Đâu là lời giải đáp cho những bí ẩn đang rình rập quanh họ?</p>",
+            "publicationdate": "2019-04-10"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "noasdasdas "
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "d5b11fac-d557-4713-9204-48ea2baa7684",
+        "title": "THE HOLE IN THE GROUND",
+        "info": {
+            "actor": [
+                "Seána Kerslake, James Quinn Markey"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=2_qQOt5ZBCw",
+            "country": "Mỹ",
+            "distance": "85",
+            "director": "Lee Cronin",
+            "producer": "Savage Productions",
+            "posterimage": "https://galaxycine.vn/media/2019/4/16/mv5bnji3njmwnzuznv5bml5banbnxkftztgwmzezmdkynzm--v1-sy1000-cr0-0-674-1000-al-_1555398148138.jpg",
+            "movietype": [
+                "Kinh Dị"
+            ],
+            "content": "<p>Một bà mẹ trẻ cảm thấy vô cùng lo lắng khi con trai của cô đang ngày càng có nhiều hành vi lạ kỳ. Cô nghi ngờ rằng sự việc này liên quan đến hố sâu bí ẩn trong rừng. Thậm chí, người mẹ còn không chắc chắn liệu đứa trẻ này có phải là con của cô hay không?</p>",
+            "publicationdate": "2019-04-19"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "noádasdasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "448a50bc-30c8-4374-a86e-7ae264eb8cec",
+        "title": "RUNNING MAN: THE GAME BEGINS",
+        "info": {
+            "actor": [
+                "Kim Seo Yeong, Um Sang Hyun"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=w9i11uPrZEA",
+            "country": "Hàn Quốc",
+            "distance": "68",
+            "director": "Yun Jun Sang",
+            "producer": "CJ E&M",
+            "posterimage": "https://galaxycine.vn/media/2019/4/16/running-man1_1555404102083.jpg",
+            "movietype": [
+                "Hoạt Hình"
+            ],
+            "content": "<p>Ở cuộc thi Running Man lần thứ 100, 7 thành viên: Hổ Kuga, Châu Chấu Liu, Linh Dương Pala, Khỉ Gai, Mèo Miyo, Cánh Cụt Popo và Hoàng tử Hươu Cao Cổ Lonky đã đến và cùng chiến đấu. Cuộc đua đang diễn ra vô cùng hấp dẫn thì họ lại vô tình trở thành nghi phạm của một vụ án giết người...</p>",
+            "publicationdate": "2019-04-19"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-27",
+                "createnote": "noa sd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "1af4e3c4-0ceb-4cc2-8e21-76c048350ce6",
+        "title": "ALAD'2",
+        "info": {
+            "actor": [
+                "Kev Adams, Jamel Debbouze, Vanessa Guide"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=lsqN0WyJCMI",
+            "country": "Pháp",
+            "distance": "98",
+            "director": "Lionel Steketee",
+            "producer": "Pathé ",
+            "posterimage": "https://galaxycine.vn/media/2019/4/16/thandensieuquay3_1555400079949.jpg",
+            "movietype": [
+                "Hài"
+            ],
+            "content": "<p>Theo dõi chuyến phiêu lưu của Aladdin và Thần đèn siêu quậy để xem liệu lần này, họ sẽ mang đến cho chúng ta những điều thú vị gì nhé!</p>",
+            "publicationdate": "2019-04-19"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-20",
+                "createnote": "nosdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "3c6070b3-d95c-425b-a013-39a7f8d9d64c",
+        "title": "BREAK",
+        "info": {
+            "actor": [
+                "Irina Antonenko, Mikhail Filippov"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=52bORzIODec",
+            "country": "Nga",
+            "distance": "85",
+            "director": "Tigran Saakyan",
+            "producer": "Mokco",
+            "posterimage": "https://galaxycine.vn/media/2019/4/16/break-poster_1555397224012.jpg",
+            "movietype": [
+                "Kinh Dị, Ly Kì"
+            ],
+            "content": "<p>Một nhóm bạn đối mặt với mối nguy hiểm chưa từng khó khi chiếc cáp treo của họ bị đứt ở lừng chừng trên không, phía dưới là vực sâu hun hút. Đứng trước cơn ác mộng kinh hoàng, các thành viên dần lộ ra bản chất thật sự trong mỗi người. Họ phải làm mọi thủ đoạn để tranh thủ cơ hội sống sót.</p>",
+            "publicationdate": "2019-04-19"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-27",
+                "createnote": "noádasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "c423244b-a61d-475c-8637-1bd536904e33",
+        "title": "TERRA WILLY: PLANÈTE INCONNUE",
+        "info": {
+            "actor": [
+                "Timothé Vom Dorp, Edouard Baer, Marie-Eugénie Maréchal"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=59ugL59L4NU",
+            "country": "Pháp",
+            "distance": "90",
+            "director": "Eric Tosti",
+            "producer": "TAT Productions",
+            "posterimage": "https://galaxycine.vn/media/2019/4/2/phieuluu1_1554178757403.jpg",
+            "movietype": [
+                "Hoạt Hình"
+            ],
+            "content": "<p>Sau một vụ tai nạn tàu vũ trụ, Willy bị lạc mất gia đình. Tuy vậy, với sự giúp đỡ của Buck - một robot tự hành và Flash - một sinh vật bản địa dễ thương, Willy bắt đầu hành trình khám phá hành tinh kỳ lạ trong khi chờ nhóm giải cứu tìm thấy cậu.</p>",
+            "publicationdate": "2019-04-12"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "noádasdasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "ced03e83-0f76-4f3e-9162-0a44ee7ca34b",
+        "title": "HELLBOY",
+        "info": {
+            "actor": [
+                "David Harbour, Milla Jovovich, Ian McShane"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=ZsBO4b3tyZg",
+            "country": "Mỹ",
+            "distance": "120",
+            "director": "Neil Marshall",
+            "producer": "Nu Boyana FX",
+            "posterimage": "https://galaxycine.vn/media/2019/3/19/hellboy-main-poster-low_1552980237048.jpg",
+            "movietype": [
+                "Hành Động, Giả Tưởng"
+            ],
+            "content": "<p>Cứ ngỡ sẽ không có lần tái ngộ, thế nhưng sau hơn 10 năm, cuối cùng người hâm mộ cũng chờ được ngày để gặp lại Hellboy trên màn ảnh rộng. Lần này, anh chàng cao to dữ dằn nhưng tâm hồn bên trong lại vô cùng đáng yêu phải đối đầu với nữ ác nhân sở hữu sức mạnh vô cùng to lớn có tên Nimue. Điều thú vị đó là ban đầu Nimue phải lòng Hellboy và ra sức quyến rũ, lôi kéo anh chàng trở về với bản chất loài quỷ. </p>",
+            "publicationdate": "2019-04-11"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-21",
+                "createnote": "nosdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "e0f9e395-e74e-4fae-bbda-916c36fcf2c2",
+        "title": "CHỊ MƯỜI BA",
+        "info": {
+            "actor": [
+                "Thu Trang, Tiến Luật, Diệu Nhi, Khương Ngọc"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=4icB4gSPaFY",
+            "country": "Việt Nam",
+            "distance": "95",
+            "director": "Tô Gia Tuấn, Khương Ngọc",
+            "producer": "Galaxy M&E",
+            "posterimage": "https://galaxycine.vn/media/2019/3/4/chi-muoi-ba-poster_1551695370477.png",
+            "movietype": [
+                "Hành Động, Hài"
+            ],
+            "content": "<p>Sau thành công của webdrama Thập Tam Muội, hoa hậu hài Thu Trang tiến công màn ảnh rộng bằng phim điện ảnh Chị Mười Ba. Chị Mười Ba tiếp tục kể về nhóm xã hội đen An Cư Nghĩa Đoàn do chị đại Mười Ba (Thu Trang) và đại ca Đường Băng (Tiến Luật) làm thủ lĩnh. Cả hai phải đối đầu cùng đối thủ bí ẩn- đại ca Hắc Hổ. Hắn chính là kẻ bảo kê cho Bi Long (Khương Ngọc) quậy phá suốt bấy lâu nay.</p>",
+            "publicationdate": "2019-03-23"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-21",
+                "createnote": "noasd "
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "7f9b6bed-2790-464e-912b-c39792d33839",
+        "title": "THE QUEEN'S CORGI",
+        "info": {
+            "actor": [
+                "Tom Courtenay, Jamal Fahim"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=Q_YVjq737jY",
+            "country": "Bỉ",
+            "distance": "85",
+            "director": "Ben Stassen",
+            "producer": "Belga Productions",
+            "posterimage": "https://galaxycine.vn/media/2019/3/5/corgi1_1551774363276.jpg",
+            "movietype": [
+                "Hoạt Hình"
+            ],
+            "content": "<p>Rex là chú chó được Nữ Hoàng Anh vô cùng cưng chiều. Sau một lần gây rắc rối, Rex đã bị nhốt lại. Quá buồn bã, chú chó Corgi quyết định bỏ trốn. Cũng trong chuyến phiêu lưu này, Rex đã gặp nhiều khó khăn để rồi sau đó, cậu gặp được tình yêu đích thực và tìm ra giá trị của bản thân. </p>",
+            "publicationdate": "2019-04-24"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdfsdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "5afcd083-8c37-4d15-9a0a-b4785b5d2949",
+        "title": "UPIN & IPIN KERIS SIAMANG TUNGGAL",
+        "info": {
+            "actor": [
+                "Asyiela Putri, Ahmad Mawardi"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=lD8Z7GpR45U",
+            "country": "Malaysia",
+            "distance": "99",
+            "director": "Adam Bin Amiruddin",
+            "producer": "Les' Copaque Production",
+            "posterimage": "https://galaxycine.vn/media/2019/4/10/upinipin1_1554864298509.jpg",
+            "movietype": [
+                "Hoạt Hình"
+            ],
+            "content": "<p>Trong một lần dọn nhà, hai anh em sinh đôi Upin và Ipin tìm thấy một thanh đao cổ. Chính món đồ này đã đưa những đứa trẻ đến một vùng đất kỳ lạ - nơi có một tên ác nhân đang hoành hành. Upin, Ipin và những người bạn phải làm gì để chống lại kẻ ác này? </p>",
+            "publicationdate": "2019-04-26"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-27",
+                "createnote": "nosdfsdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "e6fc80fa-f34a-4dd2-9f66-03b92385174a",
+        "title": "UGLY DOLLS",
+        "info": {
+            "actor": [
+                "Kelly Clarkson, Nick Jonas"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=qqlEGYo0xCA",
+            "country": "Mỹ, Trung Quốc",
+            "distance": "90",
+            "director": "Kelly Asbury",
+            "producer": "Alibaba Pictures Group Limited",
+            "posterimage": "https://galaxycine.vn/media/2019/4/16/poster-hoi-thu-bong-ngho-nghinh_1555401556337.jpg",
+            "movietype": [
+                "Hoạt Hình"
+            ],
+            "content": "<p>Phim kể về hành trình đầy những niềm vui và cũng chẳng thiếu nỗi buồn của những chú búp bê khác thường.</p>",
+            "publicationdate": "2019-05-03"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-28",
+                "createnote": "nosdfsdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "d50eb424-ce90-44f5-853e-9b298dee3813",
+        "title": "THE CURSE OF LA LLORONA",
+        "info": {
+            "actor": [
+                "Linda Cardellini, Patricia Velasquez, Sean Patrick Thomas"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=uOV-xMYQ7sk",
+            "country": "Mỹ",
+            "distance": "90",
+            "director": "Michael Chaves",
+            "producer": "New Line Cinema",
+            "posterimage": "https://galaxycine.vn/media/2019/3/6/mema5_1551855582189.jpg",
+            "movietype": [
+                "Kinh Dị"
+            ],
+            "content": "<p>Bỏ qua những lời cảnh báo, một nhân viên xã hội cùng những đứa con của cô dần dần bị vướng vào cõi siêu nhiên đầy đáng sợ...</p>",
+            "publicationdate": "2019-05-03"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-21",
+                "createnote": "noádasd"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "ccdd390c-a783-4023-9d5d-0f0af78404c7",
+        "title": "POKÉMON DETECTIVE PIKACHU",
+        "movieview": 1,
+        "info": {
+            "actor": [
+                "Ryan Reynolds, Justice Smith"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=1roy4o4tqQM",
+            "country": "Mỹ",
+            "distance": "90",
+            "director": "Rob Letterman",
+            "producer": "Warner Bros, Legendary Entertainment, The Pokemon Company",
+            "posterimage": "https://galaxycine.vn/media/2019/2/20/pokemon-detective-pikachu--vietnamese-poster_1550653017654.jpg",
+            "movietype": [
+                "Hoạt Hình, Phiêu Lưu, Gia Đình"
+            ],
+            "content": "<p>Là phiên bản live action của hoạt hình, truyện tranh và tựa game lừng danh thế giới - Pokémon: Detective Pikachu kể về thế giới nơi con người thu thập các Pokémon để chiến đấu với nhau, một cậu bé đã tình cờ nhặt được chú Pokémon tên Pikachu đang mong ước trở thành một thám tử.</p>",
+            "publicationdate": "2019-05-10"
+        }
+    },
+    {
+        "process": {
+            "create": {
+                "creater": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "initdate": "2019-04-11",
+                "deadline": "2019-04-20",
+                "createnote": "nosdf"
+            },
+            "approve": {
+                "approver": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ],
+                "submitiondate": "2019-04-11",
+                "dateofapprove": "2019-04-11"
+            },
+            "registion": {
+                "registiondate": "2019-04-11",
+                "register": [
+                    "Thanh Lam",
+                    "lam.truong1996@gmail.com"
+                ]
+            }
+        },
+        "stt": 1,
+        "id": "6216acf8-5e4b-45c2-8ef2-9a7e1be1909f",
+        "title": "INSEPARABLE BROS",
+        "info": {
+            "actor": [
+                "Lee Kwang Soo, Shin Ha Kyun, Esom"
+            ],
+            "trailer": "https://www.youtube.com/watch?v=LiK4OFMazGs",
+            "country": "Hàn Quốc",
+            "distance": "90",
+            "director": "Yook Sang Hyo",
+            "producer": "Next Entertainment World",
+            "posterimage": "https://galaxycine.vn/media/2019/4/17/thangemlytuong1_1555476228000.jpg",
+            "movietype": [
+                "Tâm Lý, Hài"
+            ],
+            "content": "<p>Se Ha và Dong Gu là hai anh em vô cùng đặc biệt: Kẻ mất mẹ, người bị bỏ rơi và họ đều mang trong mình những khuyết điểm nên không thể sống một cuộc đời bình thường. Cho đến một ngày, sự xuất hiện của cô gái Mi Hyun đã làm thay đổi tất cả...</p>",
+            "publicationdate": "2019-05-10"
+        }
+    }
+]

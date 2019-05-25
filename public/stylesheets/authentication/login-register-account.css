@@ -1,0 +1,30 @@
+#login-box{
+    height: 550px;
+}
+/* ==========dang nhap======== */
+#btn-login{
+    margin-top: 20px;
+}
+.frm-login{
+    margin-top: 70px;
+}
+#btn-login-fb {
+    background: #007bff;
+}
+
+#btn-login-gg {
+    background: #dc3545;
+}
+
+#btn-login-fb:hover {
+    background:#0259b6;
+}
+
+#btn-login-gg:hover  {
+    background: #fa2036;
+}
+/* =========================== */
+/* ==========Lable err ========*/
+label.error {
+	color: red;
+}

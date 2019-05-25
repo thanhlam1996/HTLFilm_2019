@@ -1,0 +1,27 @@
+[
+  {
+    "email": "lam.truong1996@gmail.com",
+    "fullname": "Truong Thanh Lam",
+    "sex": "Nam",
+    "birthday": "30/07/1996",
+    "password": "11111111",
+    "phone": "0923334848",
+    "adress": "abc acv HCM",
+    "role": 4
+  },
+  {
+    "id": "asd-asd-sadas",
+    "info": {
+      "adress": "abc acv HCM",
+      "birthday": "30/07/1996",
+      "email": "lam.truong1996@gmail.com",
+      "fullname": "Truong Thanh Lam",
+      "password": "11111111",
+      "phone": "0923334848",
+      "sex": "Nam"
+    },
+    "password": "11111111",
+    "role": 4
+  }
+]
+
