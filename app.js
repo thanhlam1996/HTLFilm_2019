@@ -47,7 +47,7 @@ app.use(express.static(__dirname + "/public/stylesheets/"));
 app.use(express.static(__dirname + "/public/images/"));
 app.use(express.static(__dirname + "/config/"));
 app.use(express.static(__dirname + "/data/"));
-app.use(express.static(__dirname + "/emails/images/"));
+app.use(express.static(__dirname + "/public/emails/"));
 
 // Route----------------------------------------------------------
 // var searchRouter=require('./routes/route_search');

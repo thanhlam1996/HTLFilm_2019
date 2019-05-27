@@ -97,14 +97,14 @@ function MailSubscribed(email) {
     from: 'lozodo831@gmail.com',
     to: email,
     subject: 'HTLFilm Xin Chào',
-    html: fs.readFileSync('./emails/mail.html')
+    html: fs.readFileSync('./public/emails/mail.html')
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
-      console.log('Email sent: ' + info.response);
+      // console.log('Email sent: ' + info.response);
       return true;
     }
   });

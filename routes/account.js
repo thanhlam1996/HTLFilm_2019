@@ -228,7 +228,7 @@ passport.use(
     {
       clientID: "257002525186870",
       clientSecret: "994485da2b9a29fe8c80c80bd0d3ea1f",
-      callbackURL: dynamoDbConfig.address + "/account/loginfb/cb",
+      callbackURL: "http://htlfilm.us-east-1.elasticbeanstalk.com/account/loginfb/cb",
       profileFields: ["email", "name"]
     },
     (accessToken, refreshToken, profile, done) => {
