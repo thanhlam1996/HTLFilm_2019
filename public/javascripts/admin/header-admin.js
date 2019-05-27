@@ -15,6 +15,7 @@ $(document).ready(function () {
 
     }).done(function (sess) {
         if (sess) {
+           
             var member = '<ul class="nav navbar-nav left-sidebar-menu-pro">';
             member += '<li class="nav-item">';
             member += '<a href="/"><i class="fa big-icon fa-home"></i> <span class="mini-dn">Trang Chủ</span></a>';

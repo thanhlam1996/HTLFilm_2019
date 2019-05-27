@@ -228,7 +228,7 @@ passport.use(
     {
       clientID: "257002525186870",
       clientSecret: "994485da2b9a29fe8c80c80bd0d3ea1f",
-      callbackURL: "http://htlfilm.us-east-1.elasticbeanstalk.com/account/loginfb/cb",
+      callbackURL: "http://localhost:3000/account/loginfb/cb",
       profileFields: ["email", "name"]
     },
     (accessToken, refreshToken, profile, done) => {
@@ -306,110 +306,193 @@ router.get(
 //       clientSecret: "PdlgOMiHdkXTy1lZL7DIQkFT",
 //       callbackURL: dynamoDbConfig.address + "/account/logingg/cb",
 //       profileFields: ["email"]
-passport.use(
-  new ggstrategy(
-    {
-      clientID:
-        "863507887797-2sno32f5pgejlpl4duffenag79c0r1q2.apps.googleusercontent.com",
-      clientSecret: "FNpdUg8RLdE1bl0CgeIlJ0b3",
-      callbackURL: "http://htlfilm.us-east-1.elasticbeanstalk.com/account/logingg/cb",
-      profileFields: ["email"]
-    },
-    (accessToken, refreshToken, profile, done) => {
-      var _fullname = profile.name.givenName + " " + profile.name.familyName;
 
-      var _email = "";
-      var _id = "GG-" + profile.id;
-      profile.emails.forEach(function (i) {
-        _email = i.value;
-      });
-      var params = {
-        TableName: "Accounts",
-        KeyConditionExpression: "id=:id",
-        ExpressionAttributeValues: {
-          ":id": _id
-        }
-      };
+passport.use(new ggstrategy({
+  clientID: "863507887797-2sno32f5pgejlpl4duffenag79c0r1q2.apps.googleusercontent.com",
+  clientSecret: "FNpdUg8RLdE1bl0CgeIlJ0b3",
+  callbackURL: "http://htlfilm.us-east-1.elasticbeanstalk.com/account/logingg/cb",
+  profileFields: ['email']
+}, (accessToken, refreshToken, profile, done) => {
+  var _fullname = profile.name.givenName + " " + profile.name.familyName;
 
-      docClient.query(params, function (err, user) {
-        if (err) {
-          console.error(
-            "Unable to query. Error:",
-            JSON.stringify(err, null, 2)
-          );
-        } else {
+  var _email = "";
+  var _id = profile.id;
+  profile.emails.forEach(function (i) {
+      _email = i.value;
+  })
+  var params = {
+      TableName: "Accounts",
+      KeyConditionExpression: "email=:email",
+      ExpressionAttributeValues: {
+          ":email": _id
+      }
+  };
+
+  docClient.query(params, function (err, user) {
+      if (err) {
+          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+      } else {
+
           if (user.Count > 0) {
-            return done(null, user);
-          } else {
-            var param = {
-              TableName: "Accounts",
-              Item: {
-                id: _id,
-                role: 1,
-                info: {
-                  email: _email,
-                  fullname: _fullname
-                }
-              }
-            };
-            docClient.put(param, function (error, user) {
-              if (err) {
-                console.error(
-                  "Unable to update item. Error JSON:",
-                  JSON.stringify(err, null, 2)
-                );
-              } else {
-                return done(null, user);
-              }
-            });
+
+              return done(null, user);
           }
-        }
-      });
-    }
-  )
-);
+          else {
+              var param = {
+                  TableName: "Accounts",
+                  Item: {
+                      "email": _id,
+                      "fullname": _fullname,
+                      "role": 2,
+                      "id": _email
+                  }
+              };
+              docClient.put(param, function (error, user) {
+                  if (err) {
+                      console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+                  } else {
+                      return done(null, user);
+                  }
+              });
+          }
+      }
+  });
+}
+));
+// passport.use(
+//   new ggstrategy(
+//     {
+//       clientID:
+//         "521863593219-tktru7o2she7mdfg5q4edu7b4m71tcab.apps.googleusercontent.com",
+//       clientSecret: "-z86Sq8XYPX5ffNlXu1Pf426",
+//       callbackURL: "http://localhost:3000/account/logingg/cb",
+//       profileFields: ["email"]
+//     },
+//     (accessToken, refreshToken, profile, done) => {
+//       var _fullname = profile.name.givenName + " " + profile.name.familyName;
+
+//       var _email = "";
+//       var _id = "GG-" + profile.id;
+//       profile.emails.forEach(function (i) {
+//         _email = i.value;
+//       });
+//       var params = {
+//         TableName: "Accounts",
+//         KeyConditionExpression: "id=:id",
+//         ExpressionAttributeValues: {
+//           ":id": _id
+//         }
+//       };
+
+//       docClient.query(params, function (err, user) {
+//         if (err) {
+//           console.error(
+//             "Unable to query. Error:",
+//             JSON.stringify(err, null, 2)
+//           );
+//         } else {
+//           if (user.Count > 0) {
+//             return done(null, user);
+//           } else {
+//             var param = {
+//               TableName: "Accounts",
+//               Item: {
+//                 id: _id,
+//                 role: 1,
+//                 info: {
+//                   email: _email,
+//                   fullname: _fullname
+//                 }
+//               }
+//             };
+//             docClient.put(param, function (error, user) {
+//               if (err) {
+//                 console.error(
+//                   "Unable to update item. Error JSON:",
+//                   JSON.stringify(err, null, 2)
+//                 );
+//               } else {
+//                 return done(null, user);
+//               }
+//             });
+//           }
+//         }
+//       });
+//     }
+//   )
+// );
 // ===========================END LOGIN VS GG=====================================
 
 // ===============PAssport==================================
 
 // Passport online
+// passport.serializeUser(function (user, done) {
+//   done(null, user);
+// });
+// passport.deserializeUser((user, done) => {
+//   var _email = user.Items.id;
+
+//   var params = {
+//     TableName: "Accounts",
+//     KeyConditionExpression: "id=:id",
+//     ExpressionAttributeValues: {
+//       ":id": id
+//     }
+//   };
+  
+//   docClient.query(params, function (err, user) {
+//     if (err) {
+//       console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+//     } else {
+//       console.log(JSON.parse(user))
+//       if (user.Count > 0) {
+//         var sess = {};
+//         user.Items.forEach(j)
+//         {
+//           sess = {
+//             email: j.info.email,
+//             fullname: j.info.fullname,
+//             role: j.role,
+//             id: j.id
+//           };
+//         }
+
+//         return done(null, sess);
+//       } else {
+//         return done(null, false);
+//       }
+//     }
+//   });
+// });
+// Passport local
+
 passport.serializeUser(function (user, done) {
   done(null, user);
-});
+})
 passport.deserializeUser((user, done) => {
-  var _email = user.Items.id;
+  var _email = user.Items.email;
 
   var params = {
-    TableName: "Accounts",
-    KeyConditionExpression: "id=:id",
-    ExpressionAttributeValues: {
-      ":id": id
-    }
+      TableName: "Accounts",
+      KeyConditionExpression: "email=:email",
+      ExpressionAttributeValues: {
+          ":email": _email
+      }
   };
 
   docClient.query(params, function (err, user) {
-    if (err) {
-      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-    } else {
-      if (user.Count > 0) {
-        var sess = {};
-        user.Items.forEach(j)
-        {
-          sess = {
-            email: j.info.email,
-            fullname: j.info.fullname,
-            role: j.role,
-            id: j.id
-          };
-        }
-
-        return done(null, sess);
+      if (err) {
+          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
       } else {
-        return done(null, false);
+          if (user.Count > 0) {
+              return done(null, user);
+          }
+          else {
+              return done(null, false);
+          }
       }
-    }
   });
-});
+})
 // Passport local
 
 // ===========================================================
