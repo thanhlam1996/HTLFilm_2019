@@ -93,6 +93,7 @@ router.post("/add-subscribe-email", function(req,res,next){
   })
 })
 function MailSubscribed(email) {
+
   var mailOptions = {
     from: 'lozodo831@gmail.com',
     to: email,
@@ -104,7 +105,6 @@ function MailSubscribed(email) {
     if (error) {
       console.log(error);
     } else {
-      // console.log('Email sent: ' + info.response);
       return true;
     }
   });

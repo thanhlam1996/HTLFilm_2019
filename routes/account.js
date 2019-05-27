@@ -312,7 +312,7 @@ passport.use(
       clientID:
         "863507887797-2sno32f5pgejlpl4duffenag79c0r1q2.apps.googleusercontent.com",
       clientSecret: "FNpdUg8RLdE1bl0CgeIlJ0b3",
-      callbackURL: dynamoDbConfig.address + "/account/logingg/cb",
+      callbackURL: "http://htlfilm.us-east-1.elasticbeanstalk.com/account/logingg/cb",
       profileFields: ["email"]
     },
     (accessToken, refreshToken, profile, done) => {
