@@ -46,7 +46,10 @@ $(document).on('click', '.btn-cmt', () => {
     })
 })
 $(document).on('click', '.like', () => {
-    var id = $('.like').attr('id');
+    var islogin=$('.checkislogin').attr('id');
+    if(islogin!='no')
+    {
+        var id = $('.like').attr('id');
     $.ajax({
         type: "post",
         url: "/movie/like-movie",
@@ -59,6 +62,18 @@ $(document).on('click', '.like', () => {
             return false;
         }
     })
+    }
+    else{
+        //alert("Bạn chưa đăng nhập. Hãy "+<a href='/login-register'>Đăng nhập/Đăng ký</a> +"tài khoản để thực hiện chức năng này nhé!!");
+      
+        if (confirm("Bạn chưa đăng nhập. Hãy Đăng nhập/Đăng ký tài khoản để thực hiện chức năng này nhé!!")) {
+            window.location.href='/login-register';
+        } else {
+            return false;
+  }
+        
+    }
+    
 });
 $(document).on('click', '.dislike', () => {
     var id = $('.dislike').attr('id');
@@ -92,12 +107,13 @@ async function deletecmt(movie_id, index) {
         }
     })
 }
-$(document).on('click', '.delete-comment', async function () {
+$(document).on('click', '.btn-delete-cmt-user', async function () {
 
-    var _id = $(this).attr('id')
+    var _id = $('.delete-comment').attr('id')
     var movie_id = $('.movie-details-page-box').attr('id');
     var index = $('.' + _id).attr('id')
-
+   
+    
     $.ajax({
         url: "/movie/delete-cmt-movie",
         type: "post",
@@ -106,12 +122,13 @@ $(document).on('click', '.delete-comment', async function () {
             index: index
         }
     }).done(function (data) {
+       // console.log(data)
         if (data) {
-            Window.location.reload();
+            window.location.reload();
         } else {
             return false;
         }
-    })
+     })
 
 })
 $(document).on('click', '.edit-cmt', async function () {

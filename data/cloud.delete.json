@@ -1,6 +1,6 @@
 [
     {
-        "type": "add",
+        "type": "delete",
         "id": "62e02662-a209-4465-96a3-a6714eb4d382",
         "fields": {
             "actor": [
@@ -25,7 +25,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "9c6d9abc-3da7-4311-b10c-fc8fda943114",
         "fields": {
             "actor": [
@@ -44,7 +44,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "654d959c-fca9-40b9-9b2d-0e18b0c9ebf6",
         "fields": {
             "title": "The Avengers",
@@ -63,7 +63,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "7114868a-d896-402a-8d11-400726de8b45",
         "fields": {
             "actor": [
@@ -82,7 +82,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "3698b609-84f9-4ed5-bb5a-2100a8c509ed",
         "fields": {
             "actor": [
@@ -101,7 +101,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "e25e7de7-33e6-47ed-807e-9966cc72db5f",
         "fields": {
             "actor": [
@@ -120,7 +120,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "50cbde22-6bcd-4778-8a50-55cd6f9104b3",
         "fields": {
             "actor": [
@@ -139,7 +139,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "98a64847-8cc8-4cee-be9b-9a587fd00b82",
         "fields": {
             "actor": [
@@ -158,7 +158,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "d5b11fac-d557-4713-9204-48ea2baa7684",
         "fields": {
             "actor": [
@@ -177,7 +177,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "448a50bc-30c8-4374-a86e-7ae264eb8cec",
         "fields": {
             "actor": [
@@ -196,7 +196,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "1af4e3c4-0ceb-4cc2-8e21-76c048350ce6",
         "fields": {
             "actor": [
@@ -215,7 +215,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "3c6070b3-d95c-425b-a013-39a7f8d9d64c",
         "fields": {
             "actor": [
@@ -234,7 +234,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "c423244b-a61d-475c-8637-1bd536904e33",
         "fields": {
             "actor": [
@@ -253,7 +253,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "ced03e83-0f76-4f3e-9162-0a44ee7ca34b",
         "fields": {
             "actor": [
@@ -272,7 +272,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "e0f9e395-e74e-4fae-bbda-916c36fcf2c2",
         "fields": {
             "actor": [
@@ -291,7 +291,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "7f9b6bed-2790-464e-912b-c39792d33839",
         "fields": {
             "actor": [
@@ -310,7 +310,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "5afcd083-8c37-4d15-9a0a-b4785b5d2949",
         "fields": {
             "actor": [
@@ -329,7 +329,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "ccdd390c-a783-4023-9d5d-0f0af78404c7",
         "fields": {
             "actor": [
@@ -348,7 +348,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "6216acf8-5e4b-45c2-8ef2-9a7e1be1909f",
         "fields": {
             "actor": [
@@ -367,7 +367,7 @@
         }
     },
     {
-        "type": "add",
+        "type": "delete",
         "id": "2989765f-8373-407d-99ed-767dfe05bda2",
         "fields": {
             "actor": [
@@ -386,8 +386,8 @@
         }
     },
     {
-        "type": "add",
-        "id": "d24e56f0-739d-4725-97a4-567986c00cda",
+        "type": "delete",
+        "id": "2989765f-8373-407d-99ed-767dfe05bda2",
         "fields": {
             "actor": [
                 "Thanh Lam"

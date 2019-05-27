@@ -1,0 +1,93 @@
+#sa-livesearch-title{
+    width: 100%;
+    margin: 0px 0;
+    padding: 5px;
+    list-style: none;
+    background-color: #EAEAEA;
+    border-left: 3px solid #f26b38;
+    border-top: 1px dotted #ced0da;
+    cursor: pointer;
+    color: #43464b;
+    position: relative;
+    z-index: 2;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#sa-livesearch-title:hover a{
+    /* color: #f26b38; */
+    background: #ec7532 none repeat scroll 0 0;
+    padding: 6px;
+    color: #fff;
+}
+.group-sa-title{
+    width: 31%;
+    padding: 0;
+    margin: 0px 10px auto 0px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+.group-sa-type{
+    width: 31%;
+    padding: 0;
+    margin: 0px 10px auto 0px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+.group-sa-producer{
+    width: 31%;
+    padding: 0;
+    margin: 0px 10px auto 0px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+.group-sa-actor{
+    width: 31%;
+    padding: 0;
+    margin: 0px 10px auto 0px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+.group-sa-country{
+    width: 31%;
+    padding: 0;
+    margin: 0px 10px auto 0px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+.group-sa-director{
+    width: 31%;
+    padding: 0;
+    margin: 0px 10px auto 0px;
+    position: absolute;
+    z-index: 3;
+    background-color: #EAEAEA;
+    border: 1px solid #EAEAEA;
+    border-radius:0px 0px 10px 10px;
+}
+.sa-form a {
+    /* background: #ec7532 none repeat scroll 0 0; */
+    border-radius: 4px;
+    color: blue;
+    display: inline-block;
+    font-weight: 500;
+    /* padding: 10px 30px; */
+    /* margin-top: 20px; */
+    text-transform: capitalize;
+}

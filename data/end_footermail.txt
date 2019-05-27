@@ -1,0 +1,31 @@
+<div style="background-color:#555555;">
+											<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;">
+												<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
+													
+															<div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;">
+																<div style="width:100% !important;">
+																
+																	<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:30px; padding-bottom:20px; padding-right: 0px; padding-left: 0px;">
+																	
+																			<div style="color:#ffffff;font-family:'droid serif', georgia, times, 'times new roman', serif;line-height:150%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
+																				<div style="font-size: 12px; line-height: 18px; font-family: 'droid serif', georgia, times, 'times new roman', serif; color: #ffffff;">
+																					<p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;"><strong>hericsson joe</strong> - sjogata 19-21, tromso, norway</p>
+																				</div>
+																			</div>
+																			
+																		</div>
+																		
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+													</div>
+													
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									
+								</body>
+								</html>

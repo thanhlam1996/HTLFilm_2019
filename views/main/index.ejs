@@ -48,7 +48,12 @@
 														</div>
 													</div>
 													<div class="top-movie-details">
+													<%if(t.title.length>22){%>
 														<h4><a href="/detail-movie?id=<%=t.id%>"><%=t.title%></a></h4>
+													<%}else{%>
+														<h4><a href="/detail-movie?id=<%=t.id%>"><%=t.title%></a></h4></br>
+													<%}%>
+
 					<div class="movie-details-thumbs">
 						<ul>
 							<li>
@@ -190,7 +195,11 @@
 												</div>
 											</div>
 											<div class="top-movie-details">
-												<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+													<%if(n.title.length>22){%>
+														<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+													<%}else{%>
+														<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4></br>
+													<%}%>
 												<div class="movie-details-thumbs">
 													<ul>
 														<li>
@@ -254,7 +263,11 @@
 												</div>
 											</div>
 											<div class="top-movie-details">
-												<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+													<%if(w.title.length>22){%>
+														<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+													<%}else{%>
+														<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4></br>
+													<%}%>
 												<div class="movie-details-thumbs">
 													<ul>
 														<li>
@@ -321,7 +334,11 @@
 														</div>
 													</div>
 													<div class="top-movie-details">
-														<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+															<%if(n.title.length>22){%>
+																<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+															<%}else{%>
+																<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4></br>
+															<%}%>
 														<div class="movie-details-thumbs">
 															<ul>
 																<li>
@@ -385,7 +402,11 @@
 														</div>
 													</div>
 													<div class="top-movie-details">
-														<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+															<%if(w.title.length>22){%>
+																<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+															<%}else{%>
+																<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4></br>
+															<%}%>
 														<div class="movie-details-thumbs">
 															<ul>
 																<li>
@@ -451,7 +472,12 @@
 														</div>
 													</div>
 													<div class="top-movie-details">
-														<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+															
+															<%if(n.title.length>22){%>
+																<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4>
+															<%}else{%>
+																<h4><a href="/detail-movie?id=<%=n.id%>"><%=n.title%></a></h4></br>
+															<%}%>
 														<div class="movie-details-thumbs">
 															<ul>
 																<li>
@@ -515,7 +541,11 @@
 														</div>
 													</div>
 													<div class="top-movie-details">
-														<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+															<%if(w.title.length>22){%>
+																<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4>
+															<%}else{%>
+																<h4><a href="/detail-movie?id=<%=w.id%>"><%=w.title%></a></h4></br>
+															<%}%>
 														<div class="movie-details-thumbs">
 															<ul>
 																<li>
@@ -556,13 +586,13 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="quote-box">
-					<h4>Action, Adventure, Fantasy</h4>
-					<h3>be the first to know</h3>
+					<h4>Hành Động, Phiêu Lưu, Viễn Tưởng</h4>
+					<h3>Theo dõi HTLFilm nhé!!</h3>
 					<a href="#" class="mouse-icon hidden-sm"><span class="wheel"><i
 								class="fa fa-long-arrow-down"></i></span></a>
-					<form>
-						<input type="email" placeholder="E-mail Address...">
-						<button type="submit">Subscribe</button>
+					<form id="frm-subscribe">
+						<input type="email" id="txt_emailsubscribe" placeholder="Theo dõi HTLFilm...">
+						<button type="button" id="subscribe_submit">Subscribe</button>
 					</form>
 				</div>
 			</div>

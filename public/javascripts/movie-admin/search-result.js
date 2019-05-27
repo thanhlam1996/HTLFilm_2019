@@ -12,47 +12,54 @@ $('#btn-search-header').click((a)=>{
         }
     })
 })
-$(document).on('click','#next',()=>{
-    console.log(countresult.length)
+$(document).on('click','.btn_add_movie_search',()=>{
+    var start=parseInt($('.pagin').val()+8);
+    var txtsearch=$('.btn_add_movie_search').attr('id');
+    $.ajax({
+        url:'/cloud-search',
+        type:'post',
+        data:{txtsearch:txtsearch,start:start}
+    }).done((data)=>{
+        console.log(data)
+        var dem=0;
+        if(data)
+        {
+            var s="";
+            data.hits.hit.forEach((i) => {
+            s+='<div class="col-md-3" id="line-result-search">'
+            s+='<div class="single-top-movie">'
+            s+='<div class="top-movie-wrap">'
+            s+='<div class="top-movie-img">'
+            s+='<a href="#">'
+            s+='<img src="'+i.fields.posterimage+'" alt="top movies">'
+            s+='</a>'
+            s+='</div>'
+            s+='<div class="thumb-hover">'
+            s+='<a href="/detail-movie?id='+i.id+'" class="celebrity-link">Xem chi tiết</a>'
+            s+='<ul>'
+            s+='<a href="#" class="filmoja-btn tablet-action"><i class="fa fa-play"></i>Xem trailer</a>'
+            s+='</ul>'
+            s+='</div>'
+            s+='</div>'
+            s+='<div class="top-movie-details">'
+            s+='<h4><a href="/detail-movie?id='+i.id+'">'+i.fields.title+'</a></h4>'  
+            s+='</div>'
+            s+='</div>'
+            s+='</div>'
+            dem++;
+            });
+            $('.no-margin-top').append(s);
+            if(parseInt(start+dem)>=data.hits.found)
+            {
+                $('.btn_add_movie_search').attr('style','display:none')
+            }
+            ///$('#current-item').text(parseInt($('#current-item').text()+dem));
+            var total=parseInt($('#current-item').text())+dem;
+            console.log(total);
+            $('#current-item').text(total);
+        }
+    })
 })
-
-$(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
-        // var keysearch = $("#txtsearch").val();
-        // var lastevaluatedkey = JSON.parse($(".titlelast").val());
-        // $.ajax({
-        //     type: 'GET',
-        //     url: "/search",
-        //     data: {
-        //         "carname": keysearch,
-        //         lastevaluatedkey
-        //     }
-        // }).done(function (data) {
-        //     if (data.Count > 0) {
-        //         data.Items.forEach(function (i) {
-
-                   
-        //         })
-        //     }
-
-        //     if (data.LastEvaluatedKey) {
-        //         $(".titlelast").remove();
-        //         $("#pagenext").append('<button class="titlelast" value=' + JSON.stringify(data.LastEvaluatedKey) + '>Cuộn xuống để xem thêm</button>');
-        //     }
-        //     else {
-
-        //         $(".titlelast").remove();
-        //         $("#pagenext").append('<label  id="btnback">End</label>');
-        //         $(window).off("scroll", scrollHandler);
-        //     }
-        // });
-        console.log("Toi roi")
-        $( window ).off( 'scroll', ScrollHandler ).on( 'scroll', ScrollHandler );
-    }
-
-});
-
-
 
 
 })

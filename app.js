@@ -16,6 +16,7 @@ var admin = require('./routes/admin');
 var usersRouter = require('./routes/users');
 var movie=require('./routes/movie');
 var account=require('./routes/account');
+var notification=require('./routes/notification');
 
 
 
@@ -79,6 +80,7 @@ app.use('/movie',movie);
 app.use('/account',account);
 app.use('/users', usersRouter);
 app.use('/admin', admin);
+app.use('/notification', notification);
 
 
 

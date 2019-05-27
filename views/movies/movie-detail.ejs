@@ -97,17 +97,17 @@
                                     class="fa fa-thumbs-up"></i>Bỏ thích</span></a>
                            <%}else{%>
                            <a href="#" class="like" id="<%=i.id%>"><span class="rating-total"><i
-                                    class="fa fa-thumbs-up"></i>Thích</span></a>
+                                    class="fa fa-thumbs-up checkislogin" id="<%=id_owner%>"></i>Thích</span></a>
                            <%}%>
                            <%dis++;%>
                            <%})%>
                      <%}else{%>
                         <a href="#" class="like" id="<%=i.id%>"><span class="rating-total"><i
-                           class="fa fa-thumbs-up"></i>Thích</span></a>
+                           class="fa fa-thumbs-up checkislogin" id="<%=id_owner%>"></i>Thích</span></a>
                      <%}%>
                      <%}else{%>
                      <a href="#" class="like" id="<%=i.id%>"><span class="rating-total"><i
-                              class="fa fa-thumbs-up"></i>Thích</span></a>
+                              class="fa fa-thumbs-up checkislogin" id="<%=id_owner%>"></i>Thích</span></a>
                      <%}%>
                      
                   </li>
@@ -231,12 +231,12 @@
                         <p class="reviews-text edit-cmt<%=dem%>" id="<%=index%>"><%=j.contentcmt%></p>
                         <%if(id_owner){%>
                         <%if(id_owner==j.commenter[2]){%>
-                        <p class="reviews-text"><a href="" class="delete-comment" id="cmt<%=dem%>">Xóa</a><span> ||
+                        <p class="reviews-text"><a href="" class="delete-comment" data-toggle="modal" data-target="#dailog-delete-cmt" id="cmt<%=dem%>">Xóa</a><span> ||
                            </span><a href="" data-toggle="modal" data-target="#dailog-edit-cmt" class="edit-cmt"
                               id="edit-cmt<%=dem%>">Sửa</a></p>
                         <%}else{%>
                         <%if(role_owner>2){%>
-                        <p class="reviews-text"><a href="" class="delete-comment" id="cmt<%=dem%>">Xóa</a></p>
+                        <p class="reviews-text"><a href="" class="delete-comment" data-toggle="modal" data-target="#dailog-delete-cmt" id="cmt<%=dem%>">Xóa</a></p>
                         <%}%>
                            <%}%>
                         <%}%>
@@ -311,6 +311,37 @@
    </div>
 </div>
 <!-- ---------- -->
+
+<!-- Dialog delete cmt -->
+<!-- The Modal -->
+<div class="container">
+   <!-- The Modal -->
+   <div class="modal fade" id="dailog-delete-cmt">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Xác nhận</h4>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal Header -->
+            <div class="modal-body">
+               <h5>Bạn thật sự muốn xóa đánh giá này chứ??</h5>
+            </div>
+            <!-- Modal body -->
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-success btn-delete-cmt-user">Xong</button>
+               <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
+<!-- ---------- -->
+
 
 <%})%>
 <!-- Movie Details Page End -->

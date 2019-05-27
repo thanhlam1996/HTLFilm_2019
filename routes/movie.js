@@ -6,9 +6,12 @@ var dateFormat = require("dateformat");
 var multer = require("multer");
 var multerS3 = require("multer-s3");
 var upload = multer({ dest: "uploads/" });
-var dynamoDbConfig = require("../config/dynamodb-config");
+
 var deleteS3 = require('s3fs');
 var moment = require('moment');
+
+var fs = require("fs")
+var nodemailer = require('nodemailer');
 
 // =========================Role===========================
 // Movie
@@ -50,6 +53,14 @@ function CheckLogin(role, res, req) {
   }
 }
 // ======================================================================================
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'lozodo831@gmail.com',//youremail@gmail.com
+    pass: '717411love'
+  }
+});//https://myaccount.google.com/lesssecureapps
+
 
 // =====function create and check uuid4===========
 //Khi mot uuid dc tao ra no se kiem tra xem tai csdl co ton tai cai id nay chua neu co thi lay cai khac va tiep tuc check
@@ -87,9 +98,9 @@ function checkidmovie(id) {
 }
 // ========Create============= role=3
 router.get("/create-movie", function (req, res, next) {
-  var titletab="Create Movie";
+  var titletab = "Create Movie";
   if (CheckLogin(3, res, req)) {
-    return res.render("movies/createMovie-admin.ejs", { moment: moment,titletab });
+    return res.render("movies/createMovie-admin.ejs", { moment: moment, titletab });
   } else {
     return res.redirect('/error-not-login'); //ERR 500;
   };
@@ -106,17 +117,16 @@ var s3Options = {
   accessKeyId: "AKIA6MYIYF6FXYX64G7Y",
   secretAccessKey: "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"
 };
- s3.config.endpoint = "s3.us-east-1.amazonaws.com";
+s3.config.endpoint = "s3.us-east-1.amazonaws.com";
 
 var s3upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: "movies-bucket-admin",
     key: function (req, file, cb) {
-      var fileName = file.fieldname+ "-" + Date.now() + file.originalname;
-      imgname = "https://s3.amazonaws.com/movies-bucket-admin/"+fileName;
-      // imgname = "https://s3-us-west-2.amazonaws.com/movies-images/" + fileName;
-      cb(null, fileName); //use Date.now() for unique file keys
+      var fileName = file.fieldname + "-" + Date.now() + file.originalname;
+      imgname = "https://s3.amazonaws.com/movies-bucket-admin/" + fileName;
+      cb(null, fileName);
     }
   })
 });
@@ -155,8 +165,12 @@ var s3Fs = new deleteS3('movies-bucket-admin', s3Options);
 
 
 
+router.get('/in', function (req, res, next) {
+  var s = ""
+  s += fs.readFileSync('./emails/headermail.html');
+  console.log(s);
 
-
+})
 
 // ====================================role=3
 router.post("/create-movie-admin", function (req, res, next) {
@@ -263,8 +277,8 @@ router.get("/update-movie-admin", function (req, res, next) {
         );
       } else {
         if (data.Count > 0) {
-          var titletab="Update Movie";
-          return res.render("../views/movies/admin-update-movie.ejs", { data, moment: moment ,titletab});
+          var titletab = "Update Movie";
+          return res.render("../views/movies/admin-update-movie.ejs", { data, moment: moment, titletab });
         }
       }
     });
@@ -280,7 +294,6 @@ router.post("/update-movie-admin", function (req, res, next) {
     var _producer = req.body.producer;
     var _deadline = req.body.deadline;
     var _createnote = req.body.note;
-    var _oldtitle = req.body.oldtitle;
     var params = {
       TableName: "Movies",
       Key: {
@@ -341,8 +354,8 @@ router.get("/list-movie-registed", function (req, res, next) {
         );
       } else {
         // console.log(JSON.stringify(result))
-        var titletab="List Movies Registed";
-        res.render("../views/movies/list-movie-registed.ejs", { result, moment: moment,titletab });
+        var titletab = "List Movies Registed";
+        res.render("../views/movies/list-movie-registed.ejs", { result, moment: moment, titletab });
       }
     });
   } else {
@@ -373,7 +386,7 @@ router.get("/list-movie-waiting-register-write", function (req, res, next) {
           JSON.stringify(error, null, 2)
         );
       } else {
-        var titletab="List Movies Waiting Register";
+        var titletab = "List Movies Waiting Register";
         res.render("../views/movies/list-movie-waiting-register-write.ejs", {
           result, role: req.session.passport.user.role, moment: moment, titletab
         });
@@ -442,9 +455,9 @@ router.get("/member-writing-movie", function (req, res, next) {
           JSON.stringify(err, null, 2)
         );
       } else {
-        var titletab="Movie Writing";
+        var titletab = "Movie Writing";
         if (data.Count > 0) {
-          return res.render("../views/movies/member-writing-movie.ejs", { data, moment: moment ,titletab});
+          return res.render("../views/movies/member-writing-movie.ejs", { data, moment: moment, titletab });
         }
       }
     });
@@ -457,8 +470,6 @@ router.get("/member-writing-movie", function (req, res, next) {
 // =========Writing Movie of writer=============== role=2
 router.post("/member-submit-movie", s3upload.single("posterimage"), function (req, res, next) {
   if (CheckLogin(2, res, req)) {
-
-    var title = req.body.title;
     var id = req.body.id;
     var director = req.body.director;
     var distance = req.body.distance;
@@ -533,7 +544,7 @@ router.get("/get-admin-approve-movie", function (req, res, next) {
       if (error) {
         console.error("Unable to query. Error:", JSON.stringify(error, null, 2));
       } else {
-        var titletab="List Movies Approve";
+        var titletab = "List Movies Approve";
         res.render("../views/movies/admin-approve-movie.ejs", { result, moment: moment, titletab });
       }
     });
@@ -571,6 +582,8 @@ router.post("/admin-approve-movie", function (req, res, next) {
           JSON.stringify(err, null, 2)
         );
       } else {
+        UpdateNotify(id);
+        UpdateCloudSearch(id);
         return res.send(true);
       }
     });
@@ -606,7 +619,7 @@ router.get("/list-approving-member", function (req, res, next) {
           JSON.stringify(error, null, 2)
         );
       } else {
-        var titletab="List Movies Waiting Approve";
+        var titletab = "List Movies Waiting Approve";
         res.render("../views/movies/list-approving-member.ejs", { data, moment: moment, titletab });
       }
     });
@@ -649,12 +662,20 @@ router.post("/unapprove-movie-admin", function (req, res, next) {
   }
 });
 // =============end Unapprove======================
+
+
+
+
 // ================Delete Movie======================= role 3
 router.post("/delete-movie-admin", function (req, res, next) {
   if (CheckLogin(3, res, req)) {
+    //====
     var id = req.body.id;
     var role = req.session.passport.user.role;
     if (role > 2) {
+
+
+      //
       var params = {
         TableName: "Movies",
         Key: {
@@ -678,11 +699,11 @@ router.post("/delete-movie-admin", function (req, res, next) {
           var img = "";
           var stt = "";
           result.Items.forEach(function (i) {
-            img = i.info.posterimage.slice(-45);
+            img = i.info.posterimage;//.slice(-45);
             stt = i.stt;
           })
           if (stt == 4 || stt == 3) {
-
+            //Xoa item
             docClient.delete(params, function (err, data) {
               if (err) {
                 console.error(
@@ -690,18 +711,26 @@ router.post("/delete-movie-admin", function (req, res, next) {
                   JSON.stringify(err, null, 2)
                 );
               } else {
-                return res.send(true);
+                if (data) {                 
+                  return res.send(true);
+                }
+                else {
+                  return res.send(false);
+                }
               }
             });
 
-
           }
           else {
+            if(stt==1)
+            {
+              DeleteCloudSearch(id);
+            }
             s3Fs.unlink(img, function (err, data) {//Xoa img s3
               if (err) {
                 throw err;
               }
-              else { //Xoa dynamodb
+              else { //Xoa xoa item
                 docClient.delete(params, function (err, data) {
                   if (err) {
                     console.error(
@@ -709,6 +738,7 @@ router.post("/delete-movie-admin", function (req, res, next) {
                       JSON.stringify(err, null, 2)
                     );
                   } else {
+                   
                     return res.send(true);
                   }
                 });
@@ -726,6 +756,10 @@ router.post("/delete-movie-admin", function (req, res, next) {
 
 });
 // =============End delete movie======================
+
+
+
+
 // =============Unregister============================role=2
 router.post("/unregister-movie-member", function (req, res, next) {
   if (CheckLogin(2, res, req)) {
@@ -797,8 +831,8 @@ router.get("/get-update-movie-member", function (req, res, next) {
           JSON.stringify(err, null, 2)
         );
       } else {
-        var titletab="Movie Update";
-        return res.render("../views/movies/update-movie-member.ejs", { data, moment: moment,titletab });
+        var titletab = "Movie Update";
+        return res.render("../views/movies/update-movie-member.ejs", { data, moment: moment, titletab });
       }
     });
   } else {
@@ -823,8 +857,8 @@ router.get("/get-update-movie-admin", function (req, res, next) {
           JSON.stringify(err, null, 2)
         );
       } else {
-        var titletab="Movie Update";
-        return res.render("../views/movies/admin-update-content-movie.ejs", { data, moment: moment,titletab });
+        var titletab = "Movie Update";
+        return res.render("../views/movies/admin-update-content-movie.ejs", { data, moment: moment, titletab });
       }
     });
   } else {
@@ -844,7 +878,7 @@ router.post("/update-movie-member", s3upload.single("posterimage"), function (re
     var posterimage = imgname;
     var trailer = req.body.trailer;
     var content = req.body.content;
-    var imgold = req.body.imgold.slice(-45); //bien nay luu ten cua img cu khi co su thay doi ve hinh anh.. de xoa trong s3
+    var imgold = req.body.imgold; //bien nay luu ten cua img cu khi co su thay doi ve hinh anh.. de xoa trong s3
 
     if (imgname == "") {
       var params = {
@@ -924,9 +958,9 @@ router.post("/update-movie-member", s3upload.single("posterimage"), function (re
   //Hướng phát triển: Sau này nếu member update trong trường hợp bài viết đã được approve .Khi update lại sẽ tạo ra 1 bản mới và 1 bản củ để admin lựa chọn dữ lại bản củ hay lấy bản mới.
 })
 // ========role=3
-router.post("/update-content-movie-admin", upload.single("posterimage"), function (req, res, next) {
-  if (CheckLogin(3)) {
-    var title = req.body.title;
+router.post("/update-content-movie-admin", s3upload.single("posterimage"), function (req, res, next) {
+  if (CheckLogin(3,res, req)) {
+    var _title = req.body.title;
     var producer = req.body.producer;
     var id = req.body.id;
     var director = req.body.director;
@@ -938,7 +972,7 @@ router.post("/update-content-movie-admin", upload.single("posterimage"), functio
     var posterimage = imgname;
     var trailer = req.body.trailer;
     var content = req.body.content;
-    var imgold = req.body.imgold.slice(-45); //bien nay luu ten cua img cu khi co su thay doi ve hinh anh.. de xoa trong s3
+    var imgold = req.body.imgold; //bien nay luu ten cua img cu khi co su thay doi ve hinh anh.. de xoa trong s3
 
     if (imgname == "") {
       var params = {
@@ -957,7 +991,7 @@ router.post("/update-content-movie-admin", upload.single("posterimage"), functio
           ":l": country,
           ":h": trailer,
           ":i": content,
-          ":g": title,
+          ":g": _title,
           ":f": producer
         },
         ReturnValues: "UPDATED_NEW"
@@ -977,11 +1011,23 @@ router.post("/update-content-movie-admin", upload.single("posterimage"), functio
         Key: {
           id: id
         },
-        UpdateExpression: "remove title, info.producer, info.directo, info.distance, info.publicationdate, info.actor, info.movietype, info.posterimage, info.trailer, info.content,  info.country",
+        UpdateExpression:
+          "set stt=:st, info.director=:a, info.distance=:b, info.publicationdate=:c, info.actor=:d, info.movietype=:e, info.posterimage=:g, info.trailer=:h, info.content=:i, title=:t, info.country=:l",
+        ExpressionAttributeValues: {
+          ":st": 1,
+          ":a": director,
+          ":b": distance,
+          ":c": publicationdate,
+          ":d": [actor],
+          ":e": [typemovie],
+          ":l": country,
+          ":g": posterimage,
+          ":h": trailer,
+          ":i": content,
+          ":t":_title
+        },
         ReturnValues: "UPDATED_NEW"
       };
-    }
-
     s3Fs.unlink(imgold, function (err, data) {//Xoa img s3
       if (err) {
         throw err;
@@ -994,43 +1040,13 @@ router.post("/update-content-movie-admin", upload.single("posterimage"), functio
               JSON.stringify(err, null, 2)
             );
           } else {
-            var params = {
-              TableName: "Movies",
-              Key: {
-                id: id
-              },
-              UpdateExpression: "set title=:k, info.producer=:f, info.director=:a, info.distance=:b, info.publicationdate=:c, info.actor=:d, info.movietype=:e, info.posterimage=:g, info.trailer=:h, info.content=:i,  info.country=:l",
-              ExpressionAttributeValues: {
-
-                ":a": director,
-                ":b": distance,
-                ":c": publicationdate,
-                ":d": actor,
-                ":e": typemovie,
-                ":l": country,
-                ":g": posterimage,
-                ":h": trailer,
-                ":i": content,
-                ":k": title,
-                ":f": producer
-              },
-              ReturnValues: "UPDATED_NEW"
-            };
-            docClient.update(params, function (err, data) {
-              if (err) {
-                console.error(
-                  "Unable to update item. Error JSON:",
-                  JSON.stringify(err, null, 2)
-                );
-              } else {
-                imgname = "";
-                return res.redirect("/pageadmin");
-              }
-            });
+            return res.redirect("/movie/list-approving-member");
+            imgname = "";
           }
         });
       }
     })
+  }
   } else {
     return res.redirect('/error-not-login'); //ERR 500
   }
@@ -1095,8 +1111,8 @@ router.get("/get-list-writed-member", function (req, res, next) {
           JSON.stringify(error, null, 2)
         );
       } else {
-        var titletab="List Movies Writed";
-        res.render("../views/movies/list-movie-member-writed.ejs", { data, moment: moment,titletab });
+        var titletab = "List Movies Writed";
+        res.render("../views/movies/list-movie-member-writed.ejs", { data, moment: moment, titletab });
       }
     });
   } else {
@@ -1117,7 +1133,7 @@ router.get("/get-list-movie-admin", function (req, res, next) {
           JSON.stringify(error, null, 2)
         );
       } else {
-        var titletab="List Movies";
+        var titletab = "List Movies";
         res.render("../views/movies/manager-movie-admin.ejs", { data, moment: moment, titletab });
       }
     });
@@ -1145,9 +1161,8 @@ router.post("/comment-movie", function (req, res, next) {
       start = 0;
     }
     var content_cmt = req.body.content_cmt;
-    if(!content_cmt)
-    {
-      content_cmt="----no comment----"
+    if (!content_cmt) {
+      content_cmt = "----no comment----"
     }
     // =================================
     var params = {
@@ -1260,8 +1275,8 @@ router.post("/dislike-movie", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
     var id_liker = req.session.passport.user.id;
     var movie_id = req.body.id;
-    var index=req.body.index;
-    var str="remove #like["+index+"]";
+    var index = req.body.index;
+    var str = "remove #like[" + index + "]";
     var params = {
       TableName: "Movies",
       Key: {
@@ -1273,7 +1288,7 @@ router.post("/dislike-movie", function (req, res, next) {
         "#like": "liker"
       },
       // ExpressionAttributeValues: {
-       
+
       //   ":cnt": 1
       // },
       ReturnValues: "ALL_NEW"
@@ -1454,53 +1469,40 @@ router.get("/detail-cmt-movie", function (req, res, next) {
 //     return y;
 //   }); 
 // }
-function deletecmt(movie_id, index) {
-  var str = "remove #cmt[" + index + "]"
-  var param = {
-    TableName: "Movies",
-    Key: {
-      id: movie_id
-    },
-    UpdateExpression:
-      str,
-    ExpressionAttributeNames: {
-      "#cmt": "comment"
-    },
-    ReturnValues: "ALL_NEW"
-  };
-  docClient.update(param, function (err, data) {
-    if (err) {
-      console.error(
-        "Unable to update item. Error JSON:",
-        JSON.stringify(err, null, 2)
-      );
-    } else {
-      if (data) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
-  });
-}
+// function deletecmt(movie_id, index) {
+//   var str = "remove #cmt[" + index + "]"
+//   var param = {
+//     TableName: "Movies",
+//     Key: {
+//       id: movie_id
+//     },
+//     UpdateExpression:
+//       str,
+//     ExpressionAttributeNames: {
+//       "#cmt": "comment"
+//     },
+//     ReturnValues: "ALL_NEW"
+//   };
+//   docClient.update(param, function (err, data) {
+//     if (err) {
+//       console.error(
+//         "Unable to update item. Error JSON:",
+//         JSON.stringify(err, null, 2)
+//       );
+//     } else {
+//       if (data) {
+//         return true;
+//       }
+//       else {
+//         return false;
+//       }
+//     }
+//   });
+// }
 router.post("/delete-cmt-movie", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
     var movie_id = req.body.id;
     var index = req.body.index;
-    // try {
-    //   var result = await deletecmt(movie_id, index)
-    //   if (result == undefined) {
-    //     console.log("================= " + result)
-    //     return res.send(true);
-    //   }
-    //   else {
-    //     console.log("=================a " + result)
-    //   }
-
-    // } catch (e) {
-    //   console.log("Lại lỗi nửa r huhu: " + e)
-    // }
     var str = "remove #cmt[" + index + "]"
     var param = {
       TableName: "Movies",
@@ -1562,7 +1564,6 @@ router.post("/edit-comment-movie", function (req, res, next) {
           JSON.stringify(err, null, 2)
         );
       } else {
-        console.log(JSON.stringify(data));
         return res.send(true);
       }
     });
@@ -1575,33 +1576,420 @@ router.post("/edit-comment-movie", function (req, res, next) {
 // =========================================
 // ========= Live Search====================
 
-router.get("/get-key-search", function(req,res,next){
-  var title=req.query.title;
-  if(title=="")
-  {
-     return res.send(false)
-  }else
-  {
-    
+
+//title
+router.get("/get-key-search", function (req, res, next) {
+  var title = req.query.title;
+  if (title == "") {
+    return res.send(false)
+  } else {
+
     var params = {
       TableName: "Movies",
       ProjectionExpression: "#name,id",
       FilterExpression: "begins_with(#name, :name) or contains(#name,:name) ",
       ExpressionAttributeNames: {
-          "#name": "title"
+        "#name": "title"
       },
       ExpressionAttributeValues: {
-          ":name": title
+        ":name": title
       }
-  };
-  docClient.scan(params, function (err, data) {
+    };
+    docClient.scan(params, function (err, data) {
       if (err) {
-          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
       } else {
-          return res.send(data);
+        return res.send(data);
       }
-  });
+    });
   }
-  
 })
+
+//type
+// router.get("/get-key-typemovie", function (req, res, next) {
+//   var title = req.query.title;
+//   if (title == "") {
+//     return res.send(false)
+//   } else {
+
+//     var params = {
+//       TableName: "Movies",
+//       ProjectionExpression: "#name,id",
+//       FilterExpression: "begins_with(#name, :name) or contains(#name,:name) ",
+//       ExpressionAttributeNames: {
+//         "#name": "title"
+//       },
+//       ExpressionAttributeValues: {
+//         ":name": title
+//       }
+//     };
+//     docClient.scan(params, function (err, data) {
+//       if (err) {
+//         console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+//       } else {
+//         return res.send(data);
+//       }
+//     });
+//   }
+// })
+
+//producer
+// router.get("/get-key-producer", function (req, res, next) {
+//   var title = req.query.title;
+//   if (title == "") {
+//     return res.send(false)
+//   } else {
+//     var params = {
+//       TableName: "Movies",
+//       ProjectionExpression: "#name,id",
+//       FilterExpression: "begins_with(#name, :name) or contains(#name,:name) ",
+//       ExpressionAttributeNames: {
+//         "#name": "title"
+//       },
+//       ExpressionAttributeValues: {
+//         ":name": title
+//       }
+//     };
+//     docClient.scan(params, function (err, data) {
+//       if (err) {
+//         console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+//       } else {
+//         return res.send(data);
+//       }
+//     });
+//   }
+// })
+
+//country
+router.get("/get-key-search", function (req, res, next) {
+  var title = req.query.title;
+  if (title == "") {
+    return res.send(false)
+  } else {
+
+    var params = {
+      TableName: "Movies",
+      ProjectionExpression: "#name,id",
+      FilterExpression: "begins_with(#name, :name) or contains(#name,:name) ",
+      ExpressionAttributeNames: {
+        "#name": "title"
+      },
+      ExpressionAttributeValues: {
+        ":name": title
+      }
+    };
+    docClient.scan(params, function (err, data) {
+      if (err) {
+        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+      } else {
+        return res.send(data);
+      }
+    });
+  }
+})
+
+//director
+router.get("/get-key-search", function (req, res, next) {
+  var title = req.query.title;
+  if (title == "") {
+    return res.send(false)
+  } else {
+
+    var params = {
+      TableName: "Movies",
+      ProjectionExpression: "#name,id",
+      FilterExpression: "begins_with(#name, :name) or contains(#name,:name) ",
+      ExpressionAttributeNames: {
+        "#name": "title"
+      },
+      ExpressionAttributeValues: {
+        ":name": title
+      }
+    };
+    docClient.scan(params, function (err, data) {
+      if (err) {
+        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+      } else {
+        return res.send(data);
+      }
+    });
+  }
+})
+//================================================FUNCTION=================================================
+
+//Update count film for notify
+function UpdateNotify(idmovie) {
+
+  var param = {
+    TableName: "Movies",
+    KeyConditionExpression: "id = :id",
+    ExpressionAttributeValues: {
+      ":id": idmovie
+    }
+  };
+
+  docClient.query(param, function (err, data) {
+    if (err) {
+      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+    } else {
+      data.Items.forEach(function (item) {
+        var title = item.title;
+        var imageurl = item.info.posterimage;
+        var content = item.info.content.slice(3, 53) + "...";
+        var params = {
+          TableName: "Notification",
+          Key: {
+            id: 'notification'
+          },
+          UpdateExpression:
+            "set #a=list_append(#a,:a), #b=list_append(#b,:b), #c=list_append(#c,:c), #d=list_append(#d,:d), #count=#count+:val",
+          ExpressionAttributeNames: {
+            "#a": "idmovies",
+            "#b": "titles",
+            "#c": "urlimages",
+            "#d": "contents",
+            "#count": "count"
+          },
+          ExpressionAttributeValues: {
+            ":a": [idmovie],
+            ":b": [title],
+            ":c": [imageurl],
+            ":d": [content],
+            ":val": 1
+          },
+          ReturnValues: "UPDATED_NEW"
+        };
+        docClient.update(params, function (err, data1) {
+          if (err) {
+            console.error(
+              "Unable to update item. Error JSON:",
+              JSON.stringify(err, null, 2)
+            );
+          } else {
+            if (data1.Attributes.count == 6) {
+              SendMailing();
+            }
+            return true;
+          }
+        });
+      });
+    }
+  })
+}
+//Send mail notify for member subcribe page when count of notify is 6
+function SendMailing() {
+  var params = {
+    TableName: "Notification",
+    KeyConditionExpression: "id = :id",
+    ExpressionAttributeValues: {
+      ":id": 'notification'
+    }
+  };
+
+  docClient.query(params, function (err, data) {
+    if (err) {
+      console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+      data.Items.forEach((i) => {
+        // MOVIE 1-2===============
+        var moiveitem_1_2 = '<div style="background-color:#f8f8f8;"><div class="block-grid two-up" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;"><div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;"><!-- Movie-1 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[0] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[0] + '" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;">'
+        moiveitem_1_2 += '<strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[0] + '">' + i.titles[0] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[0] + '</p></div></div></div></div></div><!--End Movie-1 --><!-- Movie-2 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[1] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[1] + '" tstyle="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;"><strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[1] + '">' + i.titles[1] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[1] + '</p></div></div></div></div></div></div></div></div>'
+        // END MOVIE 1-2==============
+        // MOVIE 3-4===============
+        var moiveitem_3_4 = '<div style="background-color:#f8f8f8;"><div class="block-grid two-up" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;"><div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;"><!-- Movie-1 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[2] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[2] + '" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;">'
+        moiveitem_3_4 += '<strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[2] + '">' + i.titles[2] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[2] + '</p></div></div></div></div></div><!--End Movie-1 --><!-- Movie-2 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[3] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[3] + '" tstyle="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;"><strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[3] + '">' + i.titles[3] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[3] + '</p></div></div></div></div></div></div></div></div>'
+        // END MOVIE 3-4==============
+
+        // MOVIE 5-6===============
+        var moiveitem_5_6 = '<div style="background-color:#f8f8f8;"><div class="block-grid two-up" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;"><div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;"><!-- Movie-1 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[4] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[4] + '" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;">'
+        moiveitem_5_6 += '<strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[4] + '">' + i.titles[4] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[4] + '</p></div></div></div></div></div><!--End Movie-1 --><!-- Movie-2 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[5] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[5] + '" tstyle="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;"><strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[5] + '">' + i.titles[5] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[5] + '</p></div></div></div></div></div></div></div></div>'
+        // END MOVIE 5-6==============
+        var now = new Date();
+        var thistime = now.getDate() + "-" + (parseInt(now.getMonth()) + 1) + "-" + now.getFullYear();
+        // FOOTER
+        var endfooter = '<div style="background-color:#555555;"><div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;"><div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;"><div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:30px; padding-bottom:20px; padding-right: 0px; padding-left: 0px;"><div style="color:#ffffff;font-family: droid serif , georgia, times,  times new roman , serif;line-height:150%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family:  droid serif , georgia, times,  times new roman , serif; color: #ffffff;"><p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;"><strong>HTLFilm || ' + thistime + '</strong></p></div></div></div></div></div></div></div></td></tr></tbody></table></body></html>'
+        // END FOOTER
+        //Call function Sendmail from route notification     
+        sendMail(fs.readFileSync('./emails/headermail.html') + moiveitem_1_2 + moiveitem_3_4 + moiveitem_5_6 + fs.readFileSync('./emails/headerfotermail.html') + endfooter)
+
+      })
+    }
+  });
+}
+
+//Update cout is 0 for notification
+function UpdateEmty() {
+  var params = {
+    TableName: "Notification",
+    Key: {
+      id: 'notification'
+    },
+    UpdateExpression:
+      "set #a=:a, #b=:b, #c=:c, #d=:d, #count=:val",
+    ExpressionAttributeNames: {
+      "#a": "idmovies",
+      "#b": "titles",
+      "#c": "urlimages",
+      "#d": "contents",
+      "#count": "count"
+    },
+    ExpressionAttributeValues: {
+      ":a": [],
+      ":b": [],
+      ":c": [],
+      ":d": [],
+      ":val": 0
+    },
+    ReturnValues: "UPDATED_NEW"
+  };
+  docClient.update(params, function (err, data1) {
+    if (err) {
+      console.error(
+        "Unable to update item. Error JSON:",
+        JSON.stringify(err, null, 2)
+      );
+    } else {
+      return true;
+    }
+  })
+
+}
+function sendMail(contentmail) {
+  var params = {
+    TableName: "Notification",
+    KeyConditionExpression: "id = :id",
+    ExpressionAttributeValues: {
+      ":id": 'subscribe'
+    }
+  };
+
+  docClient.query(params, function (err, data) {
+    if (err) {
+      console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+      var isEmail = "";
+      var tomail = "";
+      data.Items[0].emails.forEach((i, index) => {
+        if (index == 0) {
+          tomail += i;
+        }
+        else if (index == data.Items[0].emails.length) {
+          isEmail += i;
+        }
+        else {
+          isEmail += i + ",";
+        }
+      });
+      var mailOptions = {
+        from: 'lozodo831@gmail.com',
+        to: tomail,
+        bcc: isEmail,
+        subject: 'HTLFilm Xin Chào',
+        html: contentmail
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          UpdateEmty();
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+  })
+}
+
+//Update CloudSearch
+function UpdateCloudSearch(idmovie) {
+  var csDomain = 'search-searchdata-rithptdvuzk5yuqltjkrbr4lje.us-east-1.cloudsearch.amazonaws.com';
+  var cloudsearch = new AWS.CloudSearchDomain({ endpoint: csDomain, apiVersion: '2013-01-01' });
+  var param = {
+    TableName: "Movies",
+    KeyConditionExpression: "id = :id",
+    ExpressionAttributeValues: {
+      ":id": idmovie
+    }
+  };
+
+  docClient.query(param, function (err, data) {
+    if (err) {
+      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+    } else {
+      data.Items.forEach((i)=>{
+      var documentsBatch = []
+      var document = {}
+      document.id = i.id;
+      document.type = 'add';
+      document.fields = { 
+        title: i.title,
+            actor: i.info.actor,
+            country: i.info.country,
+            producer:i.info.producer,
+            posterimage: i.info.posterimage,
+            content:i.info.content,
+            movietype:i.info.movietype,
+            publicationdate:i.info.publicationdate,
+            director:i.info.director
+        };
+      documentsBatch.push(document);
+      var params = { contentType: 'application/json', documents: JSON.stringify(documentsBatch) };
+      cloudsearch.uploadDocuments(params, function (err, data) {
+        if (err) {
+          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        } else {
+          //context.success('document uploaded successfully');
+          console.log("success cloudsearch");
+        }
+      });
+      })
+    }
+  });
+}
+//Delete CloudSearch
+function DeleteCloudSearch(idmovie) {
+  var csDomain = 'search-searchdata-rithptdvuzk5yuqltjkrbr4lje.us-east-1.cloudsearch.amazonaws.com';
+  var cloudsearch = new AWS.CloudSearchDomain({ endpoint: csDomain, apiVersion: '2013-01-01' });
+  var param = {
+    TableName: "Movies",
+    KeyConditionExpression: "id = :id",
+    ExpressionAttributeValues: {
+      ":id": idmovie
+    }
+  };
+
+  docClient.query(param, function (err, data) {
+    if (err) {
+      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+    } else {
+      data.Items.forEach((i)=>{
+      var documentsBatch = []
+      var document = {}
+      document.id = i.id;
+      document.type = 'delete';
+      document.fields = { 
+        title: i.title,
+            actor: i.info.actor,
+            country: i.info.country,
+            producer:i.info.producer,
+            posterimage: i.info.posterimage,
+            content:i.info.content,
+            movietype:i.info.movietype,
+            publicationdate:i.info.publicationdate,
+            director:i.info.director
+        };
+      documentsBatch.push(document);
+      var params = { contentType: 'application/json', documents: JSON.stringify(documentsBatch) };
+      cloudsearch.uploadDocuments(params, function (err, data) {
+        if (err) {
+          console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        } else {
+          //context.success('document uploaded successfully');
+          console.log("success cloudsearch");
+        }
+      });
+      })
+    }
+  });
+}
 module.exports = router;

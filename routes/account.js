@@ -7,11 +7,8 @@ var ggstrategy = require("passport-google-oauth").OAuth2Strategy;
 var localStratery = require("passport-local").Strategy;
 var dynamoDbConfig = require("../config/dynamodb-config");
 var uuid4 = require("uuid4");
-var moment = require('moment');
 var nodemailer = require('nodemailer');
-var Email = require('email-templates');
 var fs = require("fs")
-var emails	= require("../node_modules/emailjs/email");
 
 // =========================Role===========================
 
@@ -34,34 +31,13 @@ AWS.config.secretAccessKey = "4uWFEqgLLYRz2flY2bgsWHcp8UMkEIU22F7S2OG2";
 var docClient = new AWS.DynamoDB.DocumentClient();
 // =======================================================================================================
 //Mail templates
-var str='<h3>HTLFilm Xin Chào</h3>'
-str+='<img alt="Logo" title="Logo" style="display:block" width="200" height="87" src="https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing">'
-str+='<p style="font-size: 14px;"><b>HTLFilm</b> Cảm ơn bạn đã đăng ký nhận thông báo củng như theo dõi <b>HTLFilm</b>.</p>'
-str+='<p style="font-size: 12px;">Nhằm phục vụ tốt nhất có thể cho cộng động, chúng tôi luôn luôn theo dõi và cập nhật những thông tin, Phim mới hàng ngày một cách nhanh và chính xác nhất nhằm xây dựng trang web <b>HTLFilm</b> thành thế giới phim thu nhỏ mang lại những trải nghiệm tuyệt vời nhất cho người dùng.</p>'
-str+='<p>Một lần nửa <b>HTLFilm</b> xin cảm ơn và chúc bạn có những trải nghiệm và những phúc giây thoải mái, tuyệt vời với chúng tôi.</p>'
-str+='<p><b>Trân trọng</b></p>'
-var email = new Email({
-  message: {
-    from: 'lozodo831@gmail.com',
 
-    // attachments: [
-    //   {
-    //     //filename: 'text1.txt',
-    //     href:'https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing',
-    //     content: str
-    //   }
-    // ]
-    transport: {
-      jsonTransport: false
-    }
-  }
-});
-var server 	= emails.server.connect({
-  user: 'lozodo831@gmail.com',//youremail@gmail.com
-  password: '717411love',
-  host:	"Smtp.gmail.com", 
-  ssl:		true
-});
+// var server 	= emails.server.connect({
+//   user: 'lozodo831@gmail.com',//youremail@gmail.com
+//   password: '717411love',
+//   host:	"Smtp.gmail.com", 
+//   ssl:		true
+// });
 //Mail
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -139,7 +115,7 @@ router.post("/register-account", function (req, res, next) {
         phone: req.body.phone
       },
       password: req.body.password,
-      role: 4
+      role: 1
     }
   };
   docClient.put(params, function (err, data) {
@@ -325,13 +301,17 @@ router.get(
     successRedirect: "/"
   })
 );
-
+// clientID:
+//         "521863593219-huk578luuc200pca4oiv83qh6vkm4gvm.apps.googleusercontent.com",
+//       clientSecret: "PdlgOMiHdkXTy1lZL7DIQkFT",
+//       callbackURL: dynamoDbConfig.address + "/account/logingg/cb",
+//       profileFields: ["email"]
 passport.use(
   new ggstrategy(
     {
       clientID:
-        "521863593219-huk578luuc200pca4oiv83qh6vkm4gvm.apps.googleusercontent.com",
-      clientSecret: "PdlgOMiHdkXTy1lZL7DIQkFT",
+        "863507887797-2sno32f5pgejlpl4duffenag79c0r1q2.apps.googleusercontent.com",
+      clientSecret: "FNpdUg8RLdE1bl0CgeIlJ0b3",
       callbackURL: dynamoDbConfig.address + "/account/logingg/cb",
       profileFields: ["email"]
     },
@@ -710,85 +690,57 @@ router.post("/update-acc", function (req, res, next) {
 });
 // =======End Update ACC=============
 // ===========================================
-router.get('/sendmail',(req,res,next)=>{
-  var s='<h3>HTLFilm Xin Chào</h3>'
-  s+='<p><img alt="Logo"title="Logo"style="display:block"width="200"height="87"src="https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing"></p>'
-	s+='<p style="font-size: 14px;"><b>HTLFilm</b> Cảm ơn bạn đã đăng ký nhận thông báo củng như theo dõi <b>HTLFilm</b>.</p>'
-	s+='<p style="font-size: 12px;">Nhằm phục vụ tốt nhất có thể cho cộng động, chúng tôi luôn luôn theo dõi và cập nhật những thông tin, Phim mới hàng ngày một cách nhanh và chính xác nhất nhằm xây dựng trang web <b>HTLFilm</b> thành thế giới phim thu nhỏ mang lại những trải nghiệm tuyệt vời nhất cho người dùng.</p>'
-	s+='<p>Một lần nửa <b>HTLFilm</b> xin cảm ơn và chúc bạn có những trải nghiệm và những phúc giây thoải mái, tuyệt vời với chúng tôi.</p>'
-  s+='<p><b>Trân trọng</b></p>'
-  
 
-  // var fl = "";
-  // fs.readFileSync('./emails/mail.txt').forEach(function (i) {
-  //   fl += i;
-  // })
 
-  var mailOptions = {
-    from: 'lozodo831@gmail.com',
-    to: 'lam.truong1996@gmail.com',
-    subject: 'HTLFilm Xin Chào',
-    html: fs.readFileSync('./emails/mail.html')
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-})
-
-router.get('/sendmail1',(req,res,next)=>{
+// router.get('/sendmail1',(req,res,next)=>{
  
-  // email
-  // .send({
-  //   template: 'mars',
-  //   message: {
-  //     to: 'lam.truong1996@gmail.com'
-  //   },
-  //   locals: {
-  //     name: 'Lam'
-  //   }
-  // })
-  // .then(console.log)
-  // .catch(console.error);
- // const email1 = new Email();
-//  email
-//  .send({
-//    template: 'mars',
-//    message: {
-//      to: 'lam.truong1996@gmail.com',
-//      attachments: [
-//        {
-//         // filename: 'logo.png',
-//          content: str
-//        }
-//      ]
-//    },
-//    locals: {
-//      name: 'Elon'
-//    }
+//   // email
+//   // .send({
+//   //   template: 'mars',
+//   //   message: {
+//   //     to: 'lam.truong1996@gmail.com'
+//   //   },
+//   //   locals: {
+//   //     name: 'Lam'
+//   //   }
+//   // })
+//   // .then(console.log)
+//   // .catch(console.error);
+//  // const email1 = new Email();
+// //  email
+// //  .send({
+// //    template: 'mars',
+// //    message: {
+// //      to: 'lam.truong1996@gmail.com',
+// //      attachments: [
+// //        {
+// //         // filename: 'logo.png',
+// //          content: str
+// //        }
+// //      ]
+// //    },
+// //    locals: {
+// //      name: 'Elon'
+// //    }
+// //  })
+// //  .then(console.log)
+// //  .catch(console.error);
+// var message	= {
+//   html:'<img src="https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing">',
+//   from:	"lozodo831@gmail.com", 
+//   to:		"lam.truong1996@gmail.com",
+//  // cc:		"else <else@your-email.com>",
+//   subject:	"testing emailjs",
+//   attachment: 
+//   [
+//      {data: "https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing"},
+//     // inline=true
+//     // {path:"path/to/file.zip", type:"application/zip", name:"renamed.zip"},
+//      //{path:"D:/IUH/logo.png", type:"image/png", headers:{"Content-ID":"<my-image>"}}
+//   ], 
+ 
+// };
+// server.send(message, function(err, message) { console.log(err || message); });
 //  })
-//  .then(console.log)
-//  .catch(console.error);
-var message	= {
-  html:'<img src="https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing">',
-  from:	"lozodo831@gmail.com", 
-  to:		"lam.truong1996@gmail.com",
- // cc:		"else <else@your-email.com>",
-  subject:	"testing emailjs",
-  attachment: 
-  [
-     {data: "https://drive.google.com/file/d/1hRDd_ORbV04kwUWht1u9DvWfXoEob21L/view?usp=sharing"},
-    // inline=true
-    // {path:"path/to/file.zip", type:"application/zip", name:"renamed.zip"},
-     //{path:"D:/IUH/logo.png", type:"image/png", headers:{"Content-ID":"<my-image>"}}
-  ], 
- 
-};
-server.send(message, function(err, message) { console.log(err || message); });
- })
 
 module.exports = router;

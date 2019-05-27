@@ -1,0 +1,58 @@
+/* CSS Document */
+
+#paging{
+	padding: 10px;
+	
+}
+
+
+#pages{
+	/* margin: 10px 0px 10px 10px; */
+	margin:-40px 40% 10px 10px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	list-style: inside none;
+	float: right;
+	color: blue;
+}
+
+#pages li{
+	
+	height: 25px;
+	line-height: 25px;
+	text-align: center;	
+	/* border: solid px #ccc; */
+	float: left;
+	margin-left: 5px;
+	
+}
+
+#pages li.goPrevious, li.goNext{
+	color: orangered;
+	padding: 0px 5px;
+	cursor: pointer;
+}
+
+#pages li.goPrevious:hover, li.goNext:hover{
+	background-color: lightskyblue;
+}
+
+#pages .currentPage{
+	width: 40px;
+	height: 25px;
+	text-align: center;
+}
+
+#pages .pageInfo{
+	padding: 0px 5px;
+	border: 0px;	
+}
+
+.bg01{
+	background-color: #FFC;
+}
+
+.bg02{
+	background-color: #CFC;
+}

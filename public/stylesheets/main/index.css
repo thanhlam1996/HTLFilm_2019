@@ -69,3 +69,10 @@
 #line-result-search{
     margin-bottom: 40px;
 }
+
+#country-list-menu{
+    height: auto;
+}
+#countrylistcbb{
+    width: 40px;
+}

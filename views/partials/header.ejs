@@ -42,7 +42,16 @@
   <link href="main/index.css" rel="stylesheet" />
   <!-- DETAIL MOVIE -->
   <link href="movie-admin/movie-detail.css" rel="stylesheet" />
-  
+  <!-- Search-Advance -->
+  <link href="movie-admin/search-advance.css" rel="stylesheet" />
+  <!-- Search-Advance -->
+  <link href="movie-admin/search-result.css" rel="stylesheet" />
+  <!-- Search-Advance -->
+  <link href="movie-admin/list-movie.css" rel="stylesheet" />
+
+
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 </head>
@@ -60,11 +69,11 @@
           <div class="col-lg-6 col-sm-8">
             <div class="header-top-menu">
               <ul class="link-login-register">
-               <!-- Cho nay danh cho   -->
+                <!-- Cho nay danh cho   -->
                 <!-- <li>
                   <a id="acction-login-register" href="/login-register">Đăng nhập/Đăng ký</a>
                 </li> -->
-                
+
               </ul>
             </div>
           </div>
@@ -122,34 +131,44 @@
                   <li><a href="/">Trang chủ</a></li>
                   <li><a href="#">tìm kiếm</a></li>
                   <li>
-                      <a href="#">Phim Mới</a>
-                      <ul>
-                        <li>
-                          <a href="movie-list.html">việt nam</a>
-                        </li>
-                        <li><a href="single-movie.html">trung quốc</a></li>
-                        <li><a href="single-movie.html">mỹ</a></li>
-                        <li><a href="single-movie.html">hàn quốc</a></li>
-                      </ul>
-                    </li> 
+                    <a href="#">Phim</a>
+                    <ul>
+                      <li><a href="/movie-new">Phim mới</a></li>
+                      <li><a href="/movie-moviecoming">Phim sắp chiếu</a></li>
+                      <li><a href="/movie-playing">Phim đang chiếu</a></li>
+                      <li><a href="/movie-top">Top phim</a></li>
+                    </ul>
+                  </li>
                   <li>
                     <a href="#">thể loại</a>
                     <ul>
-                      <li><a href="about.html">hành động</a></li>
-                      <li><a href="pricing.html">hài hước</a></li>
-                      <li><a href="">gia đình</a></li>
-                      <li><a href="404.html">võ thuật</a></li>
+                      <li><a href="/movie-type?type=Hành Động">Hành Động</a></li>
+                      <li><a href="/movie-type?type=Hài">Hài Hước</a></li>
+                      <li><a href="/movie-type?type=Hoạt Hình">Hoạt Hình</a></li>
+                      <li><a href="/movie-type?type=Tình Cảm">Tình Cảm</a></li>
+                      <li><a href="/movie-type?type=Võ Thuật">Võ Thuật</a></li>
+                      <li><a href="/movie-type?type=Phiêu Lưu">Phiêu Lưu</a></li>
+                      <li><a href="/movie-type?type=Viễn Tưởng">Viễn Tưởng</a></li>
+                      <li><a href="/movie-type?type=Chiến Tranh">Chiến Tranh</a></li>
+                      <li><a href="/movie-type?type=Tài Liệu">Tài Liệu</a></li>
+                      <li><a href="/movie-type?type=Khoa Học">Khoa Học</a></li>
+                      <li><a href="/movie-type?type=Kinh Dị">Kinh Dị</a></li>
+                      <li><a href="/movie-type?type=Tâm Lý">Tâm Lý</a></li>
                     </ul>
                   </li>
                   <li>
                     <a href="#">quốc gia</a>
                     <ul>
-                      <li>
-                        <a href="movie-list.html">việt nam</a>
-                      </li>
-                      <li><a href="single-movie.html">trung quốc</a></li>
-                      <li><a href="single-movie.html">mỹ</a></li>
-                      <li><a href="single-movie.html">hàn quốc</a></li>
+                      <li><a href="/movie-country?country=Mỹ">Mỹ</a></li>
+                      <li><a href="/movie-country?country=Việt Nam">Việt Nam</a></li>
+                      <li><a href="/movie-country?country=Đài Loan">Đài Loan</a></li>
+                      <li><a href="/movie-country?country=Trung Quốc">Trung Quốc</a></li>
+                      <li><a href="/movie-country?country=Thái Lan">Thái Lan</a></li>
+                      <li><a href="/movie-country?country=Malaysia">Malaysia</a></li>
+                      <li><a href="/movie-country?country=Singapore">Singapore</a></li>
+                      <li><a href="/movie-country?country=Ấn Độ">Ấn Độ</a></li>
+                      <li><a href="/movie-country?country=Pháp">Pháp</a></li>
+                      <li><a href="/movie-country?country=Nhật Bản">Nhật Bản</a></li>
                     </ul>
                   </li>
                   <li><a href="/contact">liên hệ</a></li>

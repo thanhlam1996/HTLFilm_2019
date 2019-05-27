@@ -1,0 +1,114 @@
+<%include ../partials/header%>
+
+<!-----------------------------------------------Container ------------------------------------------------>
+ <!-- Movie List Area Start -->
+  <!-- Movie List Area Start -->
+
+  <!-- Breadcrumb Area Start -->
+  <section class="filmoja-breadcrumb-area section_70">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="breadcrumb-box">
+                    <h2><%=titlepage%></h2>
+                    <ul>
+                       <li><a href="/">Trang chủ</a></li>
+                       <li class="active-breadcromb"><%=size%></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </section>
+     <!-- Breadcrumb Area End -->
+     
+  <section class="filmoja-movie-list-area celebrity-page section_70">
+    <div class="container">
+       <div class="row no-margin-top">
+         <%movie.forEach((i)=>{%>
+            <%var rat=0, rating=0%>
+											<%var countrat=0%>
+											<%if(i.ratings){%>
+												<%i.ratings.forEach((r)=>{%>
+													<%rat+=parseFloat(r);%>
+													<%countrat++%>
+													<%})%>
+													<%if(countrat==0){%>
+													<%countrat=1;%>
+													<%}%>
+													<%var num=(rat/countrat).toFixed(1)%>
+													<%if((num*10)%10==0){%>
+													<%rating=(rat/countrat).toFixed(0)%>
+													<%}else{%>
+													<%rating=(rat/countrat).toFixed(1)%>
+													<%}%>
+											<%}%>
+            <div class="col-md-3" id="line-result-search">
+                  <div class="single-top-movie">
+                     <div class="top-movie-wrap">
+                        <div class="top-movie-img">
+                           <a href="#">
+                           <img src="<%=i.info.posterimage%>" alt="top movies">
+                           </a>
+                        </div>
+                        <div class="thumb-hover">
+                           <a href="/detail-movie?id=<%=i.id%>" class="celebrity-link">Xem chi tiết</a>
+                           <ul>
+                              <a href="#" class="filmoja-btn tablet-action"><i class="fa fa-play"></i>Xem trailer</a>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="top-movie-details">
+                        <%if(i.title.length>22){%>
+                           <h4><a href="/detail-movie?id=<%=i.id%>"><%=i.title%></a></h4>
+                        <%}else{%>
+                           <h4><a href="/detail-movie?id=<%=i.id%>"><%=i.title%></a></h4></br>
+                        <%}%>
+                     </div>
+                     <div class="movie-details-thumbs">
+                           <ul>
+                              <li>
+                                 <a href="#"><i class="fa fa-thumbs-up"></i>
+                                    <%=i.countlike?i.countlike:0%></a>
+                              </li>
+                              <li>
+                                 <a href="#"><i class="fa fa-eye"></i><%=i.movieview?i.movieview:0%></a>
+                              </li>
+                              <li>
+                                 <a href="#"><span class="rating"><i class="fa fa-star"></i><%=rating%></span></a>
+                              </li>
+                           </ul>
+                        </div>
+                  </div>
+               </div>
+         <%})%>
+    </div>
+    <!-- type:'isnew' -->
+    <div class="row">
+       <div class="col-4 saveindex" id="<%=movie.length%>">
+            <label id="totalresult-search"><label id="current-list-movie"><%=movie.length%></label>/<%=size%> Kết quả</label>
+       </div>
+       <div class="col-4" id="group-btn_add-listmovie">
+         <%if(movie.length<size){%>
+            <%if(type=='isnew'){%>
+               <button class="btn btn-primary btn_add-listmovie" id="/movie-new">Xem thêm</button>
+            <%}else if(type=='iscoming'){%>
+               <button class="btn btn-primary btn_add-listmovie" id="/movie-moviecoming">Xem thêm</button>
+            <%}else if(type=='isplaying'){%>
+               <button class="btn btn-primary btn_add-listmovie" id="/movie-playing">Xem thêm</button>
+            <%}else if(type=='istop'){%>
+               <button class="btn btn-primary btn_add-listmovie" id="/movie-top">Xem thêm</button>
+            <%}else if(type=='country'){%>
+               <button class="btn btn-primary btn_add-listmovie" id="/movie-country?country=<%=countryquery%>">Xem thêm</button>
+            <%}else{%>
+               <button class="btn btn-primary btn_add-listmovie" id="/movie-type?type=<%=typemovie%>">Xem thêm</button>
+            <%}%>   
+         <%}%>
+         
+       </div>
+       <div class="col-4 sizelistmovie" id="<%=size%>"></div>
+    </div>
+ </section>
+
+<!-- --------------------------------------------End Detail--------------------------------------------->
+<%include ../partials/footer%>
