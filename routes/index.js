@@ -277,6 +277,7 @@ router.get("/getsession", function (req, res, next) {
       id: req.session.passport.user.id,
       email: req.session.passport.user.email
     };
+    
     return res.send(sess);
   }
 });

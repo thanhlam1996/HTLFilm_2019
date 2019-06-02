@@ -13,6 +13,7 @@ $(document).ready(function () {
     }).done(function (sess) {
         console.log(sess)
         if (sess.fullname) {
+            
             $(".link-login-register").empty();
             $('.header-top-social').empty();
             var login = '<li>';
@@ -30,11 +31,7 @@ $(document).ready(function () {
             var admin = "<li id='daucach'>||</li>"
             admin += '<li><a id="logined1" class="nav-member-role2" href="/pageadmin">Chuyên Trang Quản Lý</i></a></li>'
             admin += "<li id='daucach'>||</li>"
-            if (sess.role == 2) {
-                $(".header-top-social").append(admin);
-                $(".link-login-register").append(login);
-            }
-            else if (sess.role > 2) {
+            if (sess.role >= 2) {
                 $(".header-top-social").append(admin);
                 $(".link-login-register").append(login);
             }
