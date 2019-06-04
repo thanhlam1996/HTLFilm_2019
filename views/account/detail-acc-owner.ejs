@@ -39,11 +39,11 @@
             <div class="movie-details-page-box" id="<%=i.id%>">
                <ul>
                   <li><span>Họ & tên</span> : <%=i.info.fullname%></li>
-                  <li><span>Giới tính</span> : <%=i.info.sex%></li>
-                  <li><span>Ngày sinh</span> : <%=moment(i.info.birthday,'YYYY-MM-DD').format('DD/MM/YYYY')%></li>
+                  <li><span>Giới tính</span> : <%=i.info.sex?i.info.sex:""%></li>
+                  <li><span>Ngày sinh</span> : <%=i.info.birthday?moment(i.info.birthday,'YYYY-MM-DD').format('DD/MM/YYYY'):""%></li>
                   <li><span>Email</span> : <%=i.info.email%></li>
-                  <li><span>Số điện thoại</span> : <%=i.info.phone%></li>
-                  <li><span>Địa chỉ</span> : <%=i.info.adress%></li>
+                  <li><span>Số điện thoại</span> : <%=i.info.phone?i.info.phone:""%></li>
+                  <li><span>Địa chỉ</span> : <%=i.info.adress?i.info.adress:""%></li>
                   <li><span></span> </li>
                </ul>
             </div>
@@ -152,20 +152,30 @@
                            <div class="col-lg-6">
                               <p>
                                  <label for="birthday">Ngày sinh</label>
-                                 <input placeholder="dd/mm/yyyy" type="date" value="<%=i.info.birthday%>" id="txt-birthday" name="birthday">
+                                 <input placeholder="dd/mm/yyyy" type="date" value="<%=i.info.birthday?i.info.birthday:01/01/2019%>" id="txt-birthday" name="birthday">
                               </p>
                            </div>
                            <div class="col-lg-6">
                               <p>
-                                 <label for="sex">Giới tính</label>
-                                 <%if(i.info.sex=="Nam"){%>
-                                    <div class="form-check-inline col-6">
-                                       <input type="radio" class="form-check-input" id="radio1" name="sex" value="Nam"
-                                          checked>Nam
-                                    </div>
-                                    <div class="form-check-inline col-4">
-                                       <input type="radio" class="form-check-input" id="radio2" name="sex" value="Nữ">Nữ
-                                    </div>
+                                 <label for="sex">Giới tính</label>                      
+                                 <%if(i.info.sex){%>
+                                    <%if(i.info.sex=="Nam"){%>
+                                       <div class="form-check-inline col-6">
+                                          <input type="radio" class="form-check-input" id="radio1" name="sex" value="Nam"
+                                             checked>Nam
+                                       </div>
+                                       <div class="form-check-inline col-4">
+                                          <input type="radio" class="form-check-input" id="radio2" name="sex" value="Nữ">Nữ
+                                       </div>
+                                    <%}else{%>
+                                       <div class="form-check-inline col-6">
+                                          <input type="radio" class="form-check-input" id="radio1" name="sex" value="Nam"
+                                             >Nam
+                                       </div>
+                                       <div class="form-check-inline col-4">
+                                          <input type="radio" class="form-check-input" id="radio2" name="sex" value="Nữ" checked>Nữ
+                                       </div>
+                                    <%}%>
                                  <%}else{%>
                                     <div class="form-check-inline col-6">
                                        <input type="radio" class="form-check-input" id="radio1" name="sex" value="Nam"
@@ -183,13 +193,13 @@
                            <div class="col-lg-6">
                               <p>
                                  <label for="phone">Số điện thoại</label>
-                                 <input type="text" name="phone" value="<%=i.info.phone%>" id="txt-reg-phone" placeholder="Số điện thoại">
+                                 <input type="text" name="phone" value="<%=i.info.phone?i.info.phone:""%>" id="txt-reg-phone" placeholder="Số điện thoại">
                               </p>
                            </div>
                            <div class="col-lg-6">
                               <p>
                                  <label for="adpress">Địa chỉ</label>
-                                 <input type="text" value="<%=i.info.adress%>" name="adress" id="txt-reg-adpress" placeholder="Địa chỉ">
+                                 <input type="text" value="<%=i.info.adress?i.info.adress:""%>" name="adress" id="txt-reg-adpress" placeholder="Địa chỉ">
                               </p>
                            </div>
                         </div>

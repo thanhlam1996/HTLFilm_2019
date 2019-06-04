@@ -51,13 +51,15 @@ function CheckLogin(role, res, req) {
   if (!req.session.passport) {
     return false;
   } else {
-    if (req.session.passport.user.role < role) {
+    var rol=req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role;
+    if (rol<role) {
       return res.redirect('/error-not-role');
     } else {
       return true;
     }
   }
 }
+
 
 
 // ======================End Check Login=========================
@@ -305,10 +307,15 @@ router.get(
 passport.use(
   new ggstrategy(
     {
+      // clientID:
+      //   "93801717299-geo4c02sanclbtc8vulle1td1fm7ih6g.apps.googleusercontent.com",
+      // clientSecret: "A47eoqVqhEepKhBKLkXhcJnH",
+      // callbackURL: "http://localhost:3000/account/logingg/cb",
+      // profileFields: ["email"]
       clientID:
-        "102609804352-6l1pmm108jmsjmnm96fciklmk0dlqnh8.apps.googleusercontent.com",
-      clientSecret: "nu-YhOyCpLJCDeBbuEYEGExy",
-      callbackURL: "http://localhost:3000/account/logingg/cb",
+        "863507887797-2sno32f5pgejlpl4duffenag79c0r1q2.apps.googleusercontent.com",
+      clientSecret: "FNpdUg8RLdE1bl0CgeIlJ0b3",
+      callbackURL: "http://htlfilm.us-east-1.elasticbeanstalk.com/account/logingg/cb",
       profileFields: ["email"]
     },
     (accessToken, refreshToken, profile, done) => {
@@ -326,7 +333,6 @@ passport.use(
           ":id": _id
         }
       };
-
       docClient.query(params, function (err, user) {
         if (err) {
           console.error(
@@ -340,6 +346,7 @@ passport.use(
             var param = {
               TableName: "Accounts",
               Item: {
+                GG:true,
                 id: _id,
                 role: 1,
                 info: {
@@ -361,6 +368,7 @@ passport.use(
           }
         }
       });
+
     }
   )
 );
@@ -373,25 +381,12 @@ passport.serializeUser(function (user, done) {
   done(null, user);
 });
 passport.deserializeUser((user, done) => {
-  var _email = user.Items.id;
 
-  var params = {
-    TableName: "Accounts",
-    KeyConditionExpression: "id=:id",
-    ExpressionAttributeValues: {
-      ":id": id
-    }
-  };
-
-  docClient.query(params, function (err, user) {
-    if (err) {
-      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-    } else {
-      if (user.Count > 0) {
         var sess = {};
         user.Items.forEach(j)
         {
           sess = {
+            GG:j.GG,
             email: j.info.email,
             fullname: j.info.fullname,
             role: j.role,
@@ -400,11 +395,7 @@ passport.deserializeUser((user, done) => {
         }
 
         return done(null, sess);
-      } else {
-        return done(null, false);
-      }
-    }
-  });
+   
 });
 // Passport local
 
@@ -560,7 +551,7 @@ router.get("/get-acc-detail-admin", function (req, res, next) {
 // =============GET DETAIL ACC ALL OBJECT================
 router.get("/get-detail-account", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var _id = req.session.passport.user.id;
+    var _id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var params = {
       TableName: "Accounts",
       KeyConditionExpression: "id=:id",
@@ -587,7 +578,7 @@ router.get("/get-detail-account", function (req, res, next) {
 // =============GET DETAIL ACC ALL OBJECT================
 router.get("/check-password", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var _id = req.session.passport.user.id;
+    var _id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var params = {
       TableName: "Accounts",
       KeyConditionExpression: "id=:id",
@@ -622,7 +613,7 @@ router.get("/check-password", function (req, res, next) {
 // ============Change Role Admin==============
 router.post("/change-password", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var id = req.session.passport.user.id;
+    var id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     //  var oldpass=req.body.oldpass;
     var newpass = req.body.newpass;
 
@@ -658,7 +649,7 @@ router.post("/change-password", function (req, res, next) {
 // =============GET Update ACC ALL OBJECT================
 router.get("/get-update-account", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var _id = req.session.passport.user.id;
+    var _id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var params = {
       TableName: "Accounts",
       KeyConditionExpression: "id=:id",
@@ -690,7 +681,7 @@ router.post("/update-acc", function (req, res, next) {
     var fullname = req.body.fullname;
     var phone = req.body.phone;
     var sex = req.body.sex;
-    var id = req.session.passport.user.id;
+    var id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var params = {
       TableName: "Accounts",
       Key: {

@@ -8,7 +8,7 @@ var moment = require('moment');
 var arraySort = require('array-sort');//Phuong thuc dung de sap xep nhuwng chuaw kha thi hihi
 var descending = require('sort-desc');//Phuong thuc sorf theo thu tu gia, dan
 var fs = require("fs");
-var countryList = require('country-list');
+var readline = require('readline');
 
 
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -27,7 +27,8 @@ function CheckLogin(role, res, req) {
   if (!req.session.passport) {
     return false;
   } else {
-    if (req.session.passport.user.role < role) {
+    var rol=req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role;
+    if (rol<role) {
       return res.redirect('/error-not-role');
     } else {
       return true;
@@ -271,13 +272,25 @@ router.get("/getsession", function (req, res, next) {
   if (req.isAuthenticated()) {
     return res.send(false);
   } else {
-    var sess = {
-      role: req.session.passport.user.role,
-      fullname: req.session.passport.user.fullname,
-      id: req.session.passport.user.id,
-      email: req.session.passport.user.email
-    };
-    
+    var sess={};
+    if(req.session.passport.user.Items)
+    {
+      sess= {
+        role: req.session.passport.user.Items[0].role,
+        fullname: req.session.passport.user.Items[0].info.fullname,
+        id: req.session.passport.user.Items[0].id,
+        email: req.session.passport.user.Items[0].info.email
+      };
+    }
+    else
+    {
+       sess= {
+        role: req.session.passport.user.role,
+        fullname: req.session.passport.user.fullname,
+        id: req.session.passport.user.id,
+        email: req.session.passport.user.email
+      };
+    }
     return res.send(sess);
   }
 });
@@ -304,20 +317,18 @@ router.get("/file", function (req, res, next) {
 
 })
 // =======================================================
+//Ghi file for funtion sendmail
 router.get("/file1", function (req, res, next) {
-  var allcar = fs.readFileSync("./data/movie_Item.html", "utf-8");
-  // var s="";
-  // var f="";
-
-  //   s+=allcar
-
-  fs.writeFile("movieitem.txt", JSON.stringify(allcar), "UTF-8")
-  var allcar1 = fs.readFileSync("./data/end_footermail.txt", "utf-8")
-
-
-  // f+=allcar1.replace('$`,$"');
-
-  fs.writeFile("end_footer.txt", JSON.stringify(allcar1), "UTF-8")
+  var fileStream = fs.createReadStream("./public/emails/headerfotermail.txt");
+  var rl = readline.createInterface({
+    input: fileStream,
+    crlfDelay: Infinity
+  });
+  var wr=fs.createWriteStream("headerfootermail.txt",{flags: 'a'})
+  rl.on('line', function (line) {
+    wr.write("ftr+='"+line+"'"+"\n")
+    
+  });
 })
 // =============Update View movie=====================
 function AddViewMovie(id) {
@@ -381,8 +392,8 @@ router.get("/detail-movie", function (req, res, next) {
   var id = 'no';
   var role = 'no';
   if (req.session.passport) {
-    id = req.session.passport.user.id;
-    role = req.session.passport.user.role;
+    id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
+    role = req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role;
   }
   var _role = req.query.role;
   var params = {
@@ -452,7 +463,9 @@ router.get("/detail-movie", function (req, res, next) {
 // ====================== Phần này dành riêng cho trang quản lý thuộc về role của account >2=========
 router.get("/pageadmin", function (req, res, next) {
   if (CheckLogin(2, res, req)) {
-    if (req.session.passport.user.role == 2) {
+    var role=req.session.passport.user.role?req.session.passport.user.role == 2:req.session.passport.user.Items[0].role;
+    //console.log(req.session.passport.user.role)
+    if (role == 2) {
 
       return res.redirect("/movie/get-list-writed-member");
     }
@@ -468,7 +481,7 @@ router.get("/pageadmin", function (req, res, next) {
 // =============GET DETAIL ACC ALL OBJECT================
 router.get("/get-detail-account", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var _id = req.session.passport.user.id;
+    var _id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var params = {
       TableName: "Accounts",
       KeyConditionExpression: "id=:id",
@@ -484,8 +497,7 @@ router.get("/get-detail-account", function (req, res, next) {
         );
       } else {
         var titletab = "HTLFilm-Thông Tin Tài Khoản";
-        var ck = _id.substring(0, 2);;
-        if (ck == "GG" || ck == "FB") {
+        if (req.session.passport.user.Items) {
           return res.render("../views/account/detail-acc-owner.ejs", { data, ck: "no", moment: moment, titletab });
         }
         else {
@@ -502,7 +514,7 @@ router.get("/get-detail-account", function (req, res, next) {
 router.get("/get-update-account", function (req, res, next) {
   var titletab = "HTLFilm-Cập Nhật Thông Tin Tài Khoản";
   if (CheckLogin(1, res, req)) {
-    var _id = req.session.passport.user.id;
+    var _id = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var params = {
       TableName: "Accounts",
       KeyConditionExpression: "id=:id",

@@ -1,21 +1,7 @@
 [
-    {
-        "type": "add",
-        "id": "e584babe-309d-4db0-b11e-d8fa075e3f55",
-        "fields": {
-            "actor": [
-                "Vin Diesel, Michelle Rodriguez, Jordana Brewster"
-              ],
-              "content": "<p>Sau tám bộ phim đã thu về gần 5 tỷ đô la trên toàn thế giới, nhượng quyền thương hiệu Fast &amp; Furious hiện có chiếc xe độc ​​lập đầu tiên của nó khi Dwayne Johnson và Jason Statham tiếp tục đảm nhận vai diễn Luke Hobbs và Deckard Shaw trong Fast &amp; Furious Presents: Hobbs &amp; Shaw.</p>",
-              "country": "Mỹ",
-              "director": "Justin Lin",
-              "movietype": [
-                "Hành Động, "
-              ],
-              "posterimage": "https://s3.amazonaws.com/movies-bucket-admin/posterimage-1558954026292fast9.png",
-              "producer": "Original Film, Universal Pictures",
-              "publicationdate": "2020-05-22",
-              "title": "Fast & Furious 9"
-        }
-    }
+  {
+      "type": "delete",
+      "id": "e9a2e0a4-fe5e-4ae7-ba27-589fbf761920"
+      
+  }
 ]

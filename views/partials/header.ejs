@@ -117,15 +117,13 @@
                 <ul id="responsive_navigation">
                   <!-- Mobile Search Start -->
                   <li class="header-main-search hide-desktop">
-                    <form>
+                    <form method="POST" action="/cloud-search">
                       <input name="txtsearch" id="txtsearch" type="search" placeholder="Search..." />
-                      <button type="submit">
+                      <button id="btn-search-header" type="submit">
                         <i class="fa fa-search"></i>
                       </button>
+                      <ul class="title-list-group" id="result"></ul>
                     </form>
-                    <ul class="title-list-group" id="result">
-
-                    </ul>
                   </li>
                   <!-- Mobile Search End -->
                   <li><a href="/">Trang chủ</a></li>

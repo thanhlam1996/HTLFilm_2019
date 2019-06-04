@@ -32,7 +32,7 @@
 								</div>
 							</div>
 						</div>
-						<div style="background-image:url('https://s3.amazonaws.com/movies-bucket-admin/footter.png');background-position:top center;background-repeat:no-repeat;background-color:transparent;">
+						<div style="background-image:url(https://s3.amazonaws.com/movies-bucket-admin/footter.png);background-position:top center;background-repeat:no-repeat;background-color:transparent;">
 							<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;">
 								<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
 								
@@ -41,14 +41,14 @@
 													<!--[if (!mso)&(!ie)]><!-->
 													<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:60px; padding-bottom:60px; padding-right: 0px; padding-left: 0px;">
 														
-															<div style="color:#4fd10b;font-family:'ubuntu', tahoma, verdana, segoe, sans-serif;line-height:120%;padding-top:60px;padding-right:35px;padding-bottom:60px;padding-left:60px;">
-																<div style="font-size: 12px; line-height: 14px; font-family: 'ubuntu', tahoma, verdana, segoe, sans-serif; color: #4fd10b;">
+															<div style="color:#4fd10b;font-family:ubuntu, tahoma, verdana, segoe, sans-serif;line-height:120%;padding-top:60px;padding-right:35px;padding-bottom:60px;padding-left:60px;">
+																<div style="font-size: 12px; line-height: 14px; font-family: ubuntu, tahoma, verdana, segoe, sans-serif; color: #4fd10b;">
 																	<p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"> </p>
 																</div>
 															</div>
 															
-																<div style="color:#f91eff;font-family:'montserrat', 'trebuchet ms', 'lucida grande', 'lucida sans unicode', 'lucida sans', tahoma, sans-serif;line-height:120%;padding-top:60px;padding-right:10px;padding-bottom:0px;padding-left:60px;">
-																	<div style="font-family: 'montserrat', 'trebuchet ms', 'lucida grande', 'lucida sans unicode', 'lucida sans', tahoma, sans-serif; font-size: 12px; line-height: 14px; color: #f91eff;">
+																<div style="color:#f91eff;font-family:montserrat, trebuchet ms, lucida grande, lucida sans unicode, lucida sans, tahoma, sans-serif;line-height:120%;padding-top:60px;padding-right:10px;padding-bottom:0px;padding-left:60px;">
+																	<div style="font-family: montserrat, trebuchet ms, lucida grande, lucida sans unicode, lucida sans, tahoma, sans-serif; font-size: 12px; line-height: 14px; color: #f91eff;">
 																		<p dir="ltr" style="font-size: 14px; line-height: 16px; margin: 0;"><strong><span style="font-size: 24px; line-height: 28px;">htlfilm luôn đồng hành cùng bạn <span style="background-color: #ffffff; font-size: 24px; line-height: 28px;">htlfilm ↷ </span></span></strong></p>
 																	</div>
 																</div>

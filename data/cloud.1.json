@@ -197,25 +197,6 @@
     },
     {
         "type": "add",
-        "id": "1af4e3c4-0ceb-4cc2-8e21-76c048350ce6",
-        "fields": {
-            "actor": [
-                "Kev Adams, Jamel Debbouze, Vanessa Guide"
-            ],
-            "content": "<p>Theo dõi chuyến phiêu lưu của Aladdin và Thần đèn siêu quậy để xem liệu lần này, họ sẽ mang đến cho chúng ta những điều thú vị gì nhé!</p>",
-            "country": "Pháp",
-            "director": "Lionel Steketee",
-            "movietype": [
-                "Hài"
-            ],
-            "posterimage": "https://galaxycine.vn/media/2019/4/16/thandensieuquay3_1555400079949.jpg",
-            "producer": "Pathé ",
-            "publicationdate": "2019-04-19",
-            "title": "ALAD'2"
-        }
-    },
-    {
-        "type": "add",
         "id": "3c6070b3-d95c-425b-a013-39a7f8d9d64c",
         "fields": {
             "actor": [
@@ -233,25 +214,7 @@
             "title": "BREAK"
         }
     },
-    {
-        "type": "add",
-        "id": "c423244b-a61d-475c-8637-1bd536904e33",
-        "fields": {
-            "actor": [
-                "Timothé Vom Dorp, Edouard Baer, Marie-Eugénie Maréchal"
-            ],
-            "content": "<p>Sau một vụ tai nạn tàu vũ trụ, Willy bị lạc mất gia đình. Tuy vậy, với sự giúp đỡ của Buck - một robot tự hành và Flash - một sinh vật bản địa dễ thương, Willy bắt đầu hành trình khám phá hành tinh kỳ lạ trong khi chờ nhóm giải cứu tìm thấy cậu.</p>",
-            "country": "Pháp",
-            "director": "Eric Tosti",
-            "movietype": [
-                "Hoạt Hình"
-            ],
-            "posterimage": "https://galaxycine.vn/media/2019/4/2/phieuluu1_1554178757403.jpg",
-            "producer": "TAT Productions",
-            "publicationdate": "2019-04-12",
-            "title": "TERRA WILLY: PLANÈTE INCONNUE"
-        }
-    },
+    
     {
         "type": "add",
         "id": "ced03e83-0f76-4f3e-9162-0a44ee7ca34b",
@@ -383,25 +346,6 @@
               "producer": "Universal",
               "publicationdate": "2019-08-02",
               "title": "FAST & FURIOUS: HOBBS & SHAW"
-        }
-    },
-    {
-        "type": "add",
-        "id": "d24e56f0-739d-4725-97a4-567986c00cda",
-        "fields": {
-            "actor": [
-                "Thanh Lam"
-              ],
-              "content": "<p>hay</p>",
-              "country": "Viet Nam",
-              "director": "abc d",
-              "movietype": [
-                "hai "
-              ],
-              "posterimage": "https://s3.amazonaws.com/movies-bucket-admin/posterimage-1558892383106lion-king_1551148767758.jpg",
-              "producer": "viet nam",
-              "publicationdate": "2019-05-24",
-              "title": "THanh Lam"
         }
     }
 ]

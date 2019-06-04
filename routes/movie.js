@@ -45,13 +45,15 @@ function CheckLogin(role, res, req) {
   if (!req.session.passport) {
     return false;
   } else {
-    if (req.session.passport.user.role < role) {
+    var rol=req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role;
+    if (rol<role) {
       return res.redirect('/error-not-role');
     } else {
       return true;
     }
   }
 }
+
 // ======================================================================================
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -182,6 +184,8 @@ router.post("/create-movie-admin", function (req, res, next) {
         if (req.body.note[i]) {
           note += req.body.note[i]
         }
+        var fullname=req.session.passport.user.fullname?req.session.passport.user.fullname:req.session.passport.user.Items[0].info.fullname
+        var email=req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email
         var now = new Date();
         var initdate = dateFormat(now, "isoDate");
         var params = {
@@ -191,7 +195,7 @@ router.post("/create-movie-admin", function (req, res, next) {
             title: req.body.title[i],
             process: {
               create: {
-                "creater": [req.session.passport.user.fullname, req.session.passport.user.email],
+                "creater": [fullname, email],
                 "initdate": initdate,
                 "deadline": req.body.deadline[i],
                 "createnote": note
@@ -223,6 +227,8 @@ router.post("/create-movie-admin", function (req, res, next) {
       }
       var now = new Date();
       var initdate = dateFormat(now, "isoDate");
+      var _fullname=req.session.passport.user.fullname?req.session.passport.user.fullname:req.session.passport.user.Items[0].info.fullname
+      var _email=req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email
       var params = {
         TableName: "Movies",
         Item: {
@@ -230,7 +236,7 @@ router.post("/create-movie-admin", function (req, res, next) {
           title: req.body.title,
           process: {
             create: {
-              "creater": [req.session.passport.user.fullname, req.session.passport.user.email],
+              "creater": [_fullname, _email],
               "initdate": initdate,
               "deadline": req.body.deadline,
               "createnote": note
@@ -333,7 +339,7 @@ router.post("/update-movie-admin", function (req, res, next) {
 // Get All List Register role=2
 router.get("/list-movie-registed", function (req, res, next) {
   if (CheckLogin(2, res, req)) {
-    var email = req.session.passport.user.email;
+    var email = req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email;
     var params = {
       TableName: "Movies",
       // ProjectionExpression: "#status",
@@ -387,8 +393,9 @@ router.get("/list-movie-waiting-register-write", function (req, res, next) {
         );
       } else {
         var titletab = "List Movies Waiting Register";
+        var role=req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role
         res.render("../views/movies/list-movie-waiting-register-write.ejs", {
-          result, role: req.session.passport.user.role, moment: moment, titletab
+          result, role: role, moment: moment, titletab
         });
       }
     });
@@ -401,8 +408,8 @@ router.post("/member-register-movie", function (req, res, next) {
   if (CheckLogin(2, res, req)) {
 
     var id = req.body.id;
-    var email = req.session.passport.user.email;
-    var fullname = req.session.passport.user.fullname;
+    var fullname=req.session.passport.user.fullname?req.session.passport.user.fullname:req.session.passport.user.Items[0].info.fullname
+    var email=req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email
     var now = new Date();
     var registiondate = dateFormat(now, "isoDate");
     var title = req.body.title;
@@ -556,8 +563,8 @@ router.get("/get-admin-approve-movie", function (req, res, next) {
 // ================Approved======================= role=3
 router.post("/admin-approve-movie", function (req, res, next) {
   if (CheckLogin(3, res, req)) {
-    var approver = req.session.passport.user.fullname;
-    var approveremail = req.session.passport.user.email;
+    var approver=req.session.passport.user.fullname?req.session.passport.user.fullname:req.session.passport.user.Items[0].info.fullname
+      var approveremail=req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email
     var id = req.body.id;
     var now = new Date();
     var dateofapproved = dateFormat(now, "isoDate");
@@ -598,7 +605,7 @@ router.post("/admin-approve-movie", function (req, res, next) {
 
 router.get("/list-approving-member", function (req, res, next) {
   if (CheckLogin(2, res, req)) {
-    var email = req.session.passport.user.email;
+    var email = req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email
     var params = {
       TableName: "Movies",
       // ProjectionExpression: "#status",
@@ -671,10 +678,8 @@ router.post("/delete-movie-admin", function (req, res, next) {
   if (CheckLogin(3, res, req)) {
     //====
     var id = req.body.id;
-    var role = req.session.passport.user.role;
+    var role = req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role;
     if (role > 2) {
-
-
       //
       var params = {
         TableName: "Movies",
@@ -1057,7 +1062,7 @@ router.post("/update-content-movie-admin", s3upload.single("posterimage"), funct
 router.post("/delete-create-movie-admin", function (req, res, next) {
   if (CheckLogin(3, res, req)) {
     var id = req.body.id;
-    var role = req.session.passport.user.role;
+    var role = req.session.passport.user.role?req.session.passport.user.role:req.session.passport.user.Items[0].role;
     if (role > 2) {
       var params = {
         TableName: "Movies",
@@ -1090,7 +1095,7 @@ router.post("/delete-create-movie-admin", function (req, res, next) {
 //  ===========List Movie of Member writed===============role =2
 router.get("/get-list-writed-member", function (req, res, next) {
   if (CheckLogin(2, res, req)) {
-    var email = req.session.passport.user.email;
+    var email = req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email;
     var params = {
       TableName: "Movies",
       // ProjectionExpression: "#status",
@@ -1149,9 +1154,9 @@ router.get("/get-list-movie-admin", function (req, res, next) {
 // =========== Comment=================================== chua test=== function rating and comment for user ... and developing
 router.post("/comment-movie", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var id_cmter = req.session.passport.user.id;
-    var fullname_cmter = req.session.passport.user.fullname;
-    var email_cmter = req.session.passport.user.email;
+    var id_cmter = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
+    var fullname_cmter = req.session.passport.user.fullname?req.session.passport.user.fullname:req.session.passport.user.Items[0].info.fullname;
+    var email_cmter = req.session.passport.user.email?req.session.passport.user.email:req.session.passport.user.Items[0].info.email;
     var movie_id = req.body.id;
     var now = new Date();
     var timecmt = dateFormat(now, "shortTime");
@@ -1273,7 +1278,7 @@ router.post("/comment-movie", function (req, res, next) {
 // ===============Dislike=========================
 router.post("/dislike-movie", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var id_liker = req.session.passport.user.id;
+    var id_liker = req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var movie_id = req.body.id;
     var index = req.body.index;
     var str = "remove #like[" + index + "]";
@@ -1311,7 +1316,7 @@ router.post("/dislike-movie", function (req, res, next) {
 // ======================================================
 router.post("/like-movie", function (req, res, next) {
   if (CheckLogin(1, res, req)) {
-    var id_liker = req.session.passport.user.id;
+    var id_liker =req.session.passport.user.id?req.session.passport.user.id:req.session.passport.user.Items[0].id;
     var movie_id = req.body.id;
     var params = {
       TableName: "Movies",
@@ -1791,6 +1796,540 @@ function SendMailing() {
       console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
     } else {
       data.Items.forEach((i) => {
+        //HEADER MAIL
+        var str="";
+        str+='<!doctype html public "-//w3c//dtd xhtml 1.0 transitional //en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">'
+str+=''
+str+='<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">'
+str+='<head>'
+str+='	<!--[if gte mso 9]><xml><o:officedocumentsettings><o:allowpng/><o:pixelsperinch>96</o:pixelsperinch></o:officedocumentsettings></xml><![endif]-->'
+str+='	<meta content="text/html; charset=utf-8" http-equiv="content-type"/>'
+str+='	<meta content="width=device-width" name="viewport"/>'
+str+='	<!--[if !mso]><!-->'
+str+='	<meta content="ie=edge" http-equiv="x-ua-compatible"/>'
+str+='	<!--<![endif]-->'
+str+='	<title></title>'
+str+='	<!--[if !mso]><!-->'
+str+='	<link href="https://fonts.googleapis.com/css?family=roboto" rel="stylesheet" type="text/css"/>'
+str+='	<link href="https://fonts.googleapis.com/css?family=ubuntu" rel="stylesheet" type="text/css"/>'
+str+='	<link href="https://fonts.googleapis.com/css?family=montserrat" rel="stylesheet" type="text/css"/>'
+str+='	<link href="https://fonts.googleapis.com/css?family=droid+serif" rel="stylesheet" type="text/css"/>'
+str+='	<!--<![endif]-->'
+str+='	<style type="text/css">'
+str+='	body {'
+str+='		margin: 0;'
+str+='		padding: 0;'
+str+='	}'
+str+=''
+str+='	table,'
+str+='	td,'
+str+='	tr {'
+str+='		vertical-align: top;'
+str+='		border-collapse: collapse;'
+str+='	}'
+str+=''
+str+='	* {'
+str+='		line-height: inherit;'
+str+='	}'
+str+=''
+str+='	a[x-apple-data-detectors=true] {'
+str+='		color: inherit !important;'
+str+='		text-decoration: none !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser table {'
+str+='		table-layout: fixed;'
+str+='	}'
+str+=''
+str+='	[owa] .img-container div,'
+str+='	[owa] .img-container button {'
+str+='		display: block !important;'
+str+='	}'
+str+=''
+str+='	[owa] .fullwidth button {'
+str+='		width: 100% !important;'
+str+='	}'
+str+=''
+str+='	[owa] .block-grid .col {'
+str+='		display: table-cell;'
+str+='		float: none !important;'
+str+='		vertical-align: top;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid,'
+str+='	.ie-browser .num12,'
+str+='	[owa] .num12,'
+str+='	[owa] .block-grid {'
+str+='		width: 670px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .mixed-two-up .num4,'
+str+='	[owa] .mixed-two-up .num4 {'
+str+='		width: 220px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .mixed-two-up .num8,'
+str+='	[owa] .mixed-two-up .num8 {'
+str+='		width: 440px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.two-up .col,'
+str+='	[owa] .block-grid.two-up .col {'
+str+='		width: 330px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.three-up .col,'
+str+='	[owa] .block-grid.three-up .col {'
+str+='		width: 330px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.four-up .col [owa] .block-grid.four-up .col {'
+str+='		width: 165px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.five-up .col [owa] .block-grid.five-up .col {'
+str+='		width: 134px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.six-up .col,'
+str+='	[owa] .block-grid.six-up .col {'
+str+='		width: 111px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.seven-up .col,'
+str+='	[owa] .block-grid.seven-up .col {'
+str+='		width: 95px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.eight-up .col,'
+str+='	[owa] .block-grid.eight-up .col {'
+str+='		width: 83px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.nine-up .col,'
+str+='	[owa] .block-grid.nine-up .col {'
+str+='		width: 74px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.ten-up .col,'
+str+='	[owa] .block-grid.ten-up .col {'
+str+='		width: 60px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.eleven-up .col,'
+str+='	[owa] .block-grid.eleven-up .col {'
+str+='		width: 54px !important;'
+str+='	}'
+str+=''
+str+='	.ie-browser .block-grid.twelve-up .col,'
+str+='	[owa] .block-grid.twelve-up .col {'
+str+='		width: 50px !important;'
+str+='	}'
+str+='</style>'
+str+='<style id="media-query" type="text/css">'
+str+='@media only screen and (min-width: 690px) {'
+str+='	.block-grid {'
+str+='		width: 670px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid .col {'
+str+='		vertical-align: top;'
+str+='	}'
+str+=''
+str+='	.block-grid .col.num12 {'
+str+='		width: 670px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.mixed-two-up .col.num3 {'
+str+='		width: 165px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.mixed-two-up .col.num4 {'
+str+='		width: 220px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.mixed-two-up .col.num8 {'
+str+='		width: 440px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.mixed-two-up .col.num9 {'
+str+='		width: 495px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.two-up .col {'
+str+='		width: 335px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.three-up .col {'
+str+='		width: 223px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.four-up .col {'
+str+='		width: 167px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.five-up .col {'
+str+='		width: 134px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.six-up .col {'
+str+='		width: 111px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.seven-up .col {'
+str+='		width: 95px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.eight-up .col {'
+str+='		width: 83px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.nine-up .col {'
+str+='		width: 74px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.ten-up .col {'
+str+='		width: 67px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.eleven-up .col {'
+str+='		width: 60px !important;'
+str+='	}'
+str+=''
+str+='	.block-grid.twelve-up .col {'
+str+='		width: 55px !important;'
+str+='	}'
+str+='}'
+str+=''
+str+='@media (max-width: 690px) {'
+str+=''
+str+='	.block-grid,'
+str+='	.col {'
+str+='		min-width: 320px !important;'
+str+='		max-width: 100% !important;'
+str+='		display: block !important;'
+str+='	}'
+str+=''
+str+='	.block-grid {'
+str+='		width: 100% !important;'
+str+='	}'
+str+=''
+str+='	.col {'
+str+='		width: 100% !important;'
+str+='	}'
+str+=''
+str+='	.col>div {'
+str+='		margin: 0 auto;'
+str+='	}'
+str+=''
+str+='	img.fullwidth,'
+str+='	img.fullwidthonmobile {'
+str+='		max-width: 100% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col {'
+str+='		min-width: 0 !important;'
+str+='		display: table-cell !important;'
+str+='	}'
+str+=''
+str+='	.no-stack.two-up .col {'
+str+='		width: 50% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col.num4 {'
+str+='		width: 33% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col.num8 {'
+str+='		width: 66% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col.num4 {'
+str+='		width: 33% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col.num3 {'
+str+='		width: 25% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col.num6 {'
+str+='		width: 50% !important;'
+str+='	}'
+str+=''
+str+='	.no-stack .col.num9 {'
+str+='		width: 75% !important;'
+str+='	}'
+str+=''
+str+='	.video-block {'
+str+='		max-width: none !important;'
+str+='	}'
+str+=''
+str+='	.mobile_hide {'
+str+='		min-height: 0px;'
+str+='		max-height: 0px;'
+str+='		max-width: 0px;'
+str+='		display: none;'
+str+='		overflow: hidden;'
+str+='		font-size: 0px;'
+str+='	}'
+str+=''
+str+='	.desktop_hide {'
+str+='		display: block !important;'
+str+='		max-height: none !important;'
+str+='	}'
+str+='}'
+str+='</style>'
+str+='</head>'
+str+='<body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #e8e8e8;">'
+str+='	<style id="media-query-bodytag" type="text/css">'
+str+='	@media (max-width: 690px) {'
+str+='		.block-grid {'
+str+='			min-width: 320px!important;'
+str+='			max-width: 100%!important;'
+str+='			width: 100%!important;'
+str+='			display: block!important;'
+str+='		}'
+str+='		.col {'
+str+='			min-width: 320px!important;'
+str+='			max-width: 100%!important;'
+str+='			width: 100%!important;'
+str+='			display: block!important;'
+str+='		}'
+str+='		.col > div {'
+str+='			margin: 0 auto;'
+str+='		}'
+str+='		img.fullwidth {'
+str+='			max-width: 100%!important;'
+str+='			height: auto!important;'
+str+='		}'
+str+='		img.fullwidthonmobile {'
+str+='			max-width: 100%!important;'
+str+='			height: auto!important;'
+str+='		}'
+str+='		.no-stack .col {'
+str+='			min-width: 0!important;'
+str+='			display: table-cell!important;'
+str+='		}'
+str+='		.no-stack.two-up .col {'
+str+='			width: 50%!important;'
+str+='		}'
+str+='		.no-stack.mixed-two-up .col.num4 {'
+str+='			width: 33%!important;'
+str+='		}'
+str+='		.no-stack.mixed-two-up .col.num8 {'
+str+='			width: 66%!important;'
+str+='		}'
+str+='		.no-stack.three-up .col.num4 {'
+str+='			width: 33%!important'
+str+='		}'
+str+='		.no-stack.four-up .col.num3 {'
+str+='			width: 25%!important'
+str+='		}'
+str+='	}'
+str+='</style>'
+str+='<table bgcolor="#e8e8e8" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="table-layout: fixed; vertical-align: top; min-width: 320px; margin: 0 auto; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #e8e8e8; width: 100%;" valign="top" width="100%">'
+str+='	<tbody>'
+str+='		<tr style="vertical-align: top;" valign="top">'
+str+='			<td style="word-break: break-word; vertical-align: top; border-collapse: collapse;" valign="top">'
+str+='				<div style="background-color:#a6a6a6;">'
+str+='					<div class="block-grid two-up no-stack" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;">'
+str+='						<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">'
+str+='							<div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;">'
+str+='								<div style="width:100% !important;">'
+str+='									<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 15px; padding-left: 15px;">'
+str+='										<div align="left" class="img-container left fixedwidth" style="padding-right: 25px;padding-left: 0px;">'
+str+='											<div style="font-size:1px;line-height:25px"> </div><img alt="image" border="0" class="left fixedwidth" src="https://s3.amazonaws.com/movies-bucket-admin/logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 196px; display: block;" title="image" width="196"/>'
+str+='											<div style="font-size:1px;line-height:25px"> </div>'
+str+='										</div>'
+str+='									</div>'
+str+='								</div>'
+str+='							</div>'
+str+='							<div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;">'
+str+='								<div style="width:100% !important;">'
+str+='									<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">'
+str+='										<table border="0" cellpadding="0" cellspacing="0" class="divider" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" valign="top" width="100%">'
+str+='											<tbody>'
+str+='												<tr style="vertical-align: top;" valign="top">'
+str+='													<td class="divider_inner" style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px; border-collapse: collapse;" valign="top">'
+str+='														<table align="center" border="0" cellpadding="0" cellspacing="0" class="divider_content" height="0" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 0px solid transparent; height: 0px;" valign="top" width="100%">'
+str+='															<tbody>'
+str+='																<tr style="vertical-align: top;" valign="top">'
+str+='																	<td height="0" style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse;" valign="top"><span></span></td>'
+str+='																</tr>'
+str+='															</tbody>'
+str+='														</table>'
+str+='													</td>'
+str+='												</tr>'
+str+='											</tbody>'
+str+='										</table>'
+str+='									</div>'
+str+='								</div>'
+str+='							</div>'
+str+='						</div>'
+str+='					</div>'
+str+='				</div>'
+str+='				<div style="background-image:url(https://s3.amazonaws.com/movies-bucket-admin/bg_hero_1.gif);background-position:top center;background-repeat:no-repeat;background-color:transparent;">'
+str+='					<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;">'
+str+='						<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">'
+str+='							<div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;">'
+str+='								<div style="width:100% !important;">'
+str+='									<!--[if (!mso)&(!ie)]><!-->'
+str+='									<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:60px; padding-bottom:60px; padding-right: 0px; padding-left: 0px;">'
+str+='										<div style="color:#ee2337;font-family:oswald, arial, helvetica neue, helvetica, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">'
+str+='											<div style="font-size: 12px; line-height: 14px; font-family: oswald, arial, helvetica neue, helvetica, sans-serif; color: #ee2337;">'
+str+='												<p style="font-size: 14px; line-height: 50px; margin: 0;"><span style="font-size: 42px;">xin chào</span></p>'
+str+='											</div>'
+str+='										</div>'
+str+='										<div style="color:#555555;font-family:roboto, tahoma, verdana, segoe, sans-serif;line-height:150%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">'
+str+='											<div style="font-size: 12px; line-height: 18px; font-family: roboto, tahoma, verdana, segoe, sans-serif; color: #555555;">'
+str+='												<p style="font-size: 14px; line-height: 30px; margin: 0;"><span style="font-size: 20px; background-color: #ffffff;"> htlfilm xin trân trọng giới thiệt loạt phim mới nóng hổi mà htlfilm vừa mới cập nhật. bạn sẽ thích đấy.. hãy là những người đầu tiên quan tâm nào ^^ !! </span><span style="font-size: 20px; line-height: 30px; background-color: #ffffff;"> </span></p>'
+str+='											</div>'
+str+='										</div>'
+str+='										<a href="http://htlfilm.us-east-1.elasticbeanstalk.com">'
+str+='											<div align="left" class="button-container" style="padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">'
+str+='												<div style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ee2337;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;width:auto; width:auto;;border-top:3px solid #ee2337;border-right:3px solid #ee2337;border-bottom:3px solid #ee2337;border-left:3px solid #ee2337;padding-top:5px;padding-bottom:5px;font-family:oswald, arial, helvetica neue, helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:30px;padding-right:30px;font-size:22px;display:inline-block;">'
+str+='													<span style="font-size: 16px; line-height: 32px;"><span style="font-size: 22px; line-height: 44px;"><strong>truy cập ngay ⟶</strong></span></span>'
+str+='												</span></div>'
+str+='											</div>'
+str+='										</a>'
+str+='									</div>'
+str+='								</div>'
+str+='							</div>'
+str+='						</div>'
+str+='					</div>'
+str+='				</div>'
+str+='				<div style="background-color:transparent;">'
+str+='					<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;">'
+str+='						<div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">'
+str+='							<div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;">'
+str+='								<div style="width:100% !important;">'
+str+='									<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">'
+str+='										<table border="0" cellpadding="0" cellspacing="0" class="divider" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" valign="top" width="100%">'
+str+='											<tbody>'
+str+='												<tr style="vertical-align: top;" valign="top">'
+str+='													<td class="divider_inner" style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-collapse: collapse;" valign="top">'
+str+='														<table align="center" border="0" cellpadding="0" cellspacing="0" class="divider_content" height="0" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 0px solid transparent; height: 0px;" valign="top" width="100%">'
+str+='															<tbody>'
+str+='																<tr style="vertical-align: top;" valign="top">'
+str+='																	<td height="0" style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse;" valign="top"><span></span></td>'
+str+='																</tr>'
+str+='															</tbody>'
+str+='														</table>'
+str+='													</td>'
+str+='												</tr>'
+str+='											</tbody>'
+str+='										</table>'
+str+='									</div>'
+str+='								</div>'
+str+='							</div>'
+str+='						</div>'
+str+='					</div>'
+str+='				</div>'
+str+='				<div style="background-color:#f8f8f8;">'
+str+='					<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;">'
+str+='						<div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">'
+str+='							<div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;">'
+str+='								<div style="width:100% !important;">'
+str+='									<!--[if (!mso)&(!ie)]><!-->'
+str+='									<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:10px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">'
+str+='										<div style="color:#07a3ff;font-family:oswald, arial, helvetica neue, helvetica, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">'
+str+='											<div style="line-height: 14px; font-size: 12px; font-family: oswald, arial, helvetica neue, helvetica, sans-serif; color: #07a3ff;">'
+str+='												<p style="line-height: 69px; font-size: 12px; text-align: center; margin: 0;"><span style="font-size: 58px;"><em><span style="line-height: 69px; font-size: 58px;"><strong><span style="line-height: 69px; font-size: 58px;">phim mới hôm nay</span></strong></span></em></span></p>'
+str+='											</div>'
+str+='										</div>'
+str+='									</div>'
+str+='								</div>'
+str+='							</div>'
+str+='						</div>'
+str+='					</div>'
+str+='				</div>'
+//END HEADER MAIL
+//HEADER FOOTER MAIL
+var ftr="";
+ftr+=''
+ftr+='				<div style="background-color:transparent;">'
+ftr+='					<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;">'
+ftr+='						<div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">'
+ftr+=''
+ftr+='									<div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;">'
+ftr+='										<div style="width:100% !important;">'
+ftr+='										'
+ftr+='											<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">'
+ftr+='												<!--<![endif]-->'
+ftr+='												<table border="0" cellpadding="0" cellspacing="0" class="divider" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;" valign="top" width="100%">'
+ftr+='													<tbody>'
+ftr+='														<tr style="vertical-align: top;" valign="top">'
+ftr+='															<td class="divider_inner" style="word-break: break-word; vertical-align: top; min-width: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-collapse: collapse;" valign="top">'
+ftr+='																<table align="center" border="0" cellpadding="0" cellspacing="0" class="divider_content" height="0" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; border-top: 0px solid transparent; height: 0px;" valign="top" width="100%">'
+ftr+='																	<tbody>'
+ftr+='																		<tr style="vertical-align: top;" valign="top">'
+ftr+='																			<td height="0" style="word-break: break-word; vertical-align: top; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; border-collapse: collapse;" valign="top"><span></span></td>'
+ftr+='																		</tr>'
+ftr+='																	</tbody>'
+ftr+='																</table>'
+ftr+='															</td>'
+ftr+='														</tr>'
+ftr+='													</tbody>'
+ftr+='												</table>'
+ftr+='											'
+ftr+='											</div>'
+ftr+='											'
+ftr+='										</div>'
+ftr+='									</div>'
+ftr+='									'
+ftr+='								</div>'
+ftr+='							</div>'
+ftr+='						</div>'
+ftr+='						<div style="background-image:url(https://s3.amazonaws.com/movies-bucket-admin/footter.png);background-position:top center;background-repeat:no-repeat;background-color:transparent;">'
+ftr+='							<div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;">'
+ftr+='								<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">'
+ftr+='								'
+ftr+='											<div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;">'
+ftr+='												<div style="width:100% !important;">'
+ftr+='													<!--[if (!mso)&(!ie)]><!-->'
+ftr+='													<div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:60px; padding-bottom:60px; padding-right: 0px; padding-left: 0px;">'
+ftr+='														'
+ftr+='															<div style="color:#4fd10b;font-family:ubuntu, tahoma, verdana, segoe, sans-serif;line-height:120%;padding-top:60px;padding-right:35px;padding-bottom:60px;padding-left:60px;">'
+ftr+='																<div style="font-size: 12px; line-height: 14px; font-family: ubuntu, tahoma, verdana, segoe, sans-serif; color: #4fd10b;">'
+ftr+='																	<p style="font-size: 14px; line-height: 16px; text-align: left; margin: 0;"> </p>'
+ftr+='																</div>'
+ftr+='															</div>'
+ftr+='															'
+ftr+='																<div style="color:#f91eff;font-family:montserrat, trebuchet ms, lucida grande, lucida sans unicode, lucida sans, tahoma, sans-serif;line-height:120%;padding-top:60px;padding-right:10px;padding-bottom:0px;padding-left:60px;">'
+ftr+='																	<div style="font-family: montserrat, trebuchet ms, lucida grande, lucida sans unicode, lucida sans, tahoma, sans-serif; font-size: 12px; line-height: 14px; color: #f91eff;">'
+ftr+='																		<p dir="ltr" style="font-size: 14px; line-height: 16px; margin: 0;"><strong><span style="font-size: 24px; line-height: 28px;">htlfilm luôn đồng hành cùng bạn <span style="background-color: #ffffff; font-size: 24px; line-height: 28px;">htlfilm ↷ </span></span></strong></p>'
+ftr+='																	</div>'
+ftr+='																</div>'
+ftr+='																'
+ftr+='																<table cellpadding="0" cellspacing="0" class="social_icons" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" valign="top" width="100%">'
+ftr+='																	<tbody>'
+ftr+='																		<tr style="vertical-align: top;" valign="top">'
+ftr+='																			<td style="word-break: break-word; vertical-align: top; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-collapse: collapse;" valign="top">'
+ftr+='																				<table activate="activate" align="center" alignment="alignment" cellpadding="0" cellspacing="0" class="social_table" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: undefined; mso-table-tspace: 0; mso-table-rspace: 0; mso-table-bspace: 0; mso-table-lspace: 0;" to="to" valign="top">'
+ftr+='																					<tbody>'
+ftr+='																						<tr align="center" style="vertical-align: top; display: inline-block; text-align: center;" valign="top">'
+ftr+='																							<td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 3px; padding-left: 3px; border-collapse: collapse;" valign="top"><a href="https://www.facebook.com/truong.lam.7587" target="_blank"><img alt="facebook" height="32" src="https://s3.amazonaws.com/movies-bucket-admin/facebookblue%402x.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;" title="facebook" width="32"/></a></td>'
+ftr+='																							<td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 3px; padding-left: 3px; border-collapse: collapse;" valign="top"><a href="https://twitter.com/" target="_blank"><img alt="twitter" height="32" src="https://s3.amazonaws.com/movies-bucket-admin/twitter%402x.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;" title="twitter" width="32"/></a></td>'
+ftr+='																							<td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 3px; padding-left: 3px; border-collapse: collapse;" valign="top"><a href="https://www.linkedin.com/" target="_blank"><img alt="linkedin" height="32" src="https://s3.amazonaws.com/movies-bucket-admin/linkedin%402x.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;" title="linkedin" width="32"/></a></td>'
+ftr+='																							<td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 3px; padding-left: 3px; border-collapse: collapse;" valign="top"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com" target="_blank"><img alt="htlfilm" height="32" src="https://s3.amazonaws.com/movies-bucket-admin/logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; height: auto; float: none; border: none; display: block;" title="htlfilm" width="132"/></a></td>'
+ftr+='																						</tr>'
+ftr+='																					</tbody>'
+ftr+='																				</table>'
+ftr+='																			</td>'
+ftr+='																		</tr>'
+ftr+='																	</tbody>'
+ftr+='																</table>'
+ftr+='																'
+ftr+='															</div>'
+ftr+='															'
+ftr+='														</div>'
+ftr+='													</div>'
+ftr+='													'
+ftr+='												</div>'
+ftr+='											</div>'
+ftr+='										</div>'
+
+//END HEADER FOOTER MAIL
         // MOVIE 1-2===============
         var moiveitem_1_2 = '<div style="background-color:#f8f8f8;"><div class="block-grid two-up" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;;"><div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;"><!-- Movie-1 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[0] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[0] + '" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;">'
         moiveitem_1_2 += '<strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[0] + '">' + i.titles[0] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[0] + '</p></div></div></div></div></div><!--End Movie-1 --><!-- Movie-2 --><div class="col num6" style="min-width: 320px; max-width: 335px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:15px; padding-bottom:15px; padding-right: 15px; padding-left: 15px;"><div align="center" class="img-container center autowidth fullwidth"><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[1] + '"><img align="center" alt="image" border="0" class="center autowidth fullwidth" src="' + i.urlimages[1] + '" tstyle="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 305px; display: block;" title="image" width="305"/></a></div><div style="color:#ee2337;font-family:droid serif, georgia, times, times new roman, serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:10px;"><div style="font-size: 12px; line-height: 14px; font-family: droid serif, georgia, times, times new roman, serif; color: #ee2337;"><p style="font-size: 14px; line-height: 21px; margin: 0;"><span style="font-size: 18px;"><strong><a href="http://htlfilm.us-east-1.elasticbeanstalk.com/detail-movie?id=' + i.idmovies[1] + '">' + i.titles[1] + '</a></strong></span></p></div></div><div style="color:#555555;font-family:droid serif, georgia, times, times new roman, serif;line-height:150%;padding-top:5px;padding-right:10px;padding-bottom:5px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family: droid serif, georgia, times, times new roman, serif; color: #555555;"><p style="font-size: 14px; line-height: 21px; margin: 0;">' + i.contents[1] + '</p></div></div></div></div></div></div></div></div>'
@@ -1810,7 +2349,7 @@ function SendMailing() {
         var endfooter = '<div style="background-color:#555555;"><div class="block-grid" style="margin: 0 auto; min-width: 320px; max-width: 670px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;;"><div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;"><div class="col num12" style="min-width: 320px; max-width: 670px; display: table-cell; vertical-align: top;;"><div style="width:100% !important;"><div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:30px; padding-bottom:20px; padding-right: 0px; padding-left: 0px;"><div style="color:#ffffff;font-family: droid serif , georgia, times,  times new roman , serif;line-height:150%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;"><div style="font-size: 12px; line-height: 18px; font-family:  droid serif , georgia, times,  times new roman , serif; color: #ffffff;"><p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;"><strong>HTLFilm || ' + thistime + '</strong></p></div></div></div></div></div></div></div></td></tr></tbody></table></body></html>'
         // END FOOTER
         //Call function Sendmail from route notification     
-        sendMail(fs.readFileSync('./emails/headermail.html') + moiveitem_1_2 + moiveitem_3_4 + moiveitem_5_6 + fs.readFileSync('./emails/headerfotermail.html') + endfooter)
+        sendMail(str + moiveitem_1_2 + moiveitem_3_4 + moiveitem_5_6 + ftr + endfooter)
 
       })
     }

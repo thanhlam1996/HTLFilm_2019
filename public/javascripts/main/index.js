@@ -11,9 +11,7 @@ $(document).ready(function () {
         }
 
     }).done(function (sess) {
-        console.log(sess)
-        if (sess.fullname) {
-            
+        if (sess.fullname) {   
             $(".link-login-register").empty();
             $('.header-top-social').empty();
             var login = '<li>';
